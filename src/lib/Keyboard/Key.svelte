@@ -21,6 +21,10 @@
     font-size: 14px;
     user-select: none;
   }
+  button:active {
+    transform: translateY(1px);
+    filter: saturate(150%);
+  }
   button.big {
     flex: 1.5;
     font-size: 10px;

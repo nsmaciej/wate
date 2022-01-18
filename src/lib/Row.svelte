@@ -8,35 +8,30 @@
   import Tile from "$lib/Tile.svelte";
   import { findRowStates, State } from "$lib/game";
 
+  export function revealStates(): void {
+    const duration = 200;
+    for (let i = 0; i < 4; ++i) {
+      (async () => {
+        await delay(duration * i); // Stagger.
+        flipped[i] = true;
+        await delay(duration);
+        revealedStates[i] = states[i];
+        flipped[i] = false;
+      })();
+    }
+  }
+
   export let letters = "";
   export let solution = "";
-  export let current = false;
 
   $: states = findRowStates(solution, letters);
-  let actualStates = new Array(4).fill(State.Unknown);
+  let revealedStates = new Array(4).fill(State.Unknown);
   let flipped = new Array(4).fill(false);
-
-  async function flipTile(i: number): Promise<void> {
-    const duration = 200;
-    await delay(duration * i); // Stagger.
-    flipped[i] = true;
-    await delay(duration);
-    actualStates[i] = states[i];
-    flipped[i] = false;
-  }
-
-  let lastCurrent = current;
-  $: if (current != lastCurrent) {
-    if (lastCurrent) {
-      for (let i = 0; i < 4; ++i) flipTile(i);
-    }
-    lastCurrent = current;
-  }
 </script>
 
 <div>
   {#each letters as letter, i}
-    <Tile {letter} state={actualStates[i]} flipped={flipped[i]} />
+    <Tile {letter} state={revealedStates[i]} flipped={flipped[i]} />
   {/each}
 </div>
 

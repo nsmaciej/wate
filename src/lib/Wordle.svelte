@@ -6,37 +6,39 @@
 
   const solution = selectWord(dictionary);
   let won = false;
-  let rows = new Array(6).fill("");
+  let rowLetters = new Array(6).fill("");
+  let rowInstances: Row[] = [];
   let currentRow = 0;
-  let letterStates = findLetterStates(solution, rows);
+  let letterStates = findLetterStates(solution, rowLetters);
   console.log(solution);
 
   function handlePress(event: CustomEvent<string>): void {
     if (won) return;
-    if (rows[currentRow].length < solution.length) {
-      rows[currentRow] += event.detail;
+    if (rowLetters[currentRow].length < solution.length) {
+      rowLetters[currentRow] += event.detail;
     }
   }
 
   function handleBackspace(): void {
     if (won) return;
-    rows[currentRow] = rows[currentRow].slice(0, -1);
+    rowLetters[currentRow] = rowLetters[currentRow].slice(0, -1);
   }
 
   function handleEnter(): void {
     if (won) return;
-    let row = rows[currentRow];
+    let row = rowLetters[currentRow];
     if (row.length < solution.length) {
       alert("Not enough letters");
     } else if (!dictionary.includes(row)) {
       alert("Not in the dictionary");
     } else {
+      rowInstances[currentRow].revealStates();
       currentRow += 1;
       setTimeout(() => {
-        letterStates = findLetterStates(solution, rows);
+        letterStates = findLetterStates(solution, rowLetters);
         if (row == solution) {
           won = true;
-          alert(generateEmojiArt(solution, currentRow, rows));
+          alert(generateEmojiArt(solution, currentRow, rowLetters));
         }
       }, 250 * 5);
     }
@@ -44,10 +46,10 @@
 </script>
 
 <div class="wordle">
-  {#each rows as row, i}
+  {#each rowLetters as row, i}
     <Row
       letters={row.padEnd(solution.length)}
-      current={i == currentRow}
+      bind:this={rowInstances[i]}
       {solution}
     />
   {/each}

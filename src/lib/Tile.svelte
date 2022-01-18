@@ -26,7 +26,7 @@
     }
   }
   div.unknown {
-    border: 2px solid #cacaca;
+    border: 2px solid var(--unknown-tile-border);
     background: none;
   }
   div.absent {

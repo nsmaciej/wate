@@ -10,6 +10,8 @@
 
   --correct-bg: #00cc00;
   --correct-fg: #ffffff;
+
+  --unknown-tile-border: #cacaca;
 }
 
 * {
