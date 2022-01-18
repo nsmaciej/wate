@@ -18,6 +18,6 @@
   div {
     flex: 1;
     display: flex;
-    aspect-ratio: 4 / 1;
+    width: 100%;
   }
 </style>

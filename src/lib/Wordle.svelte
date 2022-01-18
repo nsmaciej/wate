@@ -51,11 +51,11 @@
 <style>
   div.wordle {
     user-select: none;
-    width: 100%;
     flex: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     max-height: 350px;
+    aspect-ratio: 4 / 6;
   }
 </style>
