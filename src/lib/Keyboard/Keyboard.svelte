@@ -1,10 +1,7 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import Key from "$lib/Key.svelte";
-  import KeyboardRow from "$lib/KeyboardRow.svelte";
-
-  let correct_letters = "";
-  let absent_letters = "";
+  import Key from "$lib/Keyboard/Key.svelte";
+  import Row from "$lib/Keyboard/Row.svelte";
 
   const dispatch = createEventDispatcher();
   function handleKeyDown(event: KeyboardEvent): void {
@@ -21,12 +18,12 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 <div>
-  <KeyboardRow letters="aeijkl" on:press />
-  <KeyboardRow letters="mnops" on:press />
-  <KeyboardRow letters="tuw" on:press>
+  <Row letters="aeijkl" on:press />
+  <Row letters="mnops" on:press />
+  <Row letters="tuw" on:press>
     <Key big slot="start" on:click={() => dispatch("enter")}>ENTER</Key>
     <Key big slot="end" on:click={() => dispatch("backspace")}>BACKSPACE</Key>
-  </KeyboardRow>
+  </Row>
 </div>
 
 <style>

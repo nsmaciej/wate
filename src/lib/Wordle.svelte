@@ -1,7 +1,7 @@
 <script lang="ts">
   import { correctLetters, absentLetters, presentLetters } from "$lib/stores";
   import Row from "$lib/Row.svelte";
-  import Keyboard from "$lib/Keyboard.svelte";
+  import Keyboard from "$lib/Keyboard/Keyboard.svelte";
   import dictionary from "../../static/dictionary.json";
   import { findStates, State } from "./game";
 
