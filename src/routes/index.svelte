@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { waitLocale, _ } from "svelte-i18n";
+  import { locale, waitLocale, _ } from "svelte-i18n";
   import Wordle from "$lib/Wordle.svelte";
   import "./i18n";
   import "../app.css";
