@@ -20,9 +20,12 @@
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
-<div>
-  <Row letters="aeijkl" on:press {letterStates} />
-  <Row letters="mnops" on:press {letterStates} />
+<div class="keyboard">
+  <Row letters="aeijk" on:press {letterStates}>
+    <div slot="start" class="spacer" />
+    <div slot="end" class="spacer" />
+  </Row>
+  <Row letters="lmnops" on:press {letterStates} />
   <Row letters="tuw" on:press {letterStates}>
     <Key big slot="start" on:click={() => dispatch("enter")}>ENTER</Key>
     <Key big slot="end" on:click={() => dispatch("backspace")}>BACKSPACE</Key>
@@ -30,8 +33,11 @@
 </div>
 
 <style>
-  div {
+  div.keyboard {
+    max-width: 350px;
     width: 100%;
-    margin-top: 30px;
+  }
+  div.spacer {
+    flex: 0.5;
   }
 </style>

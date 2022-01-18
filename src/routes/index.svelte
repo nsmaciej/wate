@@ -9,20 +9,32 @@
   }
 </script>
 
-<h1>Wate</h1>
-
 <main>
-  <p>{$_("description")}</p>
+  <heading>
+    <h1>Wate</h1>
+    <p>{$_("description")}</p>
+  </heading>
+
   <Wordle />
 </main>
 
 <style>
+  h1 {
+    font-size: 2em;
+  }
   main {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    flex-flow: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    flex: auto;
+    gap: 15px;
+    padding: 20px 20px 30px;
+
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
   }
 </style>

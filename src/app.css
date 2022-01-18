@@ -1,5 +1,5 @@
 :root {
-  --key-bg: #cccccc;
+  --key-bg: #e6e6e6;
   --key-fg: #333333;
 
   --absent-bg: #333333;
@@ -12,8 +12,13 @@
   --correct-fg: #ffffff;
 }
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  font-size: 14px;
   font-family: ui-sans-serif, system-ui;
-  max-width: 500px;
-  margin: 0 auto;
 }

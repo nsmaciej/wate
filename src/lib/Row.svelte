@@ -16,9 +16,8 @@
 
 <style>
   div {
-    display: grid;
-    grid-auto-columns: 50px;
-    grid-auto-flow: column;
-    grid-auto-rows: 50px;
+    flex: 1;
+    display: flex;
+    aspect-ratio: 4 / 1;
   }
 </style>

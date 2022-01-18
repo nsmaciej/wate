@@ -15,10 +15,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 3px;
+    margin: 2px;
+    width: 100%;
+    font-weight: bold;
+  }
+  @media (max-height: 600px) {
+    div {
+      font-size: 1em;
+    }
   }
   div.unknown {
-    border: 1px solid gray;
+    border: 2px solid #cacaca;
+    background: none;
   }
   div.absent {
     background: var(--absent-bg);

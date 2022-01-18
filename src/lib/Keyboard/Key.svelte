@@ -17,12 +17,15 @@
     cursor: pointer;
     font-weight: bold;
     padding: 0;
-    margin: 0;
+    margin: 8px 8px 0 0;
+    font-size: 14px;
+    user-select: none;
   }
   button.big {
     flex: 1.5;
+    font-size: 10px;
   }
-  button.uknown {
+  button.unknown {
     background: var(--key-bg);
     color: var(--key-fg);
   }

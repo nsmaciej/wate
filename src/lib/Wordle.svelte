@@ -32,7 +32,7 @@
   }
 </script>
 
-<div>
+<div class="wordle">
   {#each rows as row, i}
     <Row
       letters={row.padEnd(solution.length)}
@@ -40,18 +40,22 @@
       {solution}
     />
   {/each}
-  <Keyboard
-    on:press={handlePress}
-    on:enter={handleEnter}
-    on:backspace={() => (rows[currentRow] = rows[currentRow].slice(0, -1))}
-    {letterStates}
-  />
 </div>
+<Keyboard
+  on:press={handlePress}
+  on:enter={handleEnter}
+  on:backspace={() => (rows[currentRow] = rows[currentRow].slice(0, -1))}
+  {letterStates}
+/>
 
 <style>
-  div {
+  div.wordle {
+    user-select: none;
+    width: 100%;
+    flex: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-height: 350px;
   }
 </style>
