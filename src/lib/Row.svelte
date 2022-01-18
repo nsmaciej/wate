@@ -14,33 +14,29 @@
 
   $: states = findRowStates(solution, letters);
   let actualStates = new Array(4).fill(State.Unknown);
-  let classes = new Array(4).fill("");
+  let flipped = new Array(4).fill(false);
 
   async function flipTile(i: number): Promise<void> {
-    const duration = 250;
+    const duration = 200;
     await delay(duration * i); // Stagger.
-    classes[i] = "FlipIn";
+    flipped[i] = true;
     await delay(duration);
     actualStates[i] = states[i];
-    classes[i] = "FlipOut";
-    await delay(duration);
-    classes[i] = "";
+    flipped[i] = false;
   }
 
   let lastCurrent = current;
-  $: {
-    if (current != lastCurrent) {
-      if (lastCurrent) {
-        for (let i = 0; i < 4; ++i) flipTile(i);
-      }
-      lastCurrent = current;
+  $: if (current != lastCurrent) {
+    if (lastCurrent) {
+      for (let i = 0; i < 4; ++i) flipTile(i);
     }
+    lastCurrent = current;
   }
 </script>
 
 <div>
   {#each letters as letter, i}
-    <Tile {letter} state={actualStates[i]} anim={classes[i]} />
+    <Tile {letter} state={actualStates[i]} flipped={flipped[i]} />
   {/each}
 </div>
 
@@ -48,7 +44,7 @@
   div {
     flex: 1;
     display: grid;
-    /* This needs to be a grid, flexbox dosen't like the border disappearing. */
+    /* This needs to be a grid, flexbox dosen't like the Tile border disappearing. */
     grid-template: 1fr / repeat(4, 1fr);
     width: 100%;
   }
