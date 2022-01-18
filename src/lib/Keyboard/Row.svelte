@@ -1,22 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
-  import { correctLetters, absentLetters, presentLetters } from "$lib/stores";
   import { State } from "$lib/game";
-  import Key from "$lib/Key.svelte";
+  import { letterStates } from "$lib/stores";
+  import Key from "$lib/Keyboard/Key.svelte";
   export let letters = "";
 
   const dispatch = createEventDispatcher();
-  function letterState(
-    $correctLetters,
-    $absentLetters,
-    $presentLetters,
-    letter: string
-  ): State {
-    if ($correctLetters.has(letter)) return State.Correct;
-    if ($absentLetters.has(letter)) return State.Absent;
-    if ($presentLetters.has(letter)) return State.Present;
-    return State.Unknown;
-  }
 </script>
 
 <div>
@@ -24,12 +13,7 @@
   {#each letters as letter}
     <Key
       on:click={() => dispatch("press", letter)}
-      state={letterState(
-        $correctLetters,
-        $absentLetters,
-        $presentLetters,
-        letter
-      )}
+      state={$letterStates.get(letter) ?? State.Unknown}
     >
       {letter.toUpperCase()}
     </Key>

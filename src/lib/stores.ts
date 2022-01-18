@@ -1,5 +1,4 @@
 import { writable } from "svelte/store";
+import type { State } from "$lib/game";
 
-export const absentLetters = writable(new Set<string>());
-export const correctLetters = writable(new Set<string>());
-export const presentLetters = writable(new Set<string>());
+export const letterStates = writable(new Map<string, State>());

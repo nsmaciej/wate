@@ -1,11 +1,11 @@
 <script lang="ts">
   import Tile from "$lib/Tile.svelte";
-  import { findStates, State } from "$lib/game";
+  import { findRowStates, State } from "$lib/game";
 
   export let letters = "";
   export let solution = "";
   export let current = false;
-  $: states = findStates(solution, letters);
+  $: states = findRowStates(solution, letters);
 </script>
 
 <div>
