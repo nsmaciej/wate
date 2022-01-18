@@ -28,3 +28,10 @@
     <Key big slot="end" on:click={() => dispatch("backspace")}>BACKSPACE</Key>
   </KeyboardRow>
 </div>
+
+<style>
+  div {
+    width: 100%;
+    margin-top: 30px;
+  }
+</style>

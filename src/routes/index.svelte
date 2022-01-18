@@ -4,7 +4,7 @@
   import "./i18n";
   import "../app.css";
 
-  export async function preload() {
+  export async function preload(): Promise<void> {
     return waitLocale();
   }
 </script>
@@ -15,3 +15,14 @@
   <p>{$_("description")}</p>
   <Wordle />
 </main>
+
+<style>
+  main {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+</style>

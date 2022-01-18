@@ -40,6 +40,7 @@
 <style>
   div {
     display: flex;
+    column-gap: 4px;
     margin: 4px 0;
   }
 </style>

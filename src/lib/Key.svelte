@@ -16,6 +16,8 @@
     flex: 1;
     cursor: pointer;
     font-weight: bold;
+    padding: 0;
+    margin: 0;
   }
   button.big {
     flex: 1.5;
