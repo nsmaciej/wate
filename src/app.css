@@ -1,0 +1,18 @@
+:root {
+  --key-bg: #cccccc;
+  --key-fg: #333333;
+
+  --absent-bg: #333333;
+  --absent-fg: #ffffff;
+
+  --present-bg: #ffd900;
+  --present-fg: #ffffff;
+
+  --correct-bg: #00cc00;
+  --correct-fg: #ffffff;
+}
+
+body {
+  font-family: ui-sans-serif;
+  max-width: 500px;
+}
