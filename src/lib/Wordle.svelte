@@ -1,18 +1,14 @@
 <script lang="ts">
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
-  import { findLetterStates, generateEmojiArt, State } from "$lib/game";
-  import { letterStates } from "$lib/stores";
+  import { findLetterStates, generateEmojiArt, selectWord } from "$lib/game";
   import dictionary from "../../static/dictionary.json";
 
-  const candidates = dictionary.filter((x) => x.length === 4);
-  const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
-  const dayIndex = Math.floor(secondsSinceStart / 86400);
-  const solution = candidates[dayIndex % candidates.length];
-  console.log(solution);
-
+  const solution = selectWord(dictionary);
   let rows = new Array(6).fill("");
   let currentRow = 0;
+  let letterStates = findLetterStates(solution, rows);
+  console.log(solution);
 
   function handlePress(event: CustomEvent<string>): void {
     if (rows[currentRow].length < solution.length) {
@@ -28,7 +24,7 @@
       alert("Not in the dictionary");
     } else {
       currentRow += 1;
-      letterStates.set(findLetterStates(solution, rows));
+      letterStates = findLetterStates(solution, rows);
       if (row == solution) {
         alert(generateEmojiArt(solution, currentRow, rows));
       }
@@ -48,6 +44,7 @@
     on:press={handlePress}
     on:enter={handleEnter}
     on:backspace={() => (rows[currentRow] = rows[currentRow].slice(0, -1))}
+    {letterStates}
   />
 </div>
 

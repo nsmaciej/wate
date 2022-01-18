@@ -1,11 +1,11 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { State } from "$lib/game";
-  import { letterStates } from "$lib/stores";
   import Key from "$lib/Keyboard/Key.svelte";
   export let letters = "";
 
   const dispatch = createEventDispatcher();
+  export let letterStates = new Map<string, State>();
 </script>
 
 <div>
@@ -13,7 +13,7 @@
   {#each letters as letter}
     <Key
       on:click={() => dispatch("press", letter)}
-      state={$letterStates.get(letter) ?? State.Unknown}
+      state={letterStates.get(letter) ?? State.Unknown}
     >
       {letter.toUpperCase()}
     </Key>
