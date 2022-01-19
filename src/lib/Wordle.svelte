@@ -6,7 +6,7 @@
 
   const solution = selectWord(dictionary);
   let won = false;
-  let rowLetters = new Array(6).fill("");
+  let rowLetters = new Array(5).fill("");
   let rowInstances: Row[] = [];
   let currentRow = 0;
   let letterStates = findLetterStates(solution, rowLetters);
