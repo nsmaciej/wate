@@ -17,13 +17,14 @@
     cursor: pointer;
     font-weight: bold;
     padding: 0;
-    margin: 8px 8px 0 0;
     font-size: 14px;
     user-select: none;
   }
+  button:hover {
+    filter: brightness(105%);
+  }
   button:active {
     transform: translateY(1px);
-    filter: saturate(150%);
   }
   button.big {
     flex: 1.5;

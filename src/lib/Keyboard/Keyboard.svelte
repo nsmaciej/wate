@@ -34,7 +34,6 @@
 
 <style>
   div.keyboard {
-    max-width: 350px;
     width: 100%;
   }
   div.spacer {

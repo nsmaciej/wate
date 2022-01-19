@@ -24,5 +24,7 @@
 <style>
   div {
     display: flex;
+    margin: 8px 0;
+    gap: 8px;
   }
 </style>
