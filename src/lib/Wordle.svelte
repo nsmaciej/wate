@@ -48,7 +48,10 @@
   }
 </script>
 
-<div class="wordle">
+<div
+  class="wordle"
+  style:aspect-ratio="{solution.length} / {rowLetters.length}"
+>
   {#each rowLetters as row, i}
     <Row
       letters={row.padEnd(solution.length)}
@@ -72,6 +75,5 @@
     flex-direction: column;
     align-items: center;
     max-height: 350px;
-    aspect-ratio: 4 / 6;
   }
 </style>

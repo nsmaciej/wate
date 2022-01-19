@@ -12,6 +12,7 @@
   button {
     border: none;
     border-radius: 4px;
+    font-family: inherit;
     height: 50px;
     flex: 1;
     cursor: pointer;
@@ -19,6 +20,11 @@
     padding: 0;
     font-size: 14px;
     user-select: none;
+    padding: 3px;
+    text-transform: uppercase;
+  }
+  :global(.linja-pona) button {
+    font-size: 18px;
   }
   button:hover {
     filter: brightness(105%);
@@ -28,7 +34,10 @@
   }
   button.big {
     flex: 1.5;
-    font-size: 10px;
+    font-size: 9px;
+  }
+  :global(.linja-pona) button.big {
+    font-size: 30px;
   }
   button.unknown {
     background: var(--key-bg);

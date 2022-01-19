@@ -1,0 +1,12 @@
+{
+  "alt": {
+    "help": "musi li seme",
+    "settings": "nasin musi"
+  },
+  "description": "musi [_walo_alasa_toki_epiku] pi+toki-pona",
+  "key": {
+    "backspace": "weka sitelen",
+    "enter": "alasa nimi"
+  },
+  "name": "[_walo_alasa_toki_epiku]"
+}

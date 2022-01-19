@@ -12,7 +12,7 @@
 
 <style>
   div {
-    font-size: 2em;
+    font-size: 28px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,9 +20,12 @@
     font-weight: bold;
     transition: transform 200ms ease-in;
   }
+  :global(.linja-pona) div {
+    font-size: 35px;
+  }
   @media (max-height: 600px) {
     div {
-      font-size: 1em;
+      font-size: 14px;
     }
   }
   div.unknown {

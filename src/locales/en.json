@@ -1,3 +1,14 @@
 {
-  "description": "Toki Pona Wordle"
+  "alt": {
+    "help": "How to Play",
+    "settings": "Settings"
+  },
+  "button": {
+  },
+  "description": "Toki Pona Wordle",
+  "key": {
+    "backspace": "Backspace",
+    "enter": "Enter"
+  },
+  "name": "Wate"
 }

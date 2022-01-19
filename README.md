@@ -1,3 +1,3 @@
-# ilo Wate pi toki pona
+# musi Wate pi toki pona
 
 Toki Pona Wordle.

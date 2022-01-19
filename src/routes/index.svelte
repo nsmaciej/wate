@@ -1,6 +1,7 @@
 <script context="module" lang="ts">
   import { waitLocale, _ } from "svelte-i18n";
   import Wordle from "$lib/Wordle.svelte";
+  import Icon from "$lib/Icon.svelte";
   import "./i18n";
   import "../app.css";
 
@@ -11,8 +12,14 @@
 
 <main>
   <heading>
-    <h1>Wate</h1>
-    <i>{$_("description")}</i>
+    <div>
+      <h1>{$_("name")}</h1>
+      <i>{$_("description")}</i>
+    </div>
+    <div class="buttons">
+      <button><Icon title={$_("alt.settings")} name="settings" /></button>
+      <button><Icon title={$_("alt.help")} name="help" /></button>
+    </div>
   </heading>
 
   <Wordle />
@@ -20,13 +27,24 @@
 
 <style>
   h1 {
-    font-size: 25px;
+    font-size: 1.8rem;
+  }
+  button {
+    border: none;
+    display: flex;
   }
   heading {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   i {
-    color: #696969;
+    color: var(--accent-color);
+  }
+  div.buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
   main {
     display: flex;

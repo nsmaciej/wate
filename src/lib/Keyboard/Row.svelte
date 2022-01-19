@@ -15,7 +15,7 @@
       on:click={() => dispatch("press", letter)}
       state={letterStates.get(letter) ?? State.Unknown}
     >
-      {letter.toUpperCase()}
+      {letter}
     </Key>
   {/each}
   <slot name="end" />

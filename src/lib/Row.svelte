@@ -10,7 +10,7 @@
 
   export function revealStates(): void {
     const duration = 200;
-    for (let i = 0; i < 4; ++i) {
+    for (let i = 0; i < solution.length; ++i) {
       (async () => {
         await delay(duration * i); // Stagger.
         flipped[i] = true;
@@ -25,8 +25,8 @@
   export let solution = "";
 
   $: states = findRowStates(solution, letters);
-  let revealedStates = new Array(4).fill(State.Unknown);
-  let flipped = new Array(4).fill(false);
+  let revealedStates = new Array(solution.length).fill(State.Unknown);
+  let flipped = new Array(solution.length).fill(false);
 </script>
 
 <div>

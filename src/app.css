@@ -12,6 +12,7 @@
   --correct-fg: #ffffff;
 
   --unknown-tile-border: #cacaca;
+  --accent-color: #696969;
 }
 
 * {
@@ -20,8 +21,33 @@
   padding: 0;
 }
 
-body {
+html {
   color: #1b1b1b;
   font-size: 14px;
   font-family: ui-sans-serif, system-ui;
+}
+
+@font-face {
+  font-family: linja-pona;
+  src: url("linja-pona-4.9.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.linja-pona {
+  /* Do I need this? */
+  font-family: linja-pona;
+  font-feature-settings: "liga" 1, "clig" 1, "calt" 1, "kern" 1, "mark" 1;
+  text-rendering: optimizeLegibility;
+  font-size: 30px;
+  line-height: 1.25;
+}
+
+.linja-pona i {
+  font-style: normal !important;
+}
+
+.linja-pona h1 {
+  /* Otherwise the cartouches break in Safari. */
+  font-weight: normal;
 }

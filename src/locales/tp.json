@@ -1,3 +1,14 @@
 {
-  "description": "musi Wate pi toki pona"
+  "alt": {
+    "help": "musi li seme",
+    "settings": "nasin musi"
+  },
+  "button": {
+  },
+  "description": "musi Wate pi toki pona",
+  "key": {
+    "backspace": "weka e sitelen",
+    "enter": "alasa e nimi"
+  },
+  "name": "Wate"
 }

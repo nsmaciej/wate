@@ -3,6 +3,7 @@
   import { createEventDispatcher } from "svelte";
   import Key from "$lib/Keyboard/Key.svelte";
   import Row from "$lib/Keyboard/Row.svelte";
+  import { _ } from "svelte-i18n";
 
   export let letterStates = new Map<string, State>();
   const dispatch = createEventDispatcher();
@@ -21,14 +22,18 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 <div class="keyboard">
-  <Row letters="aeijk" on:press {letterStates}>
+  <Row letters="AEIJK" on:press {letterStates}>
     <div slot="start" class="spacer" />
     <div slot="end" class="spacer" />
   </Row>
-  <Row letters="lmnops" on:press {letterStates} />
-  <Row letters="tuw" on:press {letterStates}>
-    <Key big slot="start" on:click={() => dispatch("enter")}>ENTER</Key>
-    <Key big slot="end" on:click={() => dispatch("backspace")}>BACKSPACE</Key>
+  <Row letters="LMNOPS" on:press {letterStates} />
+  <Row letters="TUW" on:press {letterStates}>
+    <Key big slot="start" on:click={() => dispatch("enter")}>
+      {$_("key.enter")}
+    </Key>
+    <Key big slot="end" on:click={() => dispatch("backspace")}>
+      {$_("key.backspace")}
+    </Key>
   </Row>
 </div>
 
