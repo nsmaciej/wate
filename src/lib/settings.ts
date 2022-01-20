@@ -20,7 +20,9 @@ function localeStore(defaultLocale: string): Writable<string> {
   const store = localStorageStore("locale", defaultLocale);
   store.subscribe((value) => {
     svelteLocale.set(value);
-    document?.body.classList.toggle("linja-pona", value == "tp-sp");
+    if (browser) {
+      document.body.classList.toggle("linja-pona", value == "tp-sp");
+    }
   });
   return store;
 }
