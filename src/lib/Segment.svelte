@@ -17,6 +17,7 @@
     padding: 10px 5px;
     width: 100%;
     z-index: 2;
+    -webkit-tap-highlight-color: transparent;
   }
   :global(.linja-pona) button {
     font-weight: normal;

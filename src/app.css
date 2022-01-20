@@ -29,7 +29,9 @@
 body,
 html,
 #svelte {
+  /* Can't use 100vh since Safari includes below-the-fold areas. */
   height: 100%;
+  overflow: hidden;
 }
 
 body {
