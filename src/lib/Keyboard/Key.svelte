@@ -15,7 +15,6 @@
     flex: 1;
     cursor: pointer;
     font-weight: bold;
-    user-select: none;
     padding: 3px;
   }
   :global(.linja-pona) button {

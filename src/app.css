@@ -26,6 +26,12 @@
   padding: 0;
 }
 
+body,
+html,
+#svelte {
+  height: 100%;
+}
+
 body {
   color: var(--text-color);
   font-size: var(--font-size);
@@ -55,6 +61,8 @@ button {
   background: none;
   color: inherit;
   line-height: 1;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .linja-pona i {

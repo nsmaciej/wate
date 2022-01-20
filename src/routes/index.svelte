@@ -58,8 +58,8 @@
     justify-content: space-around;
     max-width: 350px;
     gap: 15px;
+    height: 100%;
     padding: 20px 20px 30px;
     margin: 0 auto;
-    height: 100vh;
   }
 </style>

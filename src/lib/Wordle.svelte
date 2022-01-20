@@ -72,6 +72,7 @@
 <style>
   div.wordle {
     user-select: none;
+    -webkit-user-select: none;
     flex: auto;
     display: flex;
     flex-direction: column;
