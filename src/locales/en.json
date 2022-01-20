@@ -7,8 +7,13 @@
   },
   "description": "Toki Pona Wordle",
   "key": {
-    "backspace": "Backspace",
+    "backspace": "Delete",
     "enter": "Enter"
+  },
+  "lanuage": {
+    "en": "English",
+    "tp": "toki pona",
+    "tp-sp": "sitelen pona"
   },
   "name": "Wate"
 }

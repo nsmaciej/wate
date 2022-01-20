@@ -1,11 +1,12 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   import { State } from "$lib/game";
+  import { letterLabelForLocale, locale } from "$lib/settings";
   import Key from "$lib/Keyboard/Key.svelte";
-  export let letters = "";
 
-  const dispatch = createEventDispatcher();
   export let letterStates = new Map<string, State>();
+  export let letters = "";
+  const dispatch = createEventDispatcher();
 </script>
 
 <div>
@@ -15,7 +16,7 @@
       on:click={() => dispatch("press", letter)}
       state={letterStates.get(letter) ?? State.Unknown}
     >
-      {letter}
+      {letterLabelForLocale(letter, $locale)}
     </Key>
   {/each}
   <slot name="end" />

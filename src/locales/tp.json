@@ -10,5 +10,10 @@
     "backspace": "weka e sitelen",
     "enter": "alasa e nimi"
   },
+  "lanuage": {
+    "en": "toki Inli",
+    "tp": "toki pona",
+    "tp-sp": "sitelen pona"
+  },
   "name": "Wate"
 }

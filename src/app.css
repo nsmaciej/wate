@@ -1,18 +1,23 @@
 :root {
+  /* Keys */
   --key-bg: #e6e6e6;
   --key-fg: #333333;
-
   --absent-bg: #333333;
   --absent-fg: #ffffff;
-
   --present-bg: #ffd900;
   --present-fg: #ffffff;
-
   --correct-bg: #00cc00;
   --correct-fg: #ffffff;
-
+  /* Other colors */
   --unknown-tile-border: #cacaca;
   --accent-color: #696969;
+  --text-color: #1b1b1b;
+  /* Misc */
+  --font-size: 14px;
+}
+
+.linja-pona {
+  --font-size: 18px;
 }
 
 * {
@@ -21,9 +26,9 @@
   padding: 0;
 }
 
-html {
-  color: #1b1b1b;
-  font-size: 14px;
+body {
+  color: var(--text-color);
+  font-size: var(--font-size);
   font-family: ui-sans-serif, system-ui;
 }
 
@@ -39,8 +44,17 @@ html {
   font-family: linja-pona;
   font-feature-settings: "liga" 1, "clig" 1, "calt" 1, "kern" 1, "mark" 1;
   text-rendering: optimizeLegibility;
-  font-size: 30px;
   line-height: 1.25;
+}
+
+button {
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  background: none;
+  color: inherit;
+  line-height: 1;
 }
 
 .linja-pona i {

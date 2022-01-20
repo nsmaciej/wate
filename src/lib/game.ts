@@ -45,7 +45,7 @@ export function findLetterStates(
     }
   }
 
-  // Right-most state takes priority when colouring the key.
+  // Right-most state takes priority when coloring the key.
   const statePriority = [State.Absent, State.Present, State.Correct];
   const result = new Map<string, State>();
   for (const state of statePriority) {

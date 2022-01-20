@@ -22,12 +22,12 @@
 
 <svelte:window on:keydown={handleKeyDown} />
 <div class="keyboard">
-  <Row letters="AEIJK" on:press {letterStates}>
+  <Row letters="aeijk" on:press {letterStates}>
     <div slot="start" class="spacer" />
     <div slot="end" class="spacer" />
   </Row>
-  <Row letters="LMNOPS" on:press {letterStates} />
-  <Row letters="TUW" on:press {letterStates}>
+  <Row letters="lmnops" on:press {letterStates} />
+  <Row letters="tuw" on:press {letterStates}>
     <Key big slot="start" on:click={() => dispatch("enter")}>
       {$_("key.enter")}
     </Key>

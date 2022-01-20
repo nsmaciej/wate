@@ -27,7 +27,10 @@
 
 <style>
   h1 {
-    font-size: 1.8rem;
+    font-size: 28px;
+  }
+  :global(.linja-pona) h1 {
+    font-size: 34px;
   }
   button {
     border: none;
@@ -37,6 +40,8 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    /* Prevents sudden layout shifts when switching languages. */
+    height: 64px;
   }
   i {
     color: var(--accent-color);

@@ -17,5 +17,11 @@
   width="24"
 >
   <title>{title}</title>
-  <path fill="var(--accent-color)" d={icons[name]} />
+  <path d={icons[name]} />
 </svg>
+
+<style>
+  path {
+    fill: var(--accent-color);
+  }
+</style>

@@ -8,5 +8,10 @@
     "backspace": "weka sitelen",
     "enter": "alasa nimi"
   },
+  "lanuage": {
+    "en": "toki [_ilo_nasa_lipu_ike]",
+    "tp": "toki-pona",
+    "tp-sp": "sitelen-pona"
+  },
   "name": "[_walo_alasa_toki_epiku]"
 }

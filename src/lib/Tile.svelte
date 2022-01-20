@@ -1,14 +1,14 @@
 <script lang="ts">
   import { State } from "$lib/game";
+  import { letterLabelForLocale, locale } from "./settings";
 
   export let letter = " ";
   export let flipped = false;
   export let state: State = State.Unknown;
+  $: label = letterLabelForLocale(letter, $locale);
 </script>
 
-<div class={state} class:flipped>
-  {letter.toUpperCase()}
-</div>
+<div class={state} class:flipped>{label}</div>
 
 <style>
   div {
