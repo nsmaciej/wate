@@ -34,7 +34,7 @@ body {
 
 @font-face {
   font-family: linja-pona;
-  src: url("linja-pona-4.9.otf") format("opentype");
+  src: url("/linja-pona-4.9.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }

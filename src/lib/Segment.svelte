@@ -18,4 +18,7 @@
     width: 100%;
     z-index: 2;
   }
+  :global(.linja-pona) button {
+    font-weight: normal;
+  }
 </style>
