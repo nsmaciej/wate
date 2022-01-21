@@ -1,7 +1,7 @@
 :root {
   /* Keys */
   --key-bg: #e6e6e6;
-  --key-fg: #333333;
+  --key-fg: #1b1b1b;
   --absent-bg: #333333;
   --absent-fg: #ffffff;
   --present-bg: #ffd900;
@@ -24,8 +24,8 @@
 .dark {
   /* Keys */
   --key-bg: #676767;
-  --key-fg: #e4e4e4;
-  --absent-bg: #3a3a3a;
+  --key-fg: #e8e8e8;
+  --absent-bg: #383838;
   --absent-fg: #ffffff;
   --present-bg: #d5b500;
   --present-fg: #ffffff;
@@ -34,7 +34,7 @@
   /* Other colors */
   --unknown-tile-border: #585858;
   --accent-color: #939393;
-  --text-color: #e2e2e2;
+  --text-color: #e8e8e8;
   --link-color: #b7b7fd;
   --page-background: #121212;
   --overlay-background: #121212cf;
