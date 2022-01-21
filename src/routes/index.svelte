@@ -37,7 +37,7 @@
         title={$_("modal.help")}
         name="help"
         sitelen="seme"
-        on:click={() => (settingsShown = true)}
+        on:click={() => (helpShown = true)}
       />
     </div>
   </heading>
@@ -72,9 +72,10 @@
   :global(.linja-pona) i {
     font-size: 0.5em;
   }
-  div.buttons {
+  .buttons {
     display: flex;
-    gap: 5px;
+    /* Prevent iOS touch overlays from spanning the whole header. */
+    align-items: flex-start;
   }
   main {
     display: flex;

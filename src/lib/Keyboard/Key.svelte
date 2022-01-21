@@ -17,14 +17,20 @@
     font-weight: bold;
     padding: 3px;
   }
-  button:hover {
-    filter: brightness(105%);
+  @media (hover) {
+    /* Disable the hover on mobile devices. */
+    button:hover {
+      filter: brightness(105%);
+    }
   }
   button:active {
     transform: translateY(1px);
   }
   button.big {
     flex: 1.5;
+  }
+  :global(.linja-pona) button.big {
+    color: var(--link-color);
   }
   button.unknown {
     background: var(--key-bg);

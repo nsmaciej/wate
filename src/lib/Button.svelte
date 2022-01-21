@@ -19,12 +19,7 @@
   {#if $locale == "tp-sp"}
     <div class="sp">{sitelen}</div>
   {:else}
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      height="24"
-      viewBox="0 0 24 24"
-      width="24"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
       <title>{title}</title>
       <path d={icons[name]} />
     </svg>
@@ -35,14 +30,21 @@
   button {
     display: flex;
     cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+  }
+  svg {
+    width: 30px;
+    height: 30px;
   }
   .sp {
     border-bottom: 2px solid currentcolor;
-    margin: 3px;
-    color: #5656f5;
+    color: var(--link-color);
     font-weight: bold;
   }
   path {
-    fill: #5656f5;
+    fill: var(--link-color);
   }
 </style>

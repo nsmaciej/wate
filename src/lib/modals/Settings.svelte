@@ -31,8 +31,6 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 100vw;
-    max-width: var(--app-width);
   }
   fieldset {
     border: 0;
