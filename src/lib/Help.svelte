@@ -12,3 +12,5 @@
   {$_("help.github-intro")}
   <a href="https://github.com/mgoszcz2/wate">{@html $_("help.link.github")}</a>.
 </p>
+
+<!-- TODO Mention linja pona. -->

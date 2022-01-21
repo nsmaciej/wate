@@ -20,6 +20,14 @@
   let helpShown = false;
 </script>
 
+<svelte:head>
+  <title>Wate</title>
+  <meta
+    name="description"
+    content="Toki Pona Wordle. musi Wordle pi toki pona."
+  />
+</svelte:head>
+
 <main>
   <heading>
     <div>

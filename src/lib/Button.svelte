@@ -13,9 +13,11 @@
   export let name: keyof typeof icons = "help";
   export let sitelen = "seme";
   export let title = "";
+  // For modals.
+  export let topRight = false;
 </script>
 
-<button on:click>
+<button on:click class:topRight>
   {#if $locale == "tp-sp"}
     <div class="sp">{sitelen}</div>
   {:else}
@@ -30,10 +32,14 @@
   button {
     display: flex;
     cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 48px;
+    min-height: 48px;
     align-items: center;
     justify-content: center;
+  }
+  button.topRight {
+    align-items: flex-start;
+    justify-content: right;
   }
   svg {
     width: 30px;

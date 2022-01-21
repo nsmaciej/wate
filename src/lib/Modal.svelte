@@ -9,6 +9,7 @@
   function close() {
     shown = false;
   }
+  //TODO: Trap tab.
 </script>
 
 {#if shown}
@@ -22,6 +23,7 @@
         <h2>{title}</h2>
         <div class="close">
           <Button
+            topRight
             name="close"
             title={$_("modal.close")}
             sitelen="weka"
