@@ -2,12 +2,17 @@
   import { getContext } from "svelte";
 
   export let key = "";
+  export let title = "";
+
   const context: any = getContext("segment");
   context.register(key);
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  // Uncombine sp character in Safari to fix alignment.
+  $: safariFixTitle = isSafari ? title.replace(/[\+-]/, " ") : title;
 </script>
 
 <button on:click={() => context.select(key)}>
-  <slot />
+  {safariFixTitle}
 </button>
 
 <style>

@@ -10,18 +10,18 @@
   <fieldset>
     <legend>{$_("setting.name.language")}:</legend>
     <SegmentedControl bind:selected={$locale}>
-      <Segment key="tp">{$_("setting.lanuage.tp")}</Segment>
-      <Segment key="tp-sp">{$_("setting.lanuage.tp-sp")}</Segment>
-      <Segment key="en">{$_("setting.lanuage.en")}</Segment>
+      <Segment key="tp" title={$_("setting.lanuage.tp")} />
+      <Segment key="tp-sp" title={$_("setting.lanuage.tp-sp")} />
+      <Segment key="en" title={$_("setting.lanuage.en")} />
     </SegmentedControl>
   </fieldset>
 
   <fieldset>
     <legend>{$_("setting.name.theme")}:</legend>
     <SegmentedControl bind:selected={dummy}>
-      <Segment key="dark">{$_("setting.theme.dark")}</Segment>
-      <Segment key="light">{$_("setting.theme.light")}</Segment>
-      <Segment key="automatic">{$_("setting.theme.automatic")}</Segment>
+      <Segment key="dark" title={$_("setting.theme.dark")} />
+      <Segment key="light" title={$_("setting.theme.light")} />
+      <Segment key="automatic" title={$_("setting.theme.automatic")} />
     </SegmentedControl>
   </fieldset>
 </div>
