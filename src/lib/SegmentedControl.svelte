@@ -35,7 +35,7 @@
     width: 100%;
     border-radius: 7px;
     position: relative;
-    height: 40px;
+    height: 38px;
   }
   .selected {
     background: #bebebe;

@@ -1,19 +1,28 @@
 {
-  "alt": {
+  "modal": {
     "help": "musi li seme",
     "settings": "nasin musi"
-  },
-  "button": {
   },
   "description": "musi Wate pi toki pona",
   "key": {
     "backspace": "weka e sitelen",
     "enter": "alasa e nimi"
   },
-  "lanuage": {
-    "en": "toki Inli",
-    "tp": "toki pona",
-    "tp-sp": "sitelen pona"
-  },
-  "name": "Wate"
+  "name": "Wate",
+  "setting": {
+    "lanuage": {
+      "en": "English",
+      "tp": "toki pona",
+      "tp-sp": "sitelen pona"
+    },
+    "name": {
+      "language": "toki",
+      "theme": "kule"
+    },
+    "theme": {
+      "automatic": "tan ilo ni",
+      "dark": "pimeja",
+      "light": "walo"
+    }
+  }
 }

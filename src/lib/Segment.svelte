@@ -12,14 +12,10 @@
 
 <style>
   button {
-    font-weight: bold;
     font-size: min(5vw, var(--font-size));
-    padding: 10px 5px;
+    padding: 0 5px;
     width: 100%;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
-  }
-  :global(.linja-pona) button {
-    font-weight: normal;
   }
 </style>

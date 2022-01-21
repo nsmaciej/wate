@@ -17,8 +17,8 @@
       <i>{$_("description")}</i>
     </div>
     <div class="buttons">
-      <button><Icon title={$_("alt.settings")} name="settings" /></button>
-      <button><Icon title={$_("alt.help")} name="help" /></button>
+      <button><Icon title={$_("modal.settings")} name="settings" /></button>
+      <button><Icon title={$_("modal.help")} name="help" /></button>
     </div>
   </heading>
 
@@ -30,7 +30,7 @@
     font-size: 28px;
   }
   :global(.linja-pona) h1 {
-    font-size: 34px;
+    font-size: 40px;
   }
   button {
     border: none;
@@ -41,10 +41,14 @@
     display: flex;
     justify-content: space-between;
     /* Prevents sudden layout shifts when switching languages. */
-    height: 64px;
+    height: 70px;
   }
   i {
     color: var(--accent-color);
+    display: block;
+  }
+  :global(.linja-pona) i {
+    font-size: 0.5em;
   }
   div.buttons {
     display: flex;

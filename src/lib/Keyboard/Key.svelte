@@ -17,9 +17,6 @@
     font-weight: bold;
     padding: 3px;
   }
-  :global(.linja-pona) button {
-    font-size: 24px;
-  }
   button:hover {
     filter: brightness(105%);
   }

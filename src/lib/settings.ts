@@ -16,7 +16,8 @@ function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
   return store;
 }
 
-function localeStore(defaultLocale: string): Writable<string> {
+function localeStore(): Writable<string> {
+  const defaultLocale = "tp";
   const store = localStorageStore("locale", defaultLocale);
   store.subscribe((value) => {
     svelteLocale.set(value);
@@ -27,7 +28,7 @@ function localeStore(defaultLocale: string): Writable<string> {
   return store;
 }
 
-export const locale = localeStore("tp");
+export const locale = localeStore();
 
 const sitelenPonaLetters = {
   a: "alasa",

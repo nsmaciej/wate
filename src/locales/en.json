@@ -1,19 +1,28 @@
 {
-  "alt": {
+  "modal": {
     "help": "How to Play",
     "settings": "Settings"
-  },
-  "button": {
   },
   "description": "Toki Pona Wordle",
   "key": {
     "backspace": "Delete",
     "enter": "Enter"
   },
-  "lanuage": {
-    "en": "English",
-    "tp": "toki pona",
-    "tp-sp": "sitelen pona"
-  },
-  "name": "Wate"
+  "name": "Wate",
+  "setting": {
+    "lanuage": {
+      "en": "English",
+      "tp": "toki pona",
+      "tp-sp": "sitelen pona"
+    },
+    "name": {
+      "language": "Language",
+      "theme": "Theme"
+    },
+    "theme": {
+      "automatic": "Automatic",
+      "dark": "Dark",
+      "light": "Light"
+    }
+  }
 }

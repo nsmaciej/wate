@@ -17,7 +17,7 @@
 }
 
 .linja-pona {
-  --font-size: 18px;
+  --font-size: 30px;
 }
 
 * {
@@ -38,6 +38,7 @@ body {
   color: var(--text-color);
   font-size: var(--font-size);
   font-family: ui-sans-serif, system-ui;
+  line-height: 1.25;
 }
 
 @font-face {
@@ -52,7 +53,6 @@ body {
   font-family: linja-pona;
   font-feature-settings: "liga" 1, "clig" 1, "calt" 1, "kern" 1, "mark" 1;
   text-rendering: optimizeLegibility;
-  line-height: 1.25;
 }
 
 button {
