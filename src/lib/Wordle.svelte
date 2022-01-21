@@ -32,7 +32,7 @@
     } else if (!dictionary.includes(row)) {
       alert("Not in the dictionary");
     } else {
-      if (row == solution) {
+      if (row === solution) {
         won = true; // Set it early to prevent further interaction.
       }
       rowInstances[currentRow].revealStates();

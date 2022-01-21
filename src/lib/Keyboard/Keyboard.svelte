@@ -10,11 +10,11 @@
 
   function handleKeyDown(event: KeyboardEvent): void {
     const key = event.key;
-    if (key == "Backspace") {
+    if (key === "Backspace") {
       dispatch("backspace");
-    } else if (key == "Enter") {
+    } else if (key === "Enter") {
       dispatch("enter");
-    } else if (key.length == 1 && "aeijklmnopstuw".includes(key)) {
+    } else if (key.length === 1 && "aeijklmnopstuw".includes(key)) {
       dispatch("press", key);
     }
   }
@@ -40,6 +40,8 @@
 <style>
   div.keyboard {
     width: 100%;
+    /* Disable tap to zoom if you miss-tap a key. */
+    touch-action: manipulation;
   }
   div.spacer {
     flex: 0.5;

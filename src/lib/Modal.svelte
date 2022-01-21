@@ -65,7 +65,7 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 25px 0 #00000033;
-    margin: 40px;
-    max-width: calc(100px + var(--app-width));
+    margin: 10px;
+    width: min(100vw, 50px + var(--app-width));
   }
 </style>

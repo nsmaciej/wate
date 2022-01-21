@@ -13,7 +13,7 @@
     },
   });
   $: selectedIndex = Math.max(
-    keys.findIndex((x) => x == selected),
+    keys.findIndex((x) => x === selected),
     0
   );
 </script>

@@ -18,7 +18,6 @@
 <style>
   button {
     color: #000;
-    font-size: min(5vw, var(--font-size));
     padding: 0 5px;
     width: 100%;
     z-index: 2;
