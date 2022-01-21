@@ -2,13 +2,35 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="description" content="" />
-    <link rel="icon" href="%svelte.assets%/favicon.png" />
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
+      name="description"
+      content="Toki Pona Wordle. musi Wordle pi toki pona."
     />
-    <meta name="theme-color" content="#5656f5">
+    <link rel="icon" href="%svelte.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="#ffffff"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="#000000"
+    />
+    <style>
+      @font-face {
+        font-family: linja-pona;
+        src: url("/linja-pona-4.9.otf") format("opentype");
+        font-weight: normal;
+        font-style: normal;
+      }
+    </style>
+    <script>
+      if (localStorage.getItem("locale") === '"tp-sp"') {
+        document.fonts.load("30px linja-pona");
+      }
+    </script>
     %svelte.head%
   </head>
   <body>

@@ -1,7 +1,10 @@
 import type { Writable } from "svelte/store";
 import { writable } from "svelte/store";
 import { browser } from "$app/env";
-import { locale as svelteLocale } from "svelte-i18n";
+import { locale as effectiveLocale } from "svelte-i18n";
+
+// Useful if wating for the sitelen-pona is required.
+export { effectiveLocale };
 
 function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
   if (!browser) {
@@ -19,10 +22,20 @@ function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
 function localeStore(): Writable<string> {
   const defaultLocale = "tp";
   const store = localStorageStore("locale", defaultLocale);
-  store.subscribe((value) => {
-    svelteLocale.set(value);
-    if (browser) {
-      document.body.classList.toggle("linja-pona", value == "tp-sp");
+  store.subscribe(async (value) => {
+    if (!browser) {
+      effectiveLocale.set(value);
+      return;
+    }
+    try {
+      const sitelenPona = value === "tp-sp";
+      if (sitelenPona) {
+        await document.fonts.load("30px linja-pona");
+      }
+      document.body.classList.toggle("linja-pona", value === "tp-sp");
+      effectiveLocale.set(value);
+    } catch {
+      alert("Could not load the sitelen pona font 😢");
     }
   });
   return store;
