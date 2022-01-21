@@ -3,7 +3,6 @@
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
   import { findLetterStates, generateEmojiArt, selectWord } from "$lib/game";
   import dictionary from "../../static/dictionary.json";
-  import Settings from "./modals/Settings.svelte";
 
   const solution = selectWord(dictionary);
   let won = false;
@@ -49,7 +48,6 @@
   }
 </script>
 
-<Settings />
 <div
   class="wordle"
   style:aspect-ratio="{solution.length} / {rowLetters.length}"
@@ -71,12 +69,12 @@
 
 <style>
   div.wordle {
+    /* NB aspect-ratio set in code. */
     user-select: none;
     -webkit-user-select: none;
     flex: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-height: 350px;
+    display: grid;
+    grid: auto-flow 1fr / auto;
+    max-height: var(--app-width);
   }
 </style>

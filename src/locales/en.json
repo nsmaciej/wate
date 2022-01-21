@@ -1,12 +1,21 @@
 {
-  "modal": {
-    "help": "How to Play",
-    "settings": "Settings"
-  },
   "description": "Toki Pona Wordle",
+  "help": {
+    "github-intro": "Check out the code on",
+    "link": {
+      "github": "GitHub",
+      "wordle": "Play the original here"
+    },
+    "wordle-clone": "This is an open source clone of Wordle in Toki Pona."
+  },
   "key": {
     "backspace": "Delete",
     "enter": "Enter"
+  },
+  "modal": {
+    "close": "Close",
+    "help": "How to Play",
+    "settings": "Settings"
   },
   "name": "Wate",
   "setting": {

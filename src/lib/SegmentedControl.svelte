@@ -31,18 +31,19 @@
   .group {
     display: grid;
     grid: auto / auto-flow 1fr;
-    background: #e9e9e9;
     width: 100%;
-    border-radius: 7px;
     position: relative;
     height: 38px;
+    border-radius: 7px;
+    background: #ebebeb;
   }
   .selected {
-    background: #bebebe;
+    background: #fff;
     position: absolute;
     transition: left 150ms ease-out;
     border-radius: 5px;
     height: calc(100% - 6px);
     top: 3px;
+    box-shadow: 0 1px 3px #0000002d;
   }
 </style>

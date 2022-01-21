@@ -1,12 +1,21 @@
 {
-  "modal": {
-    "help": "musi li seme",
-    "settings": "nasin musi"
+  "description": "musi Wordle pi toki pona",
+  "help": {
+    "github-intro": "o lukin e ilo kon ni lon",
+    "link": {
+      "github": "lipu GitHub",
+      "wordle": "o musi e musi nanpa wan"
+    },
+    "wordle-clone": "musi ni li kon ilo pi jan ale. ona li sama musi nanpa wan Wordle."
   },
-  "description": "musi Wate pi toki pona",
   "key": {
     "backspace": "weka e sitelen",
     "enter": "alasa e nimi"
+  },
+  "modal": {
+    "close": "weka",
+    "help": "musi ni li seme",
+    "settings": "nasin musi"
   },
   "name": "Wate",
   "setting": {

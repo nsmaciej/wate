@@ -11,6 +11,6 @@ addMessages("tp", tp);
 addMessages("tp-sp", tpSp);
 
 init({
-  fallbackLocale: "tp",
+  fallbackLocale: "en",
   initialLocale: get(locale),
 });

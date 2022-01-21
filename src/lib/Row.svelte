@@ -39,8 +39,7 @@
   div {
     flex: 1;
     display: grid;
-    /* This needs to be a grid, flexbox dosen't like the Tile border disappearing. */
-    grid-template: 1fr / repeat(4, 1fr);
+    grid: auto / auto-flow 1fr;
     width: 100%;
   }
 </style>

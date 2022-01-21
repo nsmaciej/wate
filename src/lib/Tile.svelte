@@ -22,6 +22,7 @@
   }
   :global(.linja-pona) div {
     font-size: 35px;
+    border-radius: 8px;
   }
   @media (max-height: 600px) {
     div {

@@ -12,8 +12,10 @@
   --unknown-tile-border: #cacaca;
   --accent-color: #696969;
   --text-color: #1b1b1b;
+  --link-color: #5656f5;
   /* Misc */
   --font-size: 14px;
+  --app-width: 350px;
 }
 
 .linja-pona {
@@ -41,6 +43,14 @@ body {
   line-height: 1.25;
 }
 
+a {
+  color: var(--link-color);
+}
+
+p + p {
+  margin-top: 30px;
+}
+
 @font-face {
   font-family: linja-pona;
   src: url("/linja-pona-4.9.otf") format("opentype");
@@ -55,6 +65,23 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+.linja-pona a {
+  /* Otherwise the line cuts into cartouches. */
+  text-underline-position: under;
+  /* Prevent super thick lines. */
+  text-decoration-thickness: 2px;
+}
+
+.linja-pona i {
+  /* Don't artificially skew the text. */
+  font-style: normal !important;
+}
+
+.linja-pona h1 {
+  /* Otherwise the cartouches break in Safari. */
+  font-weight: normal;
+}
+
 button {
   border: none;
   padding: 0;
@@ -65,13 +92,4 @@ button {
   line-height: 1;
   user-select: none;
   -webkit-user-select: none;
-}
-
-.linja-pona i {
-  font-style: normal !important;
-}
-
-.linja-pona h1 {
-  /* Otherwise the cartouches break in Safari. */
-  font-weight: normal;
 }
