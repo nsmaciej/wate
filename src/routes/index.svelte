@@ -18,21 +18,23 @@
 
   let settingsShown = false;
   let helpShown = false;
+  let olukinalaShown = false;
 </script>
 
 <svelte:head>
   <title>Wate</title>
-  <meta
-    name="description"
-    content="Toki Pona Wordle. musi Wordle pi toki pona."
-  />
 </svelte:head>
 
 <main>
   <heading>
     <div>
       <h1>{$_("name")}</h1>
-      <i>{$_("description")}</i>
+      <i>
+        {$_("description")}
+        <button on:click={() => (olukinalaShown = true)} class="olukinala">
+          {$_("olukinala")}
+        </button>
+      </i>
     </div>
     <div class="buttons">
       <Button
@@ -56,6 +58,14 @@
   <Modal bind:shown={helpShown} title={$_("modal.help")}>
     <Help />
   </Modal>
+  <Modal bind:shown={olukinalaShown} title={$_("olukinala")}>
+    <div class="linja-pona">
+      o lukin ala e lipu ni. o tawa!<br />
+      sina toki e ona tawa jan mute la lipu ni li kama ike.<br />
+      sina lukin la awen pona.
+    </div>
+  </Modal>
+
   <Wordle />
 </main>
 
@@ -95,5 +105,9 @@
     height: 100%;
     padding: 20px 20px 30px;
     margin: 0 auto;
+  }
+  .olukinala {
+    color: transparent;
+    cursor: pointer;
   }
 </style>
