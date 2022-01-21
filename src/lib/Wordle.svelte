@@ -43,7 +43,7 @@
         if (won) {
           alert(generateEmojiArt(solution, currentRow, rowLetters));
         }
-      }, 250 * 5);
+      }, 250 * solution.length);
     }
   }
 </script>

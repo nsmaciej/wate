@@ -31,7 +31,11 @@
       <h1>{$_("name")}</h1>
       <i>
         {$_("description")}
-        <button on:click={() => (olukinalaShown = true)} class="olukinala">
+        <button
+          on:click={() => (olukinalaShown = true)}
+          class="olukinala"
+          tabindex="-1"
+        >
           {$_("olukinala")}
         </button>
       </i>

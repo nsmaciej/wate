@@ -12,6 +12,12 @@
   //TODO: Trap tab.
 </script>
 
+<svelte:window
+  on:keydown={(event) => {
+    if (shown && event.key === "Escape") close();
+  }}
+/>
+
 {#if shown}
   <div class="overlay" aria-modal="true" on:click={close}>
     <div
