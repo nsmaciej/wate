@@ -20,9 +20,14 @@
     >
       <div class="header">
         <h2>{title}</h2>
-        <button class="close" on:click={close}>
-          <Button name="close" title={$_("modal.close")} sitelen="weka" />
-        </button>
+        <div class="close">
+          <Button
+            name="close"
+            title={$_("modal.close")}
+            sitelen="weka"
+            on:click={close}
+          />
+        </div>
       </div>
       <slot />
     </div>
@@ -34,7 +39,6 @@
     margin-bottom: 30px;
   }
   .close {
-    display: flex;
     cursor: pointer;
   }
   .header {

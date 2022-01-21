@@ -15,21 +15,27 @@
   export let title = "";
 </script>
 
-{#if $locale == "tp-sp"}
-  <div class="sp">{sitelen}</div>
-{:else}
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    height="24"
-    viewBox="0 0 24 24"
-    width="24"
-  >
-    <title>{title}</title>
-    <path d={icons[name]} />
-  </svg>
-{/if}
+<button on:click>
+  {#if $locale == "tp-sp"}
+    <div class="sp">{sitelen}</div>
+  {:else}
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      height="24"
+      viewBox="0 0 24 24"
+      width="24"
+    >
+      <title>{title}</title>
+      <path d={icons[name]} />
+    </svg>
+  {/if}
+</button>
 
 <style>
+  button {
+    display: flex;
+    cursor: pointer;
+  }
   .sp {
     border-bottom: 2px solid currentcolor;
     margin: 3px;

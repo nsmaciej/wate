@@ -27,12 +27,18 @@
       <i>{$_("description")}</i>
     </div>
     <div class="buttons">
-      <button on:click={() => (settingsShown = true)}>
-        <Button title={$_("modal.settings")} name="settings" sitelen="nasin" />
-      </button>
-      <button on:click={() => (helpShown = true)}>
-        <Button title={$_("modal.help")} name="help" sitelen="seme" />
-      </button>
+      <Button
+        title={$_("modal.settings")}
+        name="settings"
+        sitelen="nasin"
+        on:click={() => (settingsShown = true)}
+      />
+      <Button
+        title={$_("modal.help")}
+        name="help"
+        sitelen="seme"
+        on:click={() => (settingsShown = true)}
+      />
     </div>
   </heading>
 
@@ -51,10 +57,6 @@
   }
   :global(.linja-pona) h1 {
     font-size: 40px;
-  }
-  button {
-    display: flex;
-    cursor: pointer;
   }
   heading {
     width: 100%;
