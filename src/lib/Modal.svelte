@@ -55,15 +55,16 @@
     height: 100%;
     left: 0;
     right: 0;
-    background: #ffffffbb;
+    background: var(--overlay-background);
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .modal {
-    background: #fff;
+    background: var(--page-background);
     padding: 20px;
     border-radius: 12px;
+    border: 1px solid var(--modal-border);
     box-shadow: 0 4px 25px 0 #00000033;
     margin: 10px;
     width: min(100vw, 50px + var(--app-width));

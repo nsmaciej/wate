@@ -13,6 +13,32 @@
   --accent-color: #696969;
   --text-color: #1b1b1b;
   --link-color: #5656f5;
+  --page-background: #ffffff;
+  --overlay-background: #ffffffbb;
+  --modal-border: #dadada;
+  /* Misc */
+  --font-size: 14px;
+  --app-width: 350px;
+}
+
+.dark {
+  /* Keys */
+  --key-bg: #676767;
+  --key-fg: #e4e4e4;
+  --absent-bg: #3a3a3a;
+  --absent-fg: #ffffff;
+  --present-bg: #d5b500;
+  --present-fg: #ffffff;
+  --correct-bg: #12aa12;
+  --correct-fg: #ffffff;
+  /* Other colors */
+  --unknown-tile-border: #585858;
+  --accent-color: #939393;
+  --text-color: #e2e2e2;
+  --link-color: #b7b7fd;
+  --page-background: #121212;
+  --overlay-background: #121212cf;
+  --modal-border: #212121;
   /* Misc */
   --font-size: 14px;
   --app-width: 350px;
@@ -20,7 +46,6 @@
 
 .linja-pona {
   --font-size: 29px;
-  font-size: var(--font-size);
 }
 
 * {
@@ -38,6 +63,7 @@ html,
 }
 
 body {
+  background: var(--page-background);
   color: var(--text-color);
   font-size: var(--font-size);
   font-family: ui-sans-serif, system-ui;
@@ -53,10 +79,8 @@ p + p {
 }
 
 .linja-pona {
-  /* Do I need this? */
   font-family: linja-pona;
-  font-feature-settings: "liga" 1, "clig" 1, "calt" 1, "kern" 1, "mark" 1;
-  text-rendering: optimizeLegibility;
+  font-size: var(--font-size);
 }
 
 .linja-pona a {

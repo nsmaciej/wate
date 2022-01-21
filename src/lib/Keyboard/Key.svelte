@@ -4,7 +4,7 @@
   export let big = false;
 </script>
 
-<button on:click class:big class={state}>
+<button on:click class:big class={state} tabindex="-1">
   <slot />
 </button>
 
@@ -21,6 +21,9 @@
     /* Disable the hover on mobile devices. */
     button:hover {
       filter: brightness(105%);
+    }
+    :global(.dark) button:hover {
+      filter: brightness(115%);
     }
   }
   button:active {

@@ -1,10 +1,13 @@
 import type { Writable } from "svelte/store";
-import { writable } from "svelte/store";
+import { writable, get } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
 
 // Useful if wating for the sitelen-pona is required.
 export { effectiveLocale };
+
+export const locale = localStorageStore("locale", "tp");
+export const theme = localStorageStore("theme", "auto");
 
 function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
   if (!browser) {
@@ -19,29 +22,39 @@ function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
   return store;
 }
 
-function localeStore(): Writable<string> {
-  const defaultLocale = "tp";
-  const store = localStorageStore("locale", defaultLocale);
-  store.subscribe(async (value) => {
-    if (!browser) {
-      effectiveLocale.set(value);
-      return;
-    }
-    try {
-      const sitelenPona = value === "tp-sp";
-      if (sitelenPona) {
-        await document.fonts.load("30px linja-pona");
-      }
-      document.body.classList.toggle("linja-pona", value === "tp-sp");
-      effectiveLocale.set(value);
-    } catch {
-      alert("Could not load the sitelen pona font 😢");
-    }
-  });
-  return store;
+// Deal with theme changes.
+function updateTheme(value: string) {
+  const dark =
+    value == "dark" ||
+    (value == "auto" &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches);
+  document.body.classList.toggle("dark", dark);
 }
 
-export const locale = localeStore();
+if (browser) {
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", () => updateTheme(get(theme)));
+  theme.subscribe(updateTheme);
+}
+
+// Actually set the svelte-i18n locale and deal with sitelen pona.
+locale.subscribe(async (value) => {
+  if (!browser) {
+    effectiveLocale.set(value);
+    return;
+  }
+  try {
+    const sitelenPona = value === "tp-sp";
+    if (sitelenPona) {
+      await document.fonts.load("30px linja-pona");
+    }
+    document.body.classList.toggle("linja-pona", value === "tp-sp");
+    effectiveLocale.set(value);
+  } catch {
+    alert("Could not load the sitelen pona font 😢");
+  }
+});
 
 const sitelenPonaLetters = {
   a: "alasa",

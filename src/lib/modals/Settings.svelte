@@ -1,9 +1,8 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { locale } from "$lib/settings";
+  import { locale, theme } from "$lib/settings";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
   import Segment from "$lib/Segment.svelte";
-  let dummy;
 </script>
 
 <div class="settings">
@@ -18,10 +17,10 @@
 
   <fieldset>
     <legend>{$_("setting.name.theme")}:</legend>
-    <SegmentedControl bind:selected={dummy}>
+    <SegmentedControl bind:selected={$theme}>
       <Segment key="dark" title={$_("setting.theme.dark")} />
       <Segment key="light" title={$_("setting.theme.light")} />
-      <Segment key="automatic" title={$_("setting.theme.automatic")} />
+      <Segment key="auto" title={$_("setting.theme.automatic")} />
     </SegmentedControl>
   </fieldset>
 </div>
