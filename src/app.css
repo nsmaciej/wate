@@ -89,6 +89,7 @@ p + p {
 .linja-pona {
   font-family: linja-pona;
   font-size: var(--font-size);
+  font-feature-settings: "liga";
 }
 
 .linja-pona a {

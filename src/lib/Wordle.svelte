@@ -4,7 +4,7 @@
   import { findLetterStates, generateEmojiArt, selectWord } from "$lib/game";
   import dictionary from "../../static/dictionary.json";
 
-  const solution = selectWord(dictionary);
+  const solution = selectWord("four", dictionary);
   let won = false;
   let rowLetters = new Array(5).fill("");
   let rowInstances: Row[] = [];

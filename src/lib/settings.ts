@@ -6,10 +6,26 @@ import { locale as effectiveLocale } from "svelte-i18n";
 // Useful if wating for the sitelen-pona is required.
 export { effectiveLocale };
 
-export const locale = localStorageStore("locale", "tp");
-export const theme = localStorageStore("theme", "auto");
+export enum Theme {
+  Dark = "dark",
+  Light = "light",
+  Auto = "auto",
+}
 
-function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
+export enum Mode {
+  Four = "dark",
+  All = "light",
+  Kijetesantakalu = "kijetesantakalu",
+}
+
+export const locale = localStorageStore("locale", "tp");
+export const theme = localStorageStore("theme", Theme.Auto);
+export const mode = localStorageStore("mode", Mode.Four);
+
+export function localStorageStore<T>(
+  name: string,
+  defaultValue: T
+): Writable<T> {
   if (!browser) {
     return writable(defaultValue);
   }
@@ -23,10 +39,10 @@ function localStorageStore<T>(name: string, defaultValue: T): Writable<T> {
 }
 
 // Deal with theme changes.
-function updateTheme(value: string) {
+function updateTheme(value: Theme) {
   const dark =
-    value == "dark" ||
-    (value == "auto" &&
+    value == Theme.Dark ||
+    (value == Theme.Auto &&
       window.matchMedia("(prefers-color-scheme: dark)").matches);
   document.body.classList.toggle("dark", dark);
 }

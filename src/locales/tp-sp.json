@@ -25,9 +25,15 @@
       "tp": "toki-pona",
       "tp-sp": "sitelen-pona"
     },
+    "mode": {
+      "all": "ale",
+      "four": "tu-tu",
+      "kijetesantakalu": "kijetesantakalu"
+    },
     "name": {
-      "language": "toki",
-      "theme": "kule"
+      "language": "toki:",
+      "mode": "sitelen nanpa:",
+      "theme": "kule:"
     },
     "theme": {
       "automatic": "tan ilo ni",

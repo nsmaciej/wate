@@ -5,8 +5,20 @@ export enum State {
   Present = "present",
 }
 
-export function selectWord(dictionary: string[]): string {
-  const candidates = dictionary.filter((x) => x.length === 4);
+function modePredicate(mode: string): (x: number) => boolean {
+  switch (mode) {
+    case "four":
+      return (x) => x === 4;
+    case "all":
+      return () => true;
+    case "kijetesantakalu":
+      return (x) => x === 15;
+  }
+}
+
+export function selectWord(mode: string, dictionary: string[]): string {
+  const predicate = modePredicate(mode);
+  const candidates = dictionary.filter((x) => predicate(x.length));
   const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
   const dayIndex = Math.floor(secondsSinceStart / 86400);
   return candidates[dayIndex % candidates.length];
