@@ -14,8 +14,12 @@
   --text-color: #1b1b1b;
   --link-color: #5656f5;
   --page-background: #ffffff;
+  /* Modal */
   --overlay-background: #ffffffbb;
   --modal-border: #dadada;
+  /* Segmented Control */
+  --segmented-background: #ebebeb;
+  --segmented-selected: #ffffff;
   /* Misc */
   --font-size: 14px;
   --app-width: 350px;
@@ -37,8 +41,12 @@
   --text-color: #e8e8e8;
   --link-color: #b7b7fd;
   --page-background: #121212;
+  /* Modal */
   --overlay-background: #121212cf;
   --modal-border: #212121;
+  /* Segmented Control */
+  --segmented-background: #303030;
+  --segmented-selected: #565656;
   /* Misc */
   --font-size: 14px;
   --app-width: 350px;

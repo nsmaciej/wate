@@ -17,7 +17,6 @@
 
 <style>
   button {
-    color: #000;
     padding: 0 5px;
     width: 100%;
     z-index: 2;

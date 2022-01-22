@@ -35,10 +35,10 @@
     position: relative;
     height: 38px;
     border-radius: 7px;
-    background: #ebebeb;
+    background: var(--segmented-background);
   }
   .selected {
-    background: #fff;
+    background: var(--segmented-selected);
     position: absolute;
     transition: left 150ms ease-out;
     border-radius: 5px;
