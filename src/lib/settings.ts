@@ -1,18 +1,18 @@
-import type { Writable } from "svelte/store";
-import { writable, get } from "svelte/store";
+import { get } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
+import { localStorageStore } from "$lib/utils";
 
 // Useful if wating for the sitelen-pona is required.
 export { effectiveLocale };
 
-export enum Theme {
+export const enum Theme {
   Dark = "dark",
   Light = "light",
   Auto = "auto",
 }
 
-export enum Mode {
+export const enum Mode {
   Four = "four",
   All = "all",
   Kijetesantakalu = "kijetesantakalu",
@@ -22,27 +22,11 @@ export const locale = localStorageStore("locale", "tp");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = localStorageStore("mode", Mode.Four);
 
-export function localStorageStore<T>(
-  name: string,
-  defaultValue: T
-): Writable<T> {
-  if (!browser) {
-    return writable(defaultValue);
-  }
-  const storedValue = localStorage.getItem(name);
-  const value = storedValue != null ? JSON.parse(storedValue) : defaultValue;
-  const store = writable(value);
-  store.subscribe((value) => {
-    localStorage.setItem(name, JSON.stringify(value));
-  });
-  return store;
-}
-
 // Deal with theme changes.
 function updateTheme(value: Theme) {
   const dark =
-    value == Theme.Dark ||
-    (value == Theme.Auto &&
+    value === Theme.Dark ||
+    (value === Theme.Auto &&
       window.matchMedia("(prefers-color-scheme: dark)").matches);
   document.body.classList.toggle("dark", dark);
 }

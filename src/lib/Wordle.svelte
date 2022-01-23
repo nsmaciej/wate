@@ -19,8 +19,8 @@
 
   // Game finished?
   $: gameFinished =
-    submittedRows[submittedRows.length - 1] == solution || // Won
-    submittedRows.length == ROW_COUNT; // Lost.
+    submittedRows[submittedRows.length - 1] === solution || // Won
+    submittedRows.length === ROW_COUNT; // Lost.
 
   // Gradual row reveal.
   let revealedRows = 0;
@@ -33,7 +33,7 @@
     }
   });
   function onReveal(row: number): void {
-    if (row == submittedRows.length - 1) {
+    if (row === submittedRows.length - 1) {
       letterStates = findLetterStates(solution, submittedRows);
     }
   }
@@ -77,7 +77,7 @@
       {solution}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
-      letters={i == submittedRows.length ? currentRow : submittedRows[i] ?? ""}
+      letters={i === submittedRows.length ? currentRow : submittedRows[i] ?? ""}
       on:reveal={() => onReveal(i)}
     />
   {/each}

@@ -9,14 +9,15 @@ export enum State {
   Present = "present",
 }
 
-function modePredicate(mode: string): (x: number) => boolean {
+function modePredicate(mode: Mode): (x: number) => boolean {
   switch (mode) {
-    case Mode.Four:
-      return (x) => x === 4;
     case Mode.All:
       return (x) => x >= 2;
     case Mode.Kijetesantakalu:
       return (x) => x === 15;
+    case Mode.Four:
+    default:
+      return (x) => x === 4;
   }
 }
 
@@ -26,7 +27,7 @@ export function currentGameDay(): number {
 }
 
 export function selectWord(
-  mode: string,
+  mode: Mode,
   day: number,
   dictionary: string[]
 ): string {
@@ -62,7 +63,7 @@ export function findLetterStates(
   for (const row of rows) {
     const states = findRowStates(solution, row);
     for (let i = 0; i < row.length; ++i) {
-      if (states[i] != State.Unknown) {
+      if (states[i] !== State.Unknown) {
         allStates[states[i]].add(row[i]);
       }
     }
