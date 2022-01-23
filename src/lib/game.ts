@@ -14,7 +14,7 @@ function modePredicate(mode: string): (x: number) => boolean {
     case Mode.Four:
       return (x) => x === 4;
     case Mode.All:
-      return () => true;
+      return (x) => x >= 2;
     case Mode.Kijetesantakalu:
       return (x) => x === 15;
   }
