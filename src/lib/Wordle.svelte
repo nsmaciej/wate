@@ -1,46 +1,21 @@
-<script lang="ts" context="module">
-  import { Mode, localStorageStore } from "$lib/settings";
-
-  function defaultSavedGame(): { [mode in Mode]: string[] } {
-    return {
-      [Mode.Four]: [],
-      [Mode.All]: [],
-      [Mode.Kijetesantakalu]: [],
-    };
-  }
-
-  const lastDayPlayed = localStorageStore("day", -1);
-  const savedGames = localStorageStore("game", defaultSavedGame());
-</script>
-
 <script lang="ts">
+  // Note this component expects to be key-ed by solution.  This is just much
+  // easier than expecting the solution to change underneath us all the time and
+  // having to stop animations mid-way through.
+
+  import type { State } from "$lib/game";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
-  import dictionary from "../../static/dictionary.json";
+  import { onMount } from "svelte";
   import { delay } from "$lib/utils";
-  import { mode } from "$lib/settings";
-  import {
-    ROW_COUNT,
-    State,
-    findLetterStates,
-    generateEmojiArt,
-    selectWord,
-    currentGameDay,
-  } from "$lib/game";
-
-  // Game day logic.
-  const gameDay = currentGameDay();
-  if (gameDay !== $lastDayPlayed) {
-    $savedGames = defaultSavedGame();
-  }
-  $lastDayPlayed = gameDay;
+  import { ROW_COUNT, findLetterStates, generateEmojiArt } from "$lib/game";
 
   // Main state.
+  export let dictionary: string[] = [];
+  export let solution = "";
+  export let submittedRows: string[] = [];
   let currentRow = "";
-  $: solution = selectWord($mode, gameDay, dictionary);
-  $: submittedRows = $savedGames[$mode]; // Just an alias.
-  $: solution, (currentRow = "");
-  $: console.log(solution);
+  let letterStates = new Map<string, State>();
 
   // Game finished?
   $: gameFinished =
@@ -49,23 +24,18 @@
 
   // Gradual row reveal.
   let revealedRows = 0;
-  let hiddenRows = 0;
-  $: solution, animateRevealRows();
-  async function animateRevealRows() {
-    revealedRows = 0;
-    hiddenRows = submittedRows.length;
+  let hiddenRows = submittedRows.length;
+  onMount(async () => {
     await delay(100); // Give everything a second to breathe.
     for (let i = 0; i < submittedRows.length; ++i) {
       revealedRows += 1;
       await delay(200);
     }
-  }
-
-  // Letter state - only actually set after the animation.
-  let letterStates = new Map<string, State>();
-  $: solution, (letterStates = new Map<string, State>());
-  function updateLetterStates() {
-    letterStates = findLetterStates(solution, submittedRows);
+  });
+  function onReveal(row: number): void {
+    if (row == submittedRows.length - 1) {
+      letterStates = findLetterStates(solution, submittedRows);
+    }
   }
 
   // Keyboard handling.
@@ -88,12 +58,12 @@
     } else if (!dictionary.includes(currentRow)) {
       alert("Not in the dictionary");
     } else {
-      $savedGames[$mode] = [...submittedRows, currentRow];
+      submittedRows = [...submittedRows, currentRow];
       revealedRows += 1;
       // Wait for the animation to finish.
       if (currentRow === solution) {
         setTimeout(() => {
-          alert(generateEmojiArt(gameDay, solution, submittedRows));
+          alert(generateEmojiArt(0, solution, submittedRows));
         }, 250 * solution.length);
       }
       currentRow = "";
@@ -108,10 +78,7 @@
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
       letters={i == submittedRows.length ? currentRow : submittedRows[i] ?? ""}
-      on:reveal={() => {
-        // Update the keyboard after the final reveal.
-        if (i == submittedRows.length - 1) updateLetterStates();
-      }}
+      on:reveal={() => onReveal(i)}
     />
   {/each}
 </div>
