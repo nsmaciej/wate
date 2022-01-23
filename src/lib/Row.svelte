@@ -15,7 +15,7 @@
       flipped[i] = false;
     }
     await delay(duration);
-    dispatch("revealed");
+    dispatch("reveal");
   }
 
   // Needed to calculate the highlights.
