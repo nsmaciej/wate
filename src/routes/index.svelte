@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { waitLocale } from "svelte-i18n";
+  import { waitLocale, _ } from "svelte-i18n";
   import { Mode } from "$lib/settings";
   import { localStorageStore } from "$lib/utils";
   import "./i18n";
@@ -16,6 +16,7 @@
   import Wordle from "$lib/Wordle.svelte";
   import Header from "$lib/Header.svelte";
   import dictionary from "../../static/dictionary.json";
+  import Toasts, { showToast } from "$lib/Toasts.svelte";
 
   const gameState = localStorageStore("game", {
     [Mode.Four]: [],
@@ -30,6 +31,17 @@
 
   $: solution = selectWord($mode, gameDay, dictionary);
   $: console.log(solution);
+
+  function handleWin() {
+    const message = [
+      $_("toast.won-in-one"),
+      $_("toast.won-in-two"),
+      $_("toast.won-in-three"),
+      $_("toast.won-in-four"),
+      $_("toast.won-in-five"),
+    ];
+    showToast(message[$gameState[$mode].length - 1]);
+  }
 </script>
 
 <svelte:head>
@@ -39,8 +51,14 @@
 <main>
   <Header />
   {#key solution}
-    <Wordle {dictionary} {solution} bind:submittedRows={$gameState[$mode]} />
+    <Wordle
+      {dictionary}
+      {solution}
+      on:win={handleWin}
+      bind:submittedRows={$gameState[$mode]}
+    />
   {/key}
+  <Toasts />
 </main>
 
 <style>

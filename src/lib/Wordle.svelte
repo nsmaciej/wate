@@ -4,11 +4,14 @@
   // having to stop animations mid-way through.
 
   import type { State } from "$lib/game";
+  import { ROW_COUNT, findLetterStates } from "$lib/game";
+  import { createEventDispatcher } from "svelte";
+  import { delay } from "$lib/utils";
+  import { onMount } from "svelte";
+  import { showToast } from "$lib/Toasts.svelte";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
-  import { onMount } from "svelte";
-  import { delay } from "$lib/utils";
-  import { ROW_COUNT, findLetterStates, generateEmojiArt } from "$lib/game";
+  import { _ } from "svelte-i18n";
 
   // Main state.
   export let dictionary: string[] = [];
@@ -16,11 +19,12 @@
   export let submittedRows: string[] = [];
   let currentRow = "";
   let letterStates = new Map<string, State>();
+  const dispatch = createEventDispatcher();
 
   // Game finished?
-  $: gameFinished =
-    submittedRows[submittedRows.length - 1] === solution || // Won
-    submittedRows.length === ROW_COUNT; // Lost.
+  $: gameWon = submittedRows[submittedRows.length - 1] === solution;
+  $: gameLost = submittedRows.length === ROW_COUNT;
+  $: gameFinished = gameWon || gameLost;
 
   // Gradual row reveal.
   let revealedRows = 0;
@@ -32,9 +36,16 @@
       await delay(200);
     }
   });
+
   function onReveal(row: number): void {
+    console.log(row);
     if (row === submittedRows.length - 1) {
       letterStates = findLetterStates(solution, submittedRows);
+      if (gameWon) {
+        dispatch("win");
+      } else if (gameLost) {
+        showToast(solution);
+      }
     }
   }
 
@@ -54,18 +65,12 @@
   function handleEnter(): void {
     if (gameFinished) return;
     if (currentRow.length < solution.length) {
-      alert("Not enough letters");
+      showToast($_("toast.missing-letters"));
     } else if (!dictionary.includes(currentRow)) {
-      alert("Not in the dictionary");
+      showToast($_("toast.unrecognised-word"));
     } else {
       submittedRows = [...submittedRows, currentRow];
       revealedRows += 1;
-      // Wait for the animation to finish.
-      if (currentRow === solution) {
-        setTimeout(() => {
-          alert(generateEmojiArt(0, solution, submittedRows));
-        }, 250 * solution.length);
-      }
       currentRow = "";
     }
   }

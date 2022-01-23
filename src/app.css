@@ -20,6 +20,9 @@
   /* Segmented Control */
   --segmented-background: #ebebeb;
   --segmented-selected: #ffffff;
+  /* Toast */
+  --toast-bg: #121212;
+  --toast-fg: #e8e8e8;
 }
 
 .dark {
@@ -44,6 +47,9 @@
   /* Segmented Control */
   --segmented-background: #303030;
   --segmented-selected: #565656;
+  /* Toast */
+  --toast-bg: #ffffff;
+  --toast-fg: #1b1b1b;
 }
 
 :root {

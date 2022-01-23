@@ -61,6 +61,7 @@
   }
   :global(.linja-pona) h1 {
     font-size: 40px;
+    font-weight: normal;
   }
   heading {
     width: 100%;

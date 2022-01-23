@@ -40,5 +40,14 @@
       "dark": "Dark",
       "light": "Light"
     }
+  },
+  "toast": {
+    "missing-letters": "Not enough letters",
+    "unrecognised-word": "Word not in pu or ku suli",
+    "won-in-five": "All is well",
+    "won-in-four": "Good",
+    "won-in-one": "Genius",
+    "won-in-three": "Very Good",
+    "won-in-two": "Smart"
   }
 }

@@ -40,5 +40,14 @@
       "dark": "pimeja",
       "light": "walo"
     }
+  },
+  "toast": {
+    "missing-letters": "o pana e sitelen",
+    "unrecognised-word": "nimi li pu ala li ku suli ala",
+    "won-in-five": "ale li pona",
+    "won-in-four": "pona",
+    "won-in-one": "sina jan sona-mute",
+    "won-in-three": "pona-mute",
+    "won-in-two": "sina jan sona"
   }
 }
