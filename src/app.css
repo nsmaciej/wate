@@ -20,9 +20,6 @@
   /* Segmented Control */
   --segmented-background: #ebebeb;
   --segmented-selected: #ffffff;
-  /* Misc */
-  --font-size: 14px;
-  --app-width: 350px;
 }
 
 .dark {
@@ -47,8 +44,10 @@
   /* Segmented Control */
   --segmented-background: #303030;
   --segmented-selected: #565656;
-  /* Misc */
-  --font-size: 14px;
+}
+
+:root {
+  --font-size: 15px;
   --app-width: 350px;
 }
 
@@ -74,8 +73,8 @@ body {
   background: var(--page-background);
   color: var(--text-color);
   font-size: var(--font-size);
-  font-family: ui-sans-serif, system-ui;
-  line-height: 1.25;
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 1.3;
 }
 
 a {

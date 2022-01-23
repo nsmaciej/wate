@@ -29,7 +29,7 @@
   <heading>
     <div>
       <h1>{$_("name")}</h1>
-      <i>
+      <span class="tagline">
         {$_("description")}
         <button
           on:click={() => (olukinalaShown = true)}
@@ -38,7 +38,7 @@
         >
           {$_("olukinala")}
         </button>
-      </i>
+      </span>
     </div>
     <div class="buttons">
       <Button
@@ -76,6 +76,7 @@
 <style>
   h1 {
     font-size: 28px;
+    font-weight: 900;
   }
   :global(.linja-pona) h1 {
     font-size: 40px;
@@ -87,11 +88,11 @@
     /* Prevents sudden layout shifts when switching languages. */
     height: 70px;
   }
-  i {
+  .tagline {
     color: var(--accent-color);
     display: block;
   }
-  :global(.linja-pona) i {
+  :global(.linja-pona) .tagline {
     font-size: 0.5em;
   }
   .buttons {
