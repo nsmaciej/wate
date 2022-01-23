@@ -1,62 +1,91 @@
+<script lang="ts" context="module">
+  import { Mode, localStorageStore } from "$lib/settings";
+  const savedGame = localStorageStore("game", {
+    [Mode.Four]: [],
+    [Mode.All]: [],
+    [Mode.Kijetesantakalu]: [],
+  });
+</script>
+
 <script lang="ts">
   import Row from "$lib/Row.svelte";
+  import { tweened } from "svelte/motion";
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
-  import { findLetterStates, generateEmojiArt, selectWord } from "$lib/game";
+  import { mode } from "$lib/settings";
   import dictionary from "../../static/dictionary.json";
+  import {
+    ROW_COUNT,
+    findLetterStates,
+    generateEmojiArt,
+    selectWord,
+    State,
+  } from "$lib/game";
 
-  const solution = selectWord("four", dictionary);
-  let won = false;
-  let rowLetters = new Array(5).fill("");
-  let rowInstances: Row[] = [];
-  let currentRow = 0;
-  let letterStates = findLetterStates(solution, rowLetters);
-  console.log(solution);
+  // Main state.
+  let currentRow = "";
+  let letterStates = new Map<string, State>();
+  $: [gameDay, solution] = selectWord($mode, dictionary);
+  $: submittedRows = $savedGame[$mode];
+  $: solution, (currentRow = "");
+  // $: solution, updateLetterStates();
+  $: console.log(solution);
+
+  // Gradual row reveal.
+  const revelaedRows = tweened(0, {
+    duration: 4 * 200,
+    interpolate: (a, b) => (t) => Math.floor(a + t * (b - a)),
+  });
+  $: revelaedRows.set(submittedRows.length);
+
+  // Dervied state.
+  $: gameFinished =
+    submittedRows[submittedRows.length - 1] == solution || // Won
+    submittedRows.length == ROW_COUNT; // Lost.
+
+  function updateLetterStates() {
+    letterStates = findLetterStates(solution, submittedRows);
+  }
 
   function handlePress(event: CustomEvent<string>): void {
-    if (won) return;
-    if (rowLetters[currentRow].length < solution.length) {
-      rowLetters[currentRow] += event.detail;
+    if (!gameFinished && currentRow.length < solution.length) {
+      currentRow += event.detail;
     }
   }
 
   function handleBackspace(): void {
-    if (won) return;
-    rowLetters[currentRow] = rowLetters[currentRow].slice(0, -1);
+    if (!gameFinished) {
+      currentRow = currentRow.slice(0, -1);
+    }
   }
 
   function handleEnter(): void {
-    if (won) return;
-    let row = rowLetters[currentRow];
-    if (row.length < solution.length) {
+    if (gameFinished) return;
+    if (currentRow.length < solution.length) {
       alert("Not enough letters");
-    } else if (!dictionary.includes(row)) {
+    } else if (!dictionary.includes(currentRow)) {
       alert("Not in the dictionary");
     } else {
-      if (row === solution) {
-        won = true; // Set it early to prevent further interaction.
-      }
-      rowInstances[currentRow].revealStates();
-      currentRow += 1;
+      $savedGame[$mode] = [...submittedRows, currentRow];
       // Wait for the animation to finish.
-      setTimeout(() => {
-        letterStates = findLetterStates(solution, rowLetters);
-        if (won) {
-          alert(generateEmojiArt(solution, currentRow, rowLetters));
-        }
-      }, 250 * solution.length);
+      if (currentRow === solution) {
+        setTimeout(() => {
+          alert(generateEmojiArt(gameDay, solution, submittedRows));
+        }, 250 * solution.length);
+      }
+      currentRow = "";
     }
   }
 </script>
 
-<div
-  class="wordle"
-  style:aspect-ratio="{solution.length} / {rowLetters.length}"
->
-  {#each rowLetters as row, i}
+<div class="wordle" style:aspect-ratio="{solution.length} / {ROW_COUNT}">
+  {#each { length: ROW_COUNT } as _, i}
     <Row
-      letters={row.padEnd(solution.length)}
-      bind:this={rowInstances[i]}
       {solution}
+      reveled={i < $revelaedRows && i < submittedRows.length}
+      letters={i == submittedRows.length ? currentRow : submittedRows[i] ?? ""}
+      on:revealed={() => {
+        if (i == submittedRows.length - 1) updateLetterStates();
+      }}
     />
   {/each}
 </div>

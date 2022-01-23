@@ -1,3 +1,7 @@
+import { Mode } from "$lib/settings";
+
+export const ROW_COUNT = 5;
+
 export enum State {
   Unknown = "unknown",
   Absent = "absent",
@@ -7,31 +11,34 @@ export enum State {
 
 function modePredicate(mode: string): (x: number) => boolean {
   switch (mode) {
-    case "four":
+    case Mode.Four:
       return (x) => x === 4;
-    case "all":
+    case Mode.All:
       return () => true;
-    case "kijetesantakalu":
+    case Mode.Kijetesantakalu:
       return (x) => x === 15;
   }
 }
 
-export function selectWord(mode: string, dictionary: string[]): string {
+export function selectWord(
+  mode: string,
+  dictionary: string[]
+): [number, string] {
   const predicate = modePredicate(mode);
   const candidates = dictionary.filter((x) => predicate(x.length));
   const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
-  const dayIndex = Math.floor(secondsSinceStart / 86400);
-  return candidates[dayIndex % candidates.length];
+  const day = Math.floor(secondsSinceStart / 86400);
+  return [day, candidates[day % candidates.length]];
 }
 
 export function generateEmojiArt(
+  gameDay: number,
   solution: string,
-  finalRow: number,
   rows: string[]
 ): string {
-  let result = `Wate ${finalRow}/${rows.length}\n`;
-  for (let i = 0; i < finalRow; ++i) {
-    for (const x of findRowStates(solution, rows[i])) {
+  let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
+  for (const row of rows) {
+    for (const x of findRowStates(solution, row)) {
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬜";
     }
     result += "\n";

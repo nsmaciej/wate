@@ -13,8 +13,8 @@ export enum Theme {
 }
 
 export enum Mode {
-  Four = "dark",
-  All = "light",
+  Four = "four",
+  All = "all",
   Kijetesantakalu = "kijetesantakalu",
 }
 

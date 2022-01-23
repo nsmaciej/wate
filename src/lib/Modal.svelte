@@ -65,6 +65,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    /* This actually only here to stop the animation playing over the modal. */
+    z-index: 1;
   }
   .modal {
     background: var(--page-background);

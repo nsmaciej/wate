@@ -16,6 +16,7 @@
     cursor: pointer;
     font-weight: bold;
     padding: 3px;
+    transition: background 100ms ease, color 100ms ease;
   }
   @media (hover) {
     /* Disable the hover on mobile devices. */

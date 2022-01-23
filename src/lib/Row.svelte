@@ -7,31 +7,44 @@
 <script lang="ts">
   import Tile from "$lib/Tile.svelte";
   import { findRowStates, State } from "$lib/game";
+  import { createEventDispatcher } from "svelte";
 
-  export function revealStates(): void {
+  async function animateReveal(): Promise<void> {
     const duration = 200;
+    // I can't believe how neat this is.
     for (let i = 0; i < solution.length; ++i) {
-      (async () => {
-        await delay(duration * i); // Stagger.
-        flipped[i] = true;
-        await delay(duration);
-        revealedStates[i] = states[i];
-        flipped[i] = false;
-      })();
+      flipped[i] = true;
+      await delay(duration);
+      reveledStates[i] = states[i];
+      flipped[i] = false;
     }
+    await delay(duration);
+    dispatch("revealed");
   }
 
   export let letters = "";
   export let solution = "";
+  export let reveled = false;
+
+  const dispatch = createEventDispatcher();
+  let reveledStates; //  = new Array(solution.length).fill(State.Unknown);
+  let flipped = new Array(solution.length).fill(false);
 
   $: states = findRowStates(solution, letters);
-  let revealedStates = new Array(solution.length).fill(State.Unknown);
-  let flipped = new Array(solution.length).fill(false);
+  $: {
+    states; // Dependency.
+    reveledStates = new Array(solution.length).fill(State.Unknown);
+    if (reveled) animateReveal();
+  }
 </script>
 
 <div>
-  {#each letters as letter, i}
-    <Tile {letter} state={revealedStates[i]} flipped={flipped[i]} />
+  {#each letters.padEnd(solution.length) as letter, i}
+    <Tile
+      letter={reveledStates[i] === State.Unknown ? " " : letter}
+      state={reveledStates[i]}
+      flipped={flipped[i]}
+    />
   {/each}
 </div>
 
