@@ -1,10 +1,16 @@
 <script lang="ts" context="module">
   import { Mode, localStorageStore } from "$lib/settings";
-  const savedGame = localStorageStore("game", {
-    [Mode.Four]: [],
-    [Mode.All]: [],
-    [Mode.Kijetesantakalu]: [],
-  });
+
+  function defaultSavedGame(): { [mode in Mode]: string[] } {
+    return {
+      [Mode.Four]: [],
+      [Mode.All]: [],
+      [Mode.Kijetesantakalu]: [],
+    };
+  }
+
+  const lastDayPlayed = localStorageStore("day", -1);
+  const savedGames = localStorageStore("game", defaultSavedGame());
 </script>
 
 <script lang="ts">
@@ -19,12 +25,20 @@
     findLetterStates,
     generateEmojiArt,
     selectWord,
+    currentGameDay,
   } from "$lib/game";
+
+  // Game day logic.
+  const gameDay = currentGameDay();
+  if (gameDay !== $lastDayPlayed) {
+    $savedGames = defaultSavedGame();
+  }
+  $lastDayPlayed = gameDay;
 
   // Main state.
   let currentRow = "";
-  $: [gameDay, solution] = selectWord($mode, dictionary);
-  $: submittedRows = $savedGame[$mode];
+  $: solution = selectWord($mode, gameDay, dictionary);
+  $: submittedRows = $savedGames[$mode]; // Just an alias.
   $: solution, (currentRow = "");
   $: console.log(solution);
 
@@ -74,7 +88,7 @@
     } else if (!dictionary.includes(currentRow)) {
       alert("Not in the dictionary");
     } else {
-      $savedGame[$mode] = [...submittedRows, currentRow];
+      $savedGames[$mode] = [...submittedRows, currentRow];
       revealedRows += 1;
       // Wait for the animation to finish.
       if (currentRow === solution) {

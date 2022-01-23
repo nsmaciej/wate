@@ -20,15 +20,19 @@ function modePredicate(mode: string): (x: number) => boolean {
   }
 }
 
+export function currentGameDay(): number {
+  const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
+  return Math.floor(secondsSinceStart / 86400);
+}
+
 export function selectWord(
   mode: string,
+  day: number,
   dictionary: string[]
-): [number, string] {
+): string {
   const predicate = modePredicate(mode);
   const candidates = dictionary.filter((x) => predicate(x.length));
-  const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
-  const day = Math.floor(secondsSinceStart / 86400);
-  return [day, candidates[day % candidates.length]];
+  return candidates[day % candidates.length];
 }
 
 export function generateEmojiArt(
