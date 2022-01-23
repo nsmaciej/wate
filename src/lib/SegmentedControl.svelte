@@ -1,10 +1,17 @@
+<script lang="ts" context="module">
+  export interface SegmentContext {
+    select(key: string);
+    register(key: string);
+  }
+</script>
+
 <script lang="ts">
   import { setContext } from "svelte";
 
   export let selected = "";
   let keys: string[] = [];
 
-  setContext("segment", {
+  setContext<SegmentContext>("segment", {
     select(key: string): void {
       selected = key;
     },
