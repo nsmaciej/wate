@@ -80,7 +80,7 @@ export function findRowStates(solution: string, row: string): State[] {
   const leftovers = new Map<string, number>();
 
   if (row.includes(" ") || row.length !== solution.length) {
-    return new Array(solution.length).fill(State.Unknown);
+    throw new Error(`incompatible rows "${row}" "${solution}"`);
   }
 
   for (let i = 0; i < solution.length; ++i) {

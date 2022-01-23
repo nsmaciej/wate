@@ -9,43 +9,52 @@
 
 <script lang="ts">
   import Row from "$lib/Row.svelte";
-  import { tweened } from "svelte/motion";
   import Keyboard from "$lib/Keyboard/Keyboard.svelte";
-  import { mode } from "$lib/settings";
   import dictionary from "../../static/dictionary.json";
+  import { delay } from "$lib/utils";
+  import { mode } from "$lib/settings";
   import {
     ROW_COUNT,
+    State,
     findLetterStates,
     generateEmojiArt,
     selectWord,
-    State,
   } from "$lib/game";
 
   // Main state.
   let currentRow = "";
-  let letterStates = new Map<string, State>();
   $: [gameDay, solution] = selectWord($mode, dictionary);
   $: submittedRows = $savedGame[$mode];
   $: solution, (currentRow = "");
-  // $: solution, updateLetterStates();
   $: console.log(solution);
 
-  // Gradual row reveal.
-  const revelaedRows = tweened(0, {
-    duration: 4 * 200,
-    interpolate: (a, b) => (t) => Math.floor(a + t * (b - a)),
-  });
-  $: revelaedRows.set(submittedRows.length);
-
-  // Dervied state.
+  // Game finished?
   $: gameFinished =
     submittedRows[submittedRows.length - 1] == solution || // Won
     submittedRows.length == ROW_COUNT; // Lost.
 
+  // Gradual row reveal.
+  let revealedRows = 0;
+  let hiddenRows = 0;
+  $: solution, animateRevealRows();
+  async function animateRevealRows() {
+    revealedRows = 0;
+    hiddenRows = submittedRows.length;
+    await delay(100); // Give everything a second to breathe.
+    for (let i = 0; i < submittedRows.length; ++i) {
+      revealedRows += 1;
+      await delay(200);
+    }
+  }
+
+  // Letter state - only actually set after the animation.
+  let letterStates = new Map<string, State>();
+  $: solution, (letterStates = new Map<string, State>());
   function updateLetterStates() {
     letterStates = findLetterStates(solution, submittedRows);
   }
 
+  // Keyboard handling.
   function handlePress(event: CustomEvent<string>): void {
     if (!gameFinished && currentRow.length < solution.length) {
       currentRow += event.detail;
@@ -66,6 +75,7 @@
       alert("Not in the dictionary");
     } else {
       $savedGame[$mode] = [...submittedRows, currentRow];
+      revealedRows += 1;
       // Wait for the animation to finish.
       if (currentRow === solution) {
         setTimeout(() => {
@@ -81,9 +91,11 @@
   {#each { length: ROW_COUNT } as _, i}
     <Row
       {solution}
-      reveled={i < $revelaedRows && i < submittedRows.length}
+      revealed={i < revealedRows}
+      hideBeforeReveal={i < hiddenRows}
       letters={i == submittedRows.length ? currentRow : submittedRows[i] ?? ""}
-      on:revealed={() => {
+      on:reveal={() => {
+        // Update the keyboard after the final reveal.
         if (i == submittedRows.length - 1) updateLetterStates();
       }}
     />

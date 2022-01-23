@@ -2,7 +2,7 @@
   /* Keys */
   --key-bg: #e6e6e6;
   --key-fg: #1b1b1b;
-  --absent-bg: #333333;
+  --absent-bg: #4a4a4a;
   --absent-fg: #ffffff;
   --present-bg: #ffd900;
   --present-fg: #ffffff;
@@ -82,7 +82,7 @@ a {
 }
 
 p + p {
-  margin-top: 30px;
+  margin-top: 1.2em;
 }
 
 .linja-pona {
