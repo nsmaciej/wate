@@ -9,7 +9,7 @@
   <legend>{$_("setting.name.language")}</legend>
   <SegmentedControl bind:selected={$locale}>
     <Segment key="en" title={$_("setting.language.en")} />
-    <Segment key="tp" title={$_("setting.language.tp")} />
-    <Segment key="tp-sp" title={$_("setting.language.tp-sp")} />
+    <Segment key="tok" title={$_("setting.language.tok")} />
+    <Segment key="tok-x-sp" title={$_("setting.language.tok-x-sp")} />
   </SegmentedControl>
 </fieldset>

@@ -18,7 +18,7 @@
 </script>
 
 <button on:click class:topRight {title}>
-  {#if $effectiveLocale === "tp-sp"}
+  {#if $effectiveLocale === "tok-x-sp"}
     <div class="sp">{sitelen}</div>
   {:else}
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

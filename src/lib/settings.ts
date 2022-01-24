@@ -18,7 +18,7 @@ export const enum Mode {
   Kijetesantakalu = "kijetesantakalu",
 }
 
-export const locale = localStorageStore("locale", "tp");
+export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = localStorageStore("mode", Mode.Four);
 
@@ -45,11 +45,11 @@ locale.subscribe(async (value) => {
     return;
   }
   try {
-    const sitelenPona = value === "tp-sp";
+    const sitelenPona = value === "tok-x-sp";
     if (sitelenPona) {
       await document.fonts.load("30px linja-pona");
     }
-    document.body.classList.toggle("linja-pona", value === "tp-sp");
+    document.body.classList.toggle("linja-pona", value === "tok-x-sp");
     effectiveLocale.set(value);
   } catch {
     alert("Could not load the sitelen pona font 😢");
@@ -75,5 +75,7 @@ const sitelenPonaLetters = {
 };
 
 export function letterLabelForLocale(letter: string, locale: string): string {
-  return locale === "tp-sp" ? sitelenPonaLetters[letter] : letter.toUpperCase();
+  return locale === "tok-x-sp"
+    ? sitelenPonaLetters[letter]
+    : letter.toUpperCase();
 }

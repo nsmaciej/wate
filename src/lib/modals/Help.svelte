@@ -6,13 +6,13 @@
   const sitelen = derived(
     effectiveLocale,
     (locale) => (tokipona: string, sitelen: string) =>
-      locale === "tp-sp" ? sitelen : tokipona
+      locale === "tok-x-sp" ? sitelen : tokipona
   );
 
   const combine = derived(
     effectiveLocale,
     (locale) => (tokipona: string) =>
-      locale === "tp-sp" ? tokipona.split(" ").join("+") : tokipona
+      locale === "tok-x-sp" ? tokipona.split(" ").join("+") : tokipona
   );
 </script>
 

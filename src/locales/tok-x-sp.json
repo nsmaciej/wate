@@ -14,8 +14,8 @@
   "setting": {
     "language": {
       "en": "toki nasa",
-      "tp": "toki-pona",
-      "tp-sp": "sitelen-pona"
+      "tok": "toki-pona",
+      "tok-x-sp": "sitelen-pona"
     },
     "mode": {
       "all": "ale",
