@@ -1,8 +1,8 @@
 <script lang="ts">
   import type { State } from "$lib/game";
   import { createEventDispatcher } from "svelte";
-  import Key from "$lib/Keyboard/Key.svelte";
-  import Row from "$lib/Keyboard/Row.svelte";
+  import Key from "$lib/keyboard/Key.svelte";
+  import Row from "$lib/keyboard/Row.svelte";
   import { _ } from "svelte-i18n";
 
   export let letterStates = new Map<string, State>();

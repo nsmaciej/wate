@@ -10,7 +10,7 @@
   import { onMount } from "svelte";
   import { showToast } from "$lib/Toasts.svelte";
   import Row from "$lib/Row.svelte";
-  import Keyboard from "$lib/Keyboard/Keyboard.svelte";
+  import Keyboard from "$lib/keyboard/Keyboard.svelte";
   import { _ } from "svelte-i18n";
 
   // Main state.
@@ -38,7 +38,6 @@
   });
 
   function onReveal(row: number): void {
-    console.log(row);
     if (row === submittedRows.length - 1) {
       letterStates = findLetterStates(solution, submittedRows);
       if (gameWon) {

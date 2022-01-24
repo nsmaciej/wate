@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
   import { State } from "$lib/game";
   import { effectiveLocale, letterLabelForLocale } from "$lib/settings";
-  import Key from "$lib/Keyboard/Key.svelte";
+  import Key from "$lib/keyboard/Key.svelte";
 
   export let letterStates = new Map<string, State>();
   export let letters = "";
