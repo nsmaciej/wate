@@ -1,26 +1,18 @@
 {
   "description": "musi [_waso_alasa_toki_esun] pi+toki-pona",
-  "help": {
-    "github-intro": "o lukin e ilo kon ni lon",
-    "link": {
-      "github": "lipu [_kulupu_ilo_toki_awen_pona]",
-      "wordle": "o musi e musi nanpa wan"
-    },
-    "wordle-clone": "musi ni li kon ilo pi+jan-ale. ona li sama musi nanpa wan [_waso_alasa_toki_esun]."
-  },
   "key": {
     "backspace": "weka sitelen",
     "enter": "alasa nimi"
   },
   "modal": {
     "close": "weka",
-    "help": "musi ni li seme",
+    "help": "musi ni li seme?",
     "settings": "nasin musi"
   },
   "name": "[_waso_alasa_toki_esun]",
   "olukinala": "o lukin ala",
   "setting": {
-    "lanuage": {
+    "language": {
       "en": "toki nasa",
       "tp": "toki-pona",
       "tp-sp": "sitelen-pona"

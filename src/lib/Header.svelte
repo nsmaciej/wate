@@ -1,13 +1,26 @@
+<script lang="ts" context="module">
+  import { localStorageStore } from "$lib/utils";
+
+  const startupHelp = localStorageStore("help", true);
+</script>
+
 <script lang="ts">
+  import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
   import Button from "$lib/Button.svelte";
-  import Settings from "$lib/modals/Settings.svelte";
+  import Help from "$lib/modals/Help.svelte";
   import Modal from "$lib/Modal.svelte";
-  import Help from "$lib/Help.svelte";
+  import Settings from "$lib/modals/Settings.svelte";
 
   let settingsShown = false;
   let helpShown = false;
   let olukinalaShown = false;
+
+  onMount(() => {
+    // This is needed because right now there is not easy way to set
+    // intro: true and I want a nice initial in transition.
+    if ($startupHelp) helpShown = true;
+  });
 </script>
 
 <heading>
@@ -43,7 +56,11 @@
 <Modal bind:shown={settingsShown} title={$_("modal.settings")}>
   <Settings />
 </Modal>
-<Modal bind:shown={helpShown} title={$_("modal.help")}>
+<Modal
+  bind:shown={helpShown}
+  title={$_("modal.help")}
+  on:close={() => ($startupHelp = false)}
+>
   <Help />
 </Modal>
 <Modal bind:shown={olukinalaShown} title={$_("olukinala")}>
@@ -55,14 +72,6 @@
 </Modal>
 
 <style>
-  h1 {
-    font-size: 28px;
-    font-weight: 900;
-  }
-  :global(.linja-pona) h1 {
-    font-size: 40px;
-    font-weight: normal;
-  }
   heading {
     width: 100%;
     display: flex;

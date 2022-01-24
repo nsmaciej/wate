@@ -1,13 +1,16 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { createEventDispatcher } from "svelte";
   import Button from "$lib/Button.svelte";
 
   export let shown = false;
   export let title = "Modal";
+  const dispatch = createEventDispatcher();
 
   function close() {
     shown = false;
+    dispatch("close");
   }
   //TODO: Trap tab.
 </script>
@@ -37,23 +40,30 @@
           />
         </div>
       </div>
-      <slot />
+      <div class="contents">
+        <slot />
+      </div>
     </div>
   </div>
 {/if}
 
 <style>
   h2 {
-    font-weight: 700;
+    margin-bottom: 15px;
   }
   .close {
     cursor: pointer;
   }
   .header {
     display: flex;
-    width: 100%;
     gap: 20px;
     justify-content: space-between;
+    min-height: 1.5em;
+  }
+  .contents {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
   }
   .overlay {
     position: fixed;

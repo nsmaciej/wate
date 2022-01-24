@@ -87,10 +87,6 @@ a {
   color: var(--link-color);
 }
 
-p + p {
-  margin-top: 1.2em;
-}
-
 .linja-pona {
   font-family: linja-pona;
   font-size: var(--font-size);
@@ -109,8 +105,21 @@ p + p {
   font-style: normal !important;
 }
 
+h1 {
+  font-size: 28px;
+  font-weight: 900;
+}
 .linja-pona h1 {
-  /* Otherwise the cartouches break in Safari. */
+  font-size: 40px;
+  font-weight: normal;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+.linja-pona h2 {
+  font-size: 40px;
   font-weight: normal;
 }
 
@@ -124,4 +133,13 @@ button {
   line-height: 1;
   user-select: none;
   -webkit-user-select: none;
+}
+
+fieldset {
+  border: 0;
+}
+
+legend {
+  margin-bottom: 5px;
+  font-weight: bold;
 }
