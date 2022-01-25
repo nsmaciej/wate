@@ -51,9 +51,6 @@
   h2 {
     margin-bottom: 15px;
   }
-  .close {
-    cursor: pointer;
-  }
   .header {
     display: flex;
     gap: 20px;

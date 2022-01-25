@@ -30,7 +30,6 @@
 <style>
   button {
     display: flex;
-    cursor: pointer;
     min-width: 48px;
     min-height: 48px;
     align-items: center;

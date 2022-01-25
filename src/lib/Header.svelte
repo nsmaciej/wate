@@ -93,6 +93,5 @@
   }
   .olukinala {
     color: transparent;
-    cursor: pointer;
   }
 </style>

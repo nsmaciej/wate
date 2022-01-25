@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { waitLocale, _ } from "svelte-i18n";
+  import { waitLocale } from "svelte-i18n";
   import { Mode } from "$lib/settings";
   import { localStorageStore } from "$lib/utils";
   import "./i18n";
@@ -11,12 +11,15 @@
 </script>
 
 <script lang="ts">
+  import { _ } from "svelte-i18n";
   import { mode } from "$lib/settings";
-  import { currentGameDay, selectWord } from "$lib/game";
+  import { currentGameDay, generateEmojiArt, selectWord } from "$lib/game";
   import Wordle from "$lib/Wordle.svelte";
   import Header from "$lib/Header.svelte";
   import dictionary from "../../static/dictionary.json";
-  import Toasts, { showToast } from "$lib/Toasts.svelte";
+  import Toasts from "$lib/Toasts.svelte";
+  import Modal from "$lib/Modal.svelte";
+  import Button from "$lib/Button.svelte";
 
   const gameState = localStorageStore("game", {
     [Mode.Four]: [],
@@ -31,16 +34,11 @@
 
   $: solution = selectWord($mode, gameDay, dictionary);
   $: console.log(solution);
+  let winModalShown = false;
 
-  function handleWin() {
-    const message = [
-      $_("toast.won-in-one"),
-      $_("toast.won-in-two"),
-      $_("toast.won-in-three"),
-      $_("toast.won-in-four"),
-      $_("toast.won-in-five"),
-    ];
-    showToast(message[$gameState[$mode].length - 1]);
+  function share() {
+    const art = generateEmojiArt(gameDay, solution, $gameState[$mode]);
+    navigator.clipboard.writeText(art);
   }
 </script>
 
@@ -54,11 +52,14 @@
     <Wordle
       {dictionary}
       {solution}
-      on:win={handleWin}
+      on:win={() => (winModalShown = true)}
       bind:submittedRows={$gameState[$mode]}
     />
   {/key}
   <Toasts />
+  <Modal title={$_("modal.share")} shown={winModalShown}>
+    <Button on:click={share}>{$_("modal.share")}</Button>
+  </Modal>
 </main>
 
 <style>

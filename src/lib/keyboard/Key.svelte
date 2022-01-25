@@ -13,7 +13,6 @@
     border-radius: 4px;
     height: 50px;
     flex: 1;
-    cursor: pointer;
     font-weight: 700;
     padding: 3px;
     transition: background 100ms ease, color 100ms ease;

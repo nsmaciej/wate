@@ -7,12 +7,13 @@
   "modal": {
     "close": "weka",
     "help": "musi ni li seme?",
-    "settings": "nasin musi"
+    "settings": "nasin musi",
+    "share": "o pona"
   },
   "name": "Wate",
   "olukinala": "o lukin ala",
   "setting": {
-    "lagnuage": {
+    "language": {
       "en": "English",
       "tok": "toki pona",
       "tok-x-sp": "sitelen pona"

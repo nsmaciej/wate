@@ -133,6 +133,7 @@ button {
   line-height: 1;
   user-select: none;
   -webkit-user-select: none;
+  cursor: pointer;
 }
 
 fieldset {

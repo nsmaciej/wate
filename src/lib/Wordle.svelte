@@ -22,6 +22,7 @@
   const dispatch = createEventDispatcher();
 
   // Game finished?
+  let gameWonOnLoad = false;
   $: gameWon = submittedRows[submittedRows.length - 1] === solution;
   $: gameLost = submittedRows.length === ROW_COUNT;
   $: gameFinished = gameWon || gameLost;
@@ -30,6 +31,9 @@
   let revealedRows = 0;
   let hiddenRows = submittedRows.length;
   onMount(async () => {
+    if (gameWon) {
+      gameWonOnLoad = true;
+    }
     await delay(100); // Give everything a second to breathe.
     for (let i = 0; i < submittedRows.length; ++i) {
       revealedRows += 1;
@@ -37,14 +41,25 @@
     }
   });
 
-  function onReveal(row: number): void {
-    if (row === submittedRows.length - 1) {
-      letterStates = findLetterStates(solution, submittedRows);
-      if (gameWon) {
-        dispatch("win");
-      } else if (gameLost) {
-        showToast(solution);
-      }
+  async function onReveal(row: number): Promise<void> {
+    if (row !== submittedRows.length - 1) return;
+    letterStates = findLetterStates(solution, submittedRows);
+
+    if (gameWonOnLoad) {
+      // Skip
+      dispatch("win");
+    } else if (gameWon) {
+      const message = [
+        $_("toast.won-in-one"),
+        $_("toast.won-in-two"),
+        $_("toast.won-in-three"),
+        $_("toast.won-in-four"),
+        $_("toast.won-in-five"),
+      ];
+      await showToast(message[submittedRows.length - 1]);
+      dispatch("win");
+    } else if (gameLost) {
+      showToast(solution);
     }
   }
 
