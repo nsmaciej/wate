@@ -7,7 +7,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
-  import Button from "$lib/Button.svelte";
+  import IconButton from "$lib/IconButton.svelte";
   import Help from "$lib/modals/Help.svelte";
   import Modal from "$lib/Modal.svelte";
   import Settings from "$lib/modals/Settings.svelte";
@@ -38,15 +38,15 @@
     </span>
   </div>
   <div class="buttons">
-    <Button
+    <IconButton
       title={$_("modal.settings")}
-      name="settings"
+      icon="settings"
       sitelen="nasin"
       on:click={() => (settingsShown = true)}
     />
-    <Button
+    <IconButton
       title={$_("modal.help")}
-      name="help"
+      icon="help"
       sitelen="seme"
       on:click={() => (helpShown = true)}
     />

@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-  export let name: keyof typeof icons = "help";
+  export let icon: keyof typeof icons = "help";
   export let sitelen = "seme";
   export let title = "";
   // For modals.
@@ -22,7 +22,7 @@
     <div class="sp">{sitelen}</div>
   {:else}
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <path d={icons[name]} />
+      <path d={icons[icon]} />
     </svg>
   {/if}
 </button>

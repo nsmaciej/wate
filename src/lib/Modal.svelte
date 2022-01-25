@@ -2,7 +2,7 @@
   import { fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { createEventDispatcher } from "svelte";
-  import Button from "$lib/Button.svelte";
+  import IconButton from "$lib/IconButton.svelte";
 
   export let shown = false;
   export let title = "Modal";
@@ -31,9 +31,9 @@
       <div class="header">
         <h2>{title}</h2>
         <div class="close">
-          <Button
+          <IconButton
             topRight
-            name="close"
+            icon="close"
             title={$_("modal.close")}
             sitelen="weka"
             on:click={close}
