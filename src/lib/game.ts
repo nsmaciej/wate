@@ -12,7 +12,7 @@ export enum State {
 function modePredicate(mode: Mode): (x: number) => boolean {
   switch (mode) {
     case Mode.All:
-      return (x) => x >= 2;
+      return (x) => x >= 2 && x !== 4 && x !== 15;
     case Mode.Kijetesantakalu:
       return (x) => x === 15;
     case Mode.Four:
