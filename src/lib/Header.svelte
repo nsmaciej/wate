@@ -16,6 +16,10 @@
   let helpShown = false;
   let olukinalaShown = false;
 
+  // Used to prevent the win modal showing over other modals.
+  export let showingModal = false;
+  $: showingModal = settingsShown || helpShown || olukinalaShown;
+
   onMount(() => {
     // This is needed because right now there is not easy way to set
     // intro: true and I want a nice initial in transition.

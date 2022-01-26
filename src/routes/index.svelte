@@ -35,10 +35,15 @@
   $: solution = selectWord($mode, gameDay, dictionary);
   $: console.log(solution);
   let winModalShown = false;
+  let showingHeaderModal = false;
 
   function share() {
     const art = generateEmojiArt(gameDay, solution, $gameState[$mode]);
     navigator.clipboard.writeText(art);
+  function handleWin() {
+    if (!showingHeaderModal) {
+      winModalShown = true;
+    }
   }
 </script>
 
@@ -47,12 +52,12 @@
 </svelte:head>
 
 <main>
-  <Header />
+  <Header bind:showingModal={showingHeaderModal} />
   {#key solution}
     <Wordle
       {dictionary}
       {solution}
-      on:win={() => (winModalShown = true)}
+      on:win={handleWin}
       bind:submittedRows={$gameState[$mode]}
     />
   {/key}
