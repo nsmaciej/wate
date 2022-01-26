@@ -67,7 +67,9 @@
   <Toasts />
   <Modal title={$_("modal.share")} shown={winModalShown}>
     <Countdown />
-    <Button on:click={share}>{$_("share.button")}</Button>
+    <div class="share">
+      <Button on:click={share}>{$_("share.button")}</Button>
+    </div>
   </Modal>
 </main>
 
@@ -81,5 +83,9 @@
     height: 100%;
     padding: 20px 20px 30px;
     margin: 0 auto;
+  }
+  .share {
+    display: flex;
+    justify-content: center;
   }
 </style>
