@@ -21,9 +21,21 @@ function modePredicate(mode: Mode): (x: number) => boolean {
   }
 }
 
+// Set to `Math.floor(Date.now() / 1000) - 24 * 60 * 60 + 10` for testing.
+const WATE_EPOCH = 1642464000;
+const DAY_SECONDS = 86400;
+
+export function unixTimestamp(): number {
+  return Math.floor(Date.now() / 1000);
+}
+
+export function nextDayTimestamp(): number {
+  const day = currentGameDay();
+  return (day + 1) * DAY_SECONDS + WATE_EPOCH;
+}
+
 export function currentGameDay(): number {
-  const secondsSinceStart = Math.floor(Date.now() / 1000) - 1642464000;
-  return Math.floor(secondsSinceStart / 86400);
+  return Math.floor((unixTimestamp() - WATE_EPOCH) / DAY_SECONDS);
 }
 
 export function selectWord(

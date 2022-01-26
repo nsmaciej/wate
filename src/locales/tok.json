@@ -8,7 +8,7 @@
     "close": "weka",
     "help": "musi ni li seme?",
     "settings": "nasin musi",
-    "share": "o pona"
+    "share": "o pana e musi sin"
   },
   "name": "Wate",
   "olukinala": "o lukin ala",
@@ -34,8 +34,13 @@
       "light": "walo"
     }
   },
+  "share": {
+    "button": "o pana e musi sina",
+    "next": "musi Wate li kama sin"
+  },
   "toast": {
-    "missing-letters": "o pana e sitelen",
+    "clipboard": "mi pana e sitelen tawa sona pi ilo sona sina",
+    "missing-letters": "o pana e sitelen mute",
     "unrecognised-word": "nimi li pu ala li ku suli ala",
     "won-in-five": "ale li pona",
     "won-in-four": "pona",

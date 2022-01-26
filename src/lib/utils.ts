@@ -41,3 +41,35 @@ export function localStorageStore<T>(
     },
   });
 }
+
+export function numberToSitelen(n: number): string {
+  if (!Number.isFinite(n) || !Number.isInteger(n)) return "nanpa nasa";
+  if (n === 0) return "ala";
+  if (Math.abs(n) > 500) return "mute";
+
+  const names: [number, string][] = [
+    [100, "ale"],
+    [20, "mute"],
+    [5, "luka"],
+    [2, "tu"],
+    [1, "wan"],
+  ];
+
+  const result: string[] = [];
+
+  if (n < 0) {
+    result.push("weka");
+    n = -n;
+  }
+  if (n >= 5) {
+    // Make sure we know luka/mute/ale is a number here.
+    result.push("nanpa");
+  }
+
+  for (const [amount, name] of names) {
+    const k = Math.floor(n / amount);
+    for (let i = 0; i < k; ++i) result.push(name);
+    n -= k * amount;
+  }
+  return result.join(" ");
+}

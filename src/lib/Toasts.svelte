@@ -1,15 +1,18 @@
 <script lang="ts" context="module">
-  import { writable } from "svelte/store";
+  import { get, writable } from "svelte/store";
   import { delay, fixSitelenForSafari } from "$lib/utils";
+  import { effectiveLocale } from "$lib/settings";
 
   type Toast = [id: number, message: string];
   const toastList = writable<Toast[]>([]);
   let toastId = 0;
 
-  export async function showToast(message: string): Promise<void> {
+  export async function showToast(message: string, factor = 1): Promise<void> {
     const thisToast = toastId++;
     toastList.update((x) => [...x, [thisToast, fixSitelenForSafari(message)]]);
-    await delay(2000);
+    // Give sitelen pona users a lot more time to read the toast.
+    const duration = get(effectiveLocale) === "tok-x-sp" ? 4000 : 2000;
+    await delay(duration * factor);
     toastList.update((x) => x.filter((y) => y[0] !== thisToast));
   }
 </script>

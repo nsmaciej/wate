@@ -1,7 +1,6 @@
 <script context="module" lang="ts">
   import { waitLocale } from "svelte-i18n";
   import { Mode } from "$lib/settings";
-  import { localStorageStore } from "$lib/utils";
   import "./i18n";
   import "../app.css";
 
@@ -13,13 +12,15 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { mode } from "$lib/settings";
+  import { localStorageStore } from "$lib/utils";
   import { currentGameDay, generateEmojiArt, selectWord } from "$lib/game";
-  import Wordle from "$lib/Wordle.svelte";
-  import Header from "$lib/Header.svelte";
-  import dictionary from "../../static/dictionary.json";
-  import Toasts from "$lib/Toasts.svelte";
-  import Modal from "$lib/Modal.svelte";
   import Button from "$lib/Button.svelte";
+  import Countdown from "$lib/Countdown.svelte";
+  import Header from "$lib/Header.svelte";
+  import Modal from "$lib/Modal.svelte";
+  import Toasts, { showToast } from "$lib/Toasts.svelte";
+  import Wordle from "$lib/Wordle.svelte";
+  import dictionary from "../../static/dictionary.json";
 
   const gameState = localStorageStore("game", {
     [Mode.Four]: [],
@@ -37,9 +38,12 @@
   let winModalShown = false;
   let showingHeaderModal = false;
 
-  function share() {
+  async function share() {
     const art = generateEmojiArt(gameDay, solution, $gameState[$mode]);
-    navigator.clipboard.writeText(art);
+    await navigator.clipboard.writeText(art);
+    // This is a one time toast so give it more time.
+    showToast($_("toast.clipboard"), 2);
+  }
   function handleWin() {
     if (!showingHeaderModal) {
       winModalShown = true;
@@ -63,7 +67,8 @@
   {/key}
   <Toasts />
   <Modal title={$_("modal.share")} shown={winModalShown}>
-    <Button on:click={share}>{$_("modal.share")}</Button>
+    <Countdown />
+    <Button on:click={share}>{$_("share.button")}</Button>
   </Modal>
 </main>
 

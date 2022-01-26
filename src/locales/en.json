@@ -34,7 +34,12 @@
       "light": "Light"
     }
   },
+  "share": {
+    "button": "Share",
+    "next": "Next Wate"
+  },
   "toast": {
+    "clipboard": "Copied result to clipboard",
     "missing-letters": "Not enough letters",
     "unrecognised-word": "Word not in pu or ku suli",
     "won-in-five": "All is well",
