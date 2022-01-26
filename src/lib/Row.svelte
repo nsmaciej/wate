@@ -5,7 +5,7 @@
   import { delay } from "$lib/utils";
 
   async function animateReveal(): Promise<void> {
-    const duration = 200;
+    const duration = 150;
     // I can't believe how neat this is.
     const states = findRowStates(solution, letters);
     for (let i = 0; i < solution.length; ++i) {

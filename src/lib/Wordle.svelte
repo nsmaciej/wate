@@ -47,10 +47,10 @@
     if (gameWon) {
       gameWonOnLoad = true;
     }
-    await delay(100); // Give everything a second to breathe.
+    await delay(50); // Give everything a second to breathe.
     for (let i = 0; i < submittedRows.length; ++i) {
       revealedRows += 1;
-      await delay(200);
+      await delay(150);
     }
   });
 
@@ -69,7 +69,7 @@
         $_("toast.won-in-four"),
         $_("toast.won-in-five"),
       ];
-      await showToast(message[submittedRows.length - 1]);
+      await showToast(message[submittedRows.length - 1], 0.5);
       dispatch("win");
     } else if (gameLost) {
       showToast(solution);
