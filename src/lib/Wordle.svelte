@@ -76,8 +76,23 @@
     }
   }
 
-  function handleEnter(): void {
+  async function handleEnter(): Promise<void> {
     if (gameFinished) return;
+
+    if (currentRow === "awkt") {
+      currentRow = "";
+      localStorage.clear();
+      showToast("Local Storage Cleared");
+      return;
+    }
+    if (currentRow === "pono") {
+      currentRow = "";
+      await showToast("Give me a break");
+      showToast("Show me the bibliography");
+      return;
+    }
+
+    if (currentRow === "mu") await showToast("mu");
     if (currentRow.length < solution.length) {
       showToast($_("toast.missing-letters"));
     } else if (!dictionary.includes(currentRow)) {
