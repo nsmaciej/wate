@@ -34,7 +34,6 @@
   $lastDayPlayed = gameDay;
 
   $: solution = selectWord($mode, gameDay, dictionary);
-  $: console.log(solution);
   let winModalShown = false;
   let showingHeaderModal = false;
 
