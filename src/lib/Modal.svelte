@@ -77,7 +77,7 @@
   }
   .modal {
     background: var(--page-background);
-    padding: 20px;
+    padding: 25px;
     border-radius: 12px;
     border: 1px solid var(--modal-border);
     box-shadow: 0 4px 25px 0 #00000033;

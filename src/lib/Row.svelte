@@ -36,23 +36,12 @@
   }
 </script>
 
-<div>
-  {#each letters.padEnd(solution.length) as letter, i}
-    <Tile
-      letter={hideBeforeReveal && reveledStates[i] === State.Unknown
-        ? " "
-        : letter}
-      state={reveledStates[i]}
-      flipped={flipped[i]}
-    />
-  {/each}
-</div>
-
-<style>
-  div {
-    flex: 1;
-    display: grid;
-    grid: auto / auto-flow 1fr;
-    width: 100%;
-  }
-</style>
+{#each letters.padEnd(solution.length) as letter, i}
+  <Tile
+    letter={hideBeforeReveal && reveledStates[i] === State.Unknown
+      ? " "
+      : letter}
+    state={reveledStates[i]}
+    flipped={flipped[i]}
+  />
+{/each}

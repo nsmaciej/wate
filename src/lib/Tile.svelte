@@ -19,15 +19,15 @@
     margin: 2px;
     font-weight: bold;
     transition: transform 200ms ease-in;
+    /* This stops the grid caring about our content. */
+    min-width: 0;
   }
   :global(.linja-pona) div {
     font-size: 35px;
     border-radius: 8px;
   }
-  @media (max-height: 600px) {
-    div {
-      font-size: 14px;
-    }
+  :global(.kijetesantakalu) div {
+    font-size: 10px;
   }
   div.unknown {
     border: 2px solid var(--unknown-tile-border);

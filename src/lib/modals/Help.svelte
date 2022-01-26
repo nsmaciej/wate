@@ -20,7 +20,7 @@
 
 {#if $effectiveLocale === "en"}
   <p>
-    Wate is an open source clone of Wordle in toki pona. Play the original
+    Wate is an open source clone of Wordle in Toki Pona. Play the original
     <a href="https://www.powerlanguage.co.uk/wordle/">here</a>.
   </p>
   <p>

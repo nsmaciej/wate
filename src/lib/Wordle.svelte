@@ -21,6 +21,19 @@
   let letterStates = new Map<string, State>();
   const dispatch = createEventDispatcher();
 
+  // Grid size. This might be able to be done only with aspect-ratio and
+  // max-width/height, but it seems a bit messy and Safari definitely doesn't
+  // like it. Note this can't be done in css calc() because we can't divide
+  // anything by a non-unit less number (which 70px is).
+  let innerWidth, innerHeight: number;
+  $: scale = Math.min(
+    1,
+    (innerHeight - 350) / 350,
+    (innerWidth - 80) / (70 * solution.length)
+  );
+  // Used by Tile styling to shrink font size.
+  let kijetesantakalu = solution.length === 15;
+
   // Game finished?
   let gameWonOnLoad = false;
   $: gameWon = submittedRows[submittedRows.length - 1] === solution;
@@ -105,7 +118,15 @@
   }
 </script>
 
-<div class="wordle" style:aspect-ratio="{solution.length} / {ROW_COUNT}">
+<svelte:window bind:innerWidth bind:innerHeight />
+
+<div
+  class="wordle"
+  class:kijetesantakalu
+  style:grid="auto-flow 1fr / repeat({solution.length}, 1fr)"
+  style:width="{70 * solution.length * scale}px"
+  style:height="{350 * scale}px"
+>
   {#each { length: ROW_COUNT } as _, i}
     <Row
       {solution}
@@ -125,12 +146,8 @@
 
 <style>
   div.wordle {
-    /* NB aspect-ratio set in code. */
     user-select: none;
     -webkit-user-select: none;
-    flex: auto;
     display: grid;
-    grid: auto-flow 1fr / auto;
-    max-height: var(--app-width);
   }
 </style>
