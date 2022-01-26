@@ -20,7 +20,7 @@
 
 {#if $effectiveLocale === "en"}
   <p>
-    This is an open source clone of Wordle in toki pona. Play the original
+    Wate is an open source clone of Wordle in toki pona. Play the original
     <a href="https://www.powerlanguage.co.uk/wordle/">here</a>.
   </p>
   <p>
@@ -37,12 +37,10 @@
   </p>
 {:else}
   <p>
-    ni li kon ilo {$combine("pi jan ale")}. ona li sama musi nanpa wan {$sitelen(
-      "Wordle",
-      "[_waso_alasa_toki_esun]"
-    )}.
+    musi {$sitelen("Wate", "[_waso_alasa_toki_esun]")} li sama musi nanpa wan
+    {$sitelen("Wordle", "[_waso_alasa_toki_esun]")}.
     <a href="https://www.powerlanguage.co.uk/wordle/" title="Wordle"
-      >o musi e musi nanpa wan</a
+      >o musi e musi {$sitelen("Wordle", "nanpa wan")}</a
     >.
   </p>
   <p>
