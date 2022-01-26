@@ -56,7 +56,7 @@ export function generateEmojiArt(
   let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
   for (const row of rows) {
     for (const x of findRowStates(solution, row)) {
-      result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬜";
+      result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
     result += "\n";
   }
