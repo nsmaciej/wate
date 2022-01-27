@@ -65,7 +65,7 @@
     />
   {/key}
   <Toasts />
-  <Modal title={$_("modal.share")} shown={winModalShown}>
+  <Modal title={$_("modal.share")} bind:shown={winModalShown}>
     <Countdown />
     <div class="share">
       <Button on:click={share}>{$_("share.button")}</Button>
