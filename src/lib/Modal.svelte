@@ -74,6 +74,9 @@
     justify-content: center;
     /* This actually only here to stop the animation playing over the modal. */
     z-index: 1;
+    /* Same but Safari seems to discard z-indexes. Lift the modal over the animation. */
+    /* https://bugs.webkit.org/show_bug.cgi?id=61824 */
+    transform: translateZ(200px);
   }
   .modal {
     background: var(--page-background);

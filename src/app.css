@@ -70,7 +70,7 @@
 body,
 html,
 #svelte {
-  /* Can't use 100vh since Safari includes below-the-fold areas. */
+  /* Can't use 100vh since Safari iOS includes below-the-fold areas. */
   height: 100%;
 }
 
