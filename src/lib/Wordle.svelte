@@ -4,6 +4,7 @@
   // having to stop animations mid-way through.
 
   import type { State } from "$lib/game";
+  import { browser } from "$app/env";
   import { ROW_COUNT, findLetterStates } from "$lib/game";
   import { createEventDispatcher } from "svelte";
   import { delay } from "$lib/utils";
@@ -26,11 +27,13 @@
   // like it. Note this can't be done in css calc() because we can't divide
   // anything by a non-unit less number (which 70px is).
   let innerWidth, innerHeight: number;
-  $: scale = Math.min(
-    1,
-    (innerHeight - 350) / 350,
-    (innerWidth - 80) / (70 * solution.length)
-  );
+  $: scale = browser
+    ? Math.min(
+        1,
+        (innerHeight - 350) / 350,
+        (innerWidth - 80) / (70 * solution.length)
+      )
+    : 1;
   // Used by Tile styling to shrink font size.
   let kijetesantakalu = solution.length === 15;
 
@@ -72,7 +75,7 @@
       await showToast(message[submittedRows.length - 1], 0.5);
       dispatch("win");
     } else if (gameLost) {
-      showToast(solution);
+      showToast(solution, 2);
     }
   }
 
