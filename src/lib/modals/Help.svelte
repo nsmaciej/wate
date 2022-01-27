@@ -48,7 +48,7 @@
     >.
   </p>
   <p>
-    {$combine("sitelen pona")} kepeken
+    {$combine("sitelen pona")} li kepeken
     <a href="https://musilili.net/linja-pona/" title="linja pona"
       >{$combine("linja pona")}</a
     >.
