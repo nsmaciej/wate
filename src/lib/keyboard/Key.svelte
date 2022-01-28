@@ -2,9 +2,10 @@
   import { State } from "$lib/game";
   export let state: State = State.Unknown;
   export let big = false;
+  export let offset = false;
 </script>
 
-<button on:click class:big class={state} tabindex="-1">
+<button on:click class:big class:offset class={state} tabindex="-1">
   <slot />
 </button>
 
@@ -12,10 +13,16 @@
   button {
     border-radius: 4px;
     height: 50px;
-    flex: 1;
     font-weight: 700;
     padding: 3px;
     transition: background 100ms ease, color 100ms ease;
+    grid-column-end: span 2;
+  }
+  button.big {
+    grid-column-end: span 3;
+  }
+  button.offset {
+    grid-column-start: 2;
   }
   @media (hover) {
     /* Disable the hover on mobile devices. */
@@ -28,9 +35,6 @@
   }
   button:active {
     transform: translateY(1px);
-  }
-  button.big {
-    flex: 1.5;
   }
   :global(.linja-pona) button.big {
     color: var(--link-color);

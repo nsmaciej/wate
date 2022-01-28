@@ -16,25 +16,23 @@
       dispatch("enter");
     } else if (key.length === 1 && "aeijklmnopstuw".includes(key)) {
       dispatch("press", key);
+    } else {
+      return;
     }
   }
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
 <div class="keyboard">
-  <Row letters="aeijk" on:press {letterStates}>
-    <div slot="start" class="spacer" />
-    <div slot="end" class="spacer" />
-  </Row>
+  <Row offset letters="aeijk" on:press {letterStates} />
   <Row letters="lmnops" on:press {letterStates} />
-  <Row letters="tuw" on:press {letterStates}>
-    <Key big slot="start" on:click={() => dispatch("enter")}>
-      {$_("key.enter")}
-    </Key>
-    <Key big slot="end" on:click={() => dispatch("backspace")}>
-      {$_("key.backspace")}
-    </Key>
-  </Row>
+  <Key big slot="start" on:click={() => dispatch("enter")}>
+    {$_("key.enter")}
+  </Key>
+  <Row letters="tuw" on:press {letterStates} />
+  <Key big slot="end" on:click={() => dispatch("backspace")}>
+    {$_("key.backspace")}
+  </Key>
 </div>
 
 <style>
@@ -42,8 +40,8 @@
     width: 100%;
     /* Disable tap to zoom if you miss-tap a key. */
     touch-action: manipulation;
-  }
-  div.spacer {
-    flex: 0.5;
+    display: grid;
+    grid: auto-flow / repeat(12, 1fr);
+    gap: 8px;
   }
 </style>

@@ -6,26 +6,16 @@
 
   export let letterStates = new Map<string, State>();
   export let letters = "";
+  export let offset = false;
   const dispatch = createEventDispatcher();
 </script>
 
-<div>
-  <slot name="start" />
-  {#each letters as letter}
-    <Key
-      on:click={() => dispatch("press", letter)}
-      state={letterStates.get(letter) ?? State.Unknown}
-    >
-      {letterLabelForLocale(letter, $effectiveLocale)}
-    </Key>
-  {/each}
-  <slot name="end" />
-</div>
-
-<style>
-  div {
-    display: flex;
-    margin: 8px 0;
-    gap: 8px;
-  }
-</style>
+{#each letters as letter, i}
+  <Key
+    offset={offset && i === 0}
+    on:click={() => dispatch("press", letter)}
+    state={letterStates.get(letter) ?? State.Unknown}
+  >
+    {letterLabelForLocale(letter, $effectiveLocale)}
+  </Key>
+{/each}
