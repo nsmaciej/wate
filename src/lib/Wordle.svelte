@@ -4,7 +4,6 @@
   // having to stop animations mid-way through.
 
   import type { State } from "$lib/game";
-  import { browser } from "$app/env";
   import { ROW_COUNT, findLetterStates } from "$lib/game";
   import { createEventDispatcher } from "svelte";
   import { delay } from "$lib/utils";
@@ -26,15 +25,15 @@
   // max-width/height, but it seems a bit messy and Safari definitely doesn't
   // like it. Note this can't be done in css calc() because we can't divide
   // anything by a non-unit less number (which 70px is).
-  let innerWidth, innerHeight: number;
   const tileSize = 70;
-  $: scale = browser
-    ? Math.min(
-        1,
-        (innerHeight - 300) / (tileSize * ROW_COUNT),
-        (innerWidth - 20) / (tileSize * solution.length)
-      )
-    : 1;
+  let scale = 1;
+  function handleResize() {
+    scale = Math.min(
+      1,
+      (document.body.clientHeight - 300) / (tileSize * ROW_COUNT),
+      (document.body.clientWidth - 20) / (tileSize * solution.length)
+    );
+  }
   // Used by Tile styling to shrink font size.
   let kijetesantakalu = solution.length === 15;
 
@@ -122,7 +121,7 @@
   }
 </script>
 
-<svelte:window bind:innerWidth bind:innerHeight />
+<svelte:window on:resize={handleResize} />
 
 <div
   class="wordle"
@@ -141,6 +140,7 @@
     />
   {/each}
 </div>
+
 <Keyboard
   on:press={handlePress}
   on:enter={handleEnter}
