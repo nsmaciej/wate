@@ -36,6 +36,7 @@
   }
   // Used by Tile styling to shrink font size.
   let kijetesantakalu = solution.length === 15;
+  onMount(handleResize);
 
   // Game finished?
   let gameWonOnLoad = false;
