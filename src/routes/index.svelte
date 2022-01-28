@@ -39,10 +39,25 @@
 
   async function share() {
     const art = generateEmojiArt(gameDay, solution, $gameState[$mode]);
-    await navigator.clipboard.writeText(art);
-    // This is a one time toast so give it more time.
-    showToast($_("toast.clipboard"), 2);
+    const share = { text: art };
+    try {
+      if (
+        // Sharing in desktop browsers sucks.
+        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) &&
+        navigator.canShare?.(share)
+      ) {
+        await navigator.share(share);
+      } else {
+        await navigator.clipboard.writeText(art);
+        // This is a one time toast so give it more time.
+        showToast($_("toast.clipboard"), 2);
+      }
+    } catch (e) {
+      console.log("Share Exception", e);
+      // I have no idea what could go wrong here but I don't want to find out.
+    }
   }
+
   function handleWin() {
     if (!showingHeaderModal) {
       winModalShown = true;
