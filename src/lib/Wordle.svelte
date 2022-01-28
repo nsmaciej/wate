@@ -31,7 +31,7 @@
   $: scale = browser
     ? Math.min(
         1,
-        (innerHeight - 400) / (tileSize * ROW_COUNT),
+        (innerHeight - 300) / (tileSize * ROW_COUNT),
         (innerWidth - 20) / (tileSize * solution.length)
       )
     : 1;
