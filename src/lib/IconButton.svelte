@@ -29,7 +29,6 @@
 
 <style>
   button {
-    display: flex;
     min-width: 48px;
     min-height: 48px;
     align-items: center;
