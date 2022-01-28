@@ -27,11 +27,12 @@
   // like it. Note this can't be done in css calc() because we can't divide
   // anything by a non-unit less number (which 70px is).
   let innerWidth, innerHeight: number;
+  const tileSize = 70;
   $: scale = browser
     ? Math.min(
         1,
-        (innerHeight - 350) / 350,
-        (innerWidth - 80) / (70 * solution.length)
+        (innerHeight - 400) / (tileSize * ROW_COUNT),
+        (innerWidth - 20) / (tileSize * solution.length)
       )
     : 1;
   // Used by Tile styling to shrink font size.
@@ -127,8 +128,8 @@
   class="wordle"
   class:kijetesantakalu
   style:grid="auto-flow 1fr / repeat({solution.length}, 1fr)"
-  style:width="{70 * solution.length * scale}px"
-  style:height="{350 * scale}px"
+  style:width="{tileSize * solution.length * scale}px"
+  style:height="{tileSize * ROW_COUNT * scale}px"
 >
   {#each { length: ROW_COUNT } as _, i}
     <Row

@@ -12,7 +12,7 @@
 
 <style>
   div {
-    font-size: 28px;
+    font-size: clamp(10px, 10vw, 28px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,11 +23,14 @@
     min-width: 0;
   }
   :global(.linja-pona) div {
-    font-size: 35px;
+    font-size: clamp(10px, 10vw, 35px);
     border-radius: 8px;
   }
   :global(.kijetesantakalu) div {
-    font-size: 10px;
+    font-size: clamp(10px, 3vw, 35px);
+  }
+  :global(.linja-pona) :global(.kijetesantakalu) div {
+    font-size: clamp(10px, 3vw, 35px);
   }
   div.unknown {
     border: 2px solid var(--unknown-tile-border);

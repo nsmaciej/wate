@@ -43,5 +43,7 @@
     display: grid;
     grid: auto-flow / repeat(12, 1fr);
     gap: 8px;
+    /* Visually center the wordle. */
+    margin-top: 16px;
   }
 </style>
