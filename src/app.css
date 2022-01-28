@@ -13,6 +13,7 @@
   --accent-color: #696969;
   --text-color: #1b1b1b;
   --link-color: #2364dd;
+  /* Make sure to also change settings.ts */
   --page-background: #ffffff;
   /* Modal */
   --overlay-background: #ffffffbb;
@@ -40,6 +41,7 @@
   --accent-color: #939393;
   --text-color: #e8e8e8;
   --link-color: #b7b7fd;
+  /* Make sure to also change settings.ts */
   --page-background: #121212;
   /* Modal */
   --overlay-background: #121212cf;

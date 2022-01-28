@@ -97,6 +97,7 @@
     max-width: var(--app-width);
     height: 100%;
     margin: 0 auto;
+    padding: 10px;
   }
   .share {
     display: flex;

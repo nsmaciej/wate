@@ -29,6 +29,9 @@ function updateTheme(value: Theme) {
     (value === Theme.Auto &&
       window.matchMedia("(prefers-color-scheme: dark)").matches);
   document.body.classList.toggle("dark", dark);
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute("content", dark ? "#121212" : "#ffffff");
 }
 
 if (browser) {
