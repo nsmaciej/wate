@@ -40,12 +40,13 @@
     position: fixed;
     left: 50%;
     top: 120px;
-    transform: translateX(-50%);
-    z-index: 2;
     display: flex;
     flex-direction: column;
     gap: 10px;
     align-items: center;
+    z-index: 2;
+    /* The last value is for Safari, see Modal. */
+    transform: translate3d(-50%, 0, 400px);
   }
   .toast {
     text-align: center;
