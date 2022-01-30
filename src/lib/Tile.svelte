@@ -1,6 +1,7 @@
 <script lang="ts">
   import { State } from "$lib/game";
-  import { effectiveLocale, letterLabelForLocale } from "$lib/settings";
+  import { effectiveLocale } from "$lib/settings";
+  import { letterLabelForLocale } from "$lib/utils";
 
   export let letter = " ";
   export let flipped = false;

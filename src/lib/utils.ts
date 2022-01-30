@@ -73,3 +73,27 @@ export function numberToSitelen(n: number): string {
   }
   return result.join(" ");
 }
+
+const sitelenPonaLetters = {
+  a: "alasa",
+  e: "esun",
+  i: "ilo",
+  j: "jan",
+  k: "kasi",
+  l: "linja",
+  m: "mun",
+  n: "nasa",
+  o: "olin",
+  p: "pipi",
+  s: "soweli",
+  t: "toki",
+  u: "utala",
+  w: "waso",
+  " ": " ",
+};
+
+export function letterLabelForLocale(letter: string, locale: string): string {
+  return locale === "tok-x-sp"
+    ? sitelenPonaLetters[letter]
+    : letter.toUpperCase();
+}
