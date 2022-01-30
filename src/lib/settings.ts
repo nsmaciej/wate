@@ -1,4 +1,4 @@
-import { get } from "svelte/store";
+import { get, writable } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
 import { localStorageStore } from "$lib/utils";
@@ -20,7 +20,7 @@ export const enum Mode {
 
 export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
-export const mode = localStorageStore("mode", Mode.Four);
+export const mode = writable(Mode.Four);
 
 // Deal with theme changes.
 function updateTheme(value: Theme) {
