@@ -19,7 +19,7 @@
     align-items: center;
     margin: 2px;
     font-weight: bold;
-    transition: transform 150ms ease-in;
+    transition: transform 200ms ease-in;
     /* This stops the grid caring about our content. */
     min-width: 0;
   }

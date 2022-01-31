@@ -54,7 +54,7 @@
     await delay(50); // Give everything a second to breathe.
     for (let i = 0; i < submittedRows.length; ++i) {
       revealedRows += 1;
-      await delay(150);
+      await delay(200); //200ms
     }
   });
 
