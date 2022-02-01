@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { waitLocale } from "svelte-i18n";
+  import { waitLocale } from "svelte-intl-precompile";
   import { Mode } from "$lib/settings";
   import "./i18n";
   import "../app.css";
@@ -10,7 +10,7 @@
 </script>
 
 <script lang="ts">
-  import { _ } from "svelte-i18n";
+  import { t } from "svelte-intl-precompile";
   import { mode } from "$lib/settings";
   import { localStorageStore } from "$lib/utils";
   import { currentGameDay, generateEmojiArt, selectWord } from "$lib/game";
@@ -50,7 +50,7 @@
       } else {
         await navigator.clipboard.writeText(art);
         // This is a one time toast so give it more time.
-        showToast($_("toast.clipboard"), 2);
+        showToast($t("toast.clipboard"), 2);
       }
     } catch (e) {
       console.log("Share Exception", e);
@@ -80,10 +80,10 @@
     />
   {/key}
   <Toasts />
-  <Modal title={$_("modal.share")} bind:shown={winModalShown}>
+  <Modal title={$t("modal.share")} bind:shown={winModalShown}>
     <Countdown />
     <div class="share">
-      <Button on:click={share}>{$_("share.button")}</Button>
+      <Button on:click={share}>{$t("share.button")}</Button>
     </div>
   </Modal>
 </main>

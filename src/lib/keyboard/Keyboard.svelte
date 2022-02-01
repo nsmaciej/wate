@@ -3,7 +3,7 @@
   import { createEventDispatcher } from "svelte";
   import Key from "$lib/keyboard/Key.svelte";
   import Row from "$lib/keyboard/Row.svelte";
-  import { _ } from "svelte-i18n";
+  import { t } from "svelte-intl-precompile";
 
   export let letterStates = new Map<string, State>();
   const dispatch = createEventDispatcher();
@@ -27,11 +27,11 @@
   <Row offset letters="aeijk" on:press {letterStates} />
   <Row letters="lmnops" on:press {letterStates} />
   <Key big slot="start" on:click={() => dispatch("enter")}>
-    {$_("key.enter")}
+    {$t("key.enter")}
   </Key>
   <Row letters="tuw" on:press {letterStates} />
   <Key big slot="end" on:click={() => dispatch("backspace")}>
-    {$_("key.backspace")}
+    {$t("key.backspace")}
   </Key>
 </div>
 

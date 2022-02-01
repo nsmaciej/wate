@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
-  import { _ } from "svelte-i18n";
+  import { t } from "svelte-intl-precompile";
   import { createEventDispatcher } from "svelte";
   import IconButton from "$lib/IconButton.svelte";
 
@@ -34,7 +34,7 @@
           <IconButton
             topRight
             icon="close"
-            title={$_("modal.close")}
+            title={$t("modal.close")}
             sitelen="weka"
             on:click={close}
           />
