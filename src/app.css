@@ -56,11 +56,13 @@
 
 :root {
   --font-size: 16px;
+  --font-size-small: 16px;
   --app-width: 360px;
 }
 
 .linja-pona {
   --font-size: 29px;
+  --font-size-small: 22px;
 }
 
 * {
@@ -133,6 +135,7 @@ button {
   padding: 0;
   margin: 0;
   font: inherit;
+  font-weight: normal;
   background: none;
   color: inherit;
   line-height: inherit;

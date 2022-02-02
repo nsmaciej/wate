@@ -35,7 +35,8 @@
     }
   },
   "share": {
-    "button": "Share",
+    "button": "Share Your Game",
+    "button-discord": "Share for Discord",
     "next": "Next Wate"
   },
   "toast": {

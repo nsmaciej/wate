@@ -45,14 +45,14 @@
 {:else}
   <div class="countdown">
     <p>{$_("share.next")}</p>
-    <b>{pad(hours)}:{pad(minutes)}:{pad(seconds)}</b>
+    <b class="clock">{pad(hours)}:{pad(minutes)}:{pad(seconds)}</b>
   </div>
 {/if}
 
 <style>
   .tenpo {
     margin-top: 11px;
-    font-size: 22px;
+    font-size: var(--font-size-small);
     color: var(--accent-color);
   }
   .tenpo-grid {
@@ -75,7 +75,7 @@
     flex-direction: column;
     align-items: center;
   }
-  b {
+  .clock {
     font-size: 24px;
     margin-top: 6px;
   }

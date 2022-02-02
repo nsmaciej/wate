@@ -37,13 +37,11 @@
   let winModalShown = false;
   let showingHeaderModal = false;
 
-  async function share() {
-    const art = generateEmojiArt(
-      gameDay,
-      solution,
-      $gameState[$mode],
-      $effectiveLocale === "tok-x-sp"
-    );
+  async function share(discord: boolean) {
+    const art = generateEmojiArt(gameDay, solution, $gameState[$mode], {
+      sitelen: $effectiveLocale === "tok-x-sp",
+      discord,
+    });
     const share = { text: art };
     try {
       if (
@@ -88,7 +86,10 @@
   <Modal title={$_("modal.share")} bind:shown={winModalShown}>
     <Countdown />
     <div class="share">
-      <Button on:click={share}>{$_("share.button")}</Button>
+      <Button on:click={() => share(false)}>{$_("share.button")}</Button>
+      <Button subtle on:click={() => share(true)}
+        >{$_("share.button-discord")}</Button
+      >
     </div>
   </Modal>
 </main>
@@ -106,6 +107,9 @@
   }
   .share {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
   }
 </style>

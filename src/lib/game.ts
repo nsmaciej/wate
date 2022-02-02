@@ -52,10 +52,11 @@ export function generateEmojiArt(
   gameDay: number,
   solution: string,
   rows: string[],
-  sitelen: boolean
+  { sitelen = false, discord = false } = {}
 ): string {
   let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
-  for (const row of rows) {
+  for (let i = 0; i < rows.length; ++i) {
+    const row = rows[i];
     for (const x of findRowStates(solution, row)) {
       if (sitelen) {
         result +=
@@ -64,6 +65,9 @@ export function generateEmojiArt(
         result +=
           x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
       }
+    }
+    if (discord && i < rows.length - 1) {
+      result += ` ||${row.toUpperCase()}||`;
     }
     result += "\n";
   }

@@ -88,7 +88,7 @@
     display: block;
   }
   :global(.linja-pona) .tagline {
-    font-size: 0.5em;
+    font-size: 16px;
   }
   .buttons {
     display: flex;
