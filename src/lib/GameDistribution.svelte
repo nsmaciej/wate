@@ -65,6 +65,6 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 4px;
+    padding-right: 2px;
   }
 </style>

@@ -74,9 +74,7 @@
   .countdown {
     display: flex;
     flex-direction: column;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
   }
   .clock {
     font-size: 24px;
