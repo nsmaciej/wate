@@ -2,6 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="color-scheme" content="dark light">
+    <meta name="theme-color" content="#2364dd" />
+
     <meta
       name="description"
       content="Toki Pona Wordle. musi Wordle pi toki pona."
@@ -26,7 +29,6 @@
     />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#2364dd" />
 
     <style>
       @font-face {
@@ -58,14 +60,19 @@
         font-display: swap;
       }
     </style>
+    %svelte.head%
+  </head>
+  <body>
     <script>
       if (localStorage.getItem("locale") === '"tok-x-sp"') {
         document.fonts.load("30px linja-pona");
       }
+      const theme = localStorage.getItem("theme");
+      if (theme === "auto" || window.matchMedia("(prefers-color-scheme: dark)").matches)  {
+        document.body.style.background = "#121212";
+        document.body.classList.add("dark");
+      }
     </script>
-    %svelte.head%
-  </head>
-  <body>
     <div id="svelte">%svelte.body%</div>
     <script
       data-goatcounter="https://maciej.goatcounter.com/count"
