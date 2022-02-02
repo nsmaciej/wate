@@ -1,6 +1,6 @@
 <script context="module" lang="ts">
   import { waitLocale } from "svelte-intl-precompile";
-  import { Mode } from "$lib/settings";
+  import { effectiveLocale, Mode } from "$lib/settings";
   import "./i18n";
   import "../app.css";
 
@@ -38,7 +38,12 @@
   let showingHeaderModal = false;
 
   async function share() {
-    const art = generateEmojiArt(gameDay, solution, $gameState[$mode]);
+    const art = generateEmojiArt(
+      gameDay,
+      solution,
+      $gameState[$mode],
+      $effectiveLocale === "tok-x-sp"
+    );
     const share = { text: art };
     try {
       if (

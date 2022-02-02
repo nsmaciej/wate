@@ -51,12 +51,19 @@ export function selectWord(
 export function generateEmojiArt(
   gameDay: number,
   solution: string,
-  rows: string[]
+  rows: string[],
+  sitelen: boolean
 ): string {
   let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
   for (const row of rows) {
     for (const x of findRowStates(solution, row)) {
-      result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
+      if (sitelen) {
+        result +=
+          x === State.Correct ? "🟢" : x === State.Present ? "🟡" : "⚫";
+      } else {
+        result +=
+          x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
+      }
     }
     result += "\n";
   }
