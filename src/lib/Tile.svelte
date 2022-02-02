@@ -22,6 +22,19 @@
     /* This stops the grid caring about our content. */
     min-width: 0;
   }
+  div.flipped {
+    transform: rotateX(-90deg);
+  }
+
+  @media (prefers-reduced-motion) {
+    div {
+      transition: none;
+    }
+    div.flipped {
+      transform: none;
+    }
+  }
+
   :global(.linja-pona) div {
     font-size: clamp(10px, 10vw, 35px);
     border-radius: 8px;
@@ -47,8 +60,5 @@
   div.correct {
     background: var(--correct-bg);
     color: var(--correct-fg);
-  }
-  div.flipped {
-    transform: rotateX(-90deg);
   }
 </style>

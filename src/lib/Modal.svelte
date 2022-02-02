@@ -1,6 +1,7 @@
 <script lang="ts">
   import { fly } from "svelte/transition";
   import { _ } from "svelte-i18n";
+  import { reduceMotion } from "$lib/settings";
   import { createEventDispatcher } from "svelte";
   import IconButton from "$lib/IconButton.svelte";
 
@@ -31,7 +32,7 @@
       bind:this={modalContainer}
       on:scroll={() => (modalScrollPx = modalContainer.scrollTop)}
       on:click={(e) => e.stopPropagation()}
-      transition:fly={{ y: 50, duration: 200 }}
+      transition:fly={{ y: 50, duration: $reduceMotion ? 0 : 200 }}
     >
       <div class="header" class:scrollShadow={modalScrollPx > 25}>
         <h2>{title}</h2>

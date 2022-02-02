@@ -1,4 +1,5 @@
-import type { Writable } from "svelte/store";
+import type { Readable, Writable } from "svelte/store";
+import { readable } from "svelte/store";
 import { browser } from "$app/env";
 import { writable } from "svelte/store";
 
@@ -39,6 +40,20 @@ export function localStorageStore<T>(
     reset() {
       store.set(JSON.parse(defaultJson));
     },
+  });
+}
+
+export function matchMediaStore(mediaString: string): Readable<boolean> {
+  return readable(null, (set) => {
+    if (browser) {
+      const media = window.matchMedia(mediaString);
+      set(media.matches);
+      const listner = () => set(media.matches);
+      media.addEventListener("change", listner);
+      return () => media.removeEventListener("change", listner);
+    } else {
+      set(false);
+    }
   });
 }
 

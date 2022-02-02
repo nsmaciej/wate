@@ -5,6 +5,7 @@ import { locale as effectiveLocale } from "svelte-i18n";
 import {
   SITELEN_PONA_LETTERS,
   localStorageStore,
+  matchMediaStore,
   numberToSitelen,
 } from "$lib/utils";
 
@@ -55,6 +56,9 @@ export const formatLetter = derived(
   (isSp) => (letter: string) =>
     isSp ? SITELEN_PONA_LETTERS[letter] : letter.toUpperCase()
 );
+
+// Media stores.
+export const reduceMotion = matchMediaStore("(prefers-reduced-motion: reduce)");
 
 // Deal with theme changes.
 function updateTheme(value: Theme) {
