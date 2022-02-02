@@ -4,7 +4,7 @@
   import { numberForLocale } from "./utils";
 
   export let mode: Mode = Mode.Four;
-  $: scaleX = barScale(mode);
+  $: scaleX = Math.max(1, barScale(mode));
 
   function barScale(mode: Mode): number {
     let max = 0;
