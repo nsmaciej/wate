@@ -1,31 +1,51 @@
 <script lang="ts">
-  import { Mode, finishedStats, effectiveLocale } from "$lib/settings";
+  import { _ } from "svelte-i18n";
   import { ROW_COUNT } from "$lib/game";
-  import { numberForLocale } from "./utils";
+  import {
+    Mode,
+    finishedStats,
+    sitelenLocale,
+    formatNumber,
+  } from "$lib/settings";
 
   export let mode: Mode = Mode.Four;
-  $: scaleX = Math.max(1, barScale(mode));
+  $: [plays, scaleX] = calculateStats();
 
-  function barScale(mode: Mode): number {
+  function calculateStats(): [plays: number, barScale: number] {
+    let sum = 0;
     let max = 0;
-    for (let i = 0; i < ROW_COUNT; ++i) {
-      max = Math.max($finishedStats[mode][i] ?? 0, max);
+    for (const x of Object.values($finishedStats[mode])) {
+      sum += x;
+      max = Math.max(x, max);
     }
-    return max;
+    return [sum, max];
   }
 </script>
 
-<div class="graph">
-  {#each { length: ROW_COUNT } as _, i}
-    {@const count = $finishedStats[mode][1 + i] ?? 0}
-    <span class="label">{numberForLocale(1 + i, $effectiveLocale)}</span>
-    <div class="bar" style:width="{Math.max(8, (100 * count) / scaleX)}%">
-      {numberForLocale(count, $effectiveLocale)}
-    </div>
-  {/each}
+<div class="distribution" class:center={!$sitelenLocale}>
+  {$_("share.distribution", {
+    values: { times: $formatNumber(plays) },
+  })}
+  <div class="graph">
+    {#each { length: ROW_COUNT } as _, i}
+      {@const count = $finishedStats[mode][1 + i] ?? 0}
+      <span class="label">{$formatNumber(1 + i)}</span>
+      <div class="bar" style:width="{Math.max(8, (100 * count) / scaleX)}%">
+        {$formatNumber(count)}
+      </div>
+    {/each}
+  </div>
 </div>
 
 <style>
+  .distribution {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .distribution.center {
+    align-items: center;
+  }
   .graph {
     display: grid;
     grid: auto-flow calc(var(--font-size-small) + 4px) / max-content 1fr;

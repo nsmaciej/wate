@@ -35,32 +35,41 @@
   }
 </script>
 
-<div class="share">
-  <Button on:click={() => share(false)}>{$_("share.button")}</Button>
-  <Button subtle on:click={() => share(true)}
-    >{$_("share.button-discord")}</Button
-  >
+<div class="grid" class:sitelen={$sitelenLocale}>
+  <div style:grid-area="share">
+    <Button on:click={() => share(false)}>{$_("share.button")}</Button>
+  </div>
+  <div style:grid-area="discord">
+    <Button subtle on:click={() => share(true)}
+      >{$_("share.button-discord")}</Button
+    >
+  </div>
+  <div style:grid-area="stats" style:width="100%">
+    <GameDistribution mode={$mode} />
+  </div>
+  <div style:grid-area="count">
+    <Countdown />
+  </div>
 </div>
-<div class="distribution" class:center={$sitelenLocale}>
-  {$_("share.distribution")}
-  <GameDistribution mode={$mode} />
-</div>
-<Countdown />
 
 <style>
-  .share {
-    display: flex;
-    flex-direction: column;
+  .grid {
+    display: grid;
+    grid-template:
+      "stats stats"
+      "count share"
+      "count discord" / 1fr 1fr;
+    grid-gap: 12px 8px;
     align-items: center;
-    width: 100%;
-    gap: 8px;
+    justify-items: center;
   }
-  .distribution {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  .distribution.center {
-    align-items: center;
+  .grid.sitelen {
+    grid-template:
+      "share discord"
+      "stats stats"
+      "count count" / auto 1fr;
+    grid-gap: 30px 8px;
+    align-items: baseline;
+    justify-items: start;
   }
 </style>

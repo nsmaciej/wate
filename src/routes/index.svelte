@@ -78,7 +78,7 @@
     />
   {/key}
   <Toasts />
-  <Modal center title={$_("modal.share")} bind:shown={shareModalShown}>
+  <Modal title={$_("modal.share")} bind:shown={shareModalShown}>
     <Share {gameDay} {solution} />
   </Modal>
 </main>

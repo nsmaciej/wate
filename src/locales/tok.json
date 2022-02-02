@@ -37,7 +37,7 @@
   "share": {
     "button": "o pana e musi sina",
     "button-discord": "o pana tawa ilo Siko",
-    "distribution": "tenpo pini la sina musi:",
+    "distribution": "tenpo {times} la sina musi e musi Wate",
     "next": "musi Wate li kama sin"
   },
   "toast": {

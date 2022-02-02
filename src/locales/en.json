@@ -37,7 +37,7 @@
   "share": {
     "button": "Share Your Game",
     "button-discord": "Share for Discord",
-    "distribution": "Your Guesses:",
+    "distribution": "You played Wate {times, plural, one {1 time} other {{times} times}}",
     "next": "Next Wate in"
   },
   "toast": {

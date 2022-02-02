@@ -9,7 +9,6 @@
   export let center = false;
   let modalContainer: HTMLDivElement;
   let modalScrollPx = 0;
-  let overflowing = false;
   const dispatch = createEventDispatcher();
 
   function close() {
@@ -29,7 +28,6 @@
   <div class="overlay" aria-modal="true" on:click={close}>
     <div
       class="modal"
-      class:overflowing
       bind:this={modalContainer}
       on:scroll={() => (modalScrollPx = modalContainer.scrollTop)}
       on:click={(e) => e.stopPropagation()}
@@ -62,9 +60,8 @@
   }
 
   .header {
-    margin: var(--modal-margin) 0 0.5em;
-    padding: 0 25px;
-    min-height: 1.3em;
+    padding: 10px var(--modal-margin) 0;
+    min-height: 2.8em;
     position: sticky;
     top: 0;
     background: var(--page-background);

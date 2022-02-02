@@ -15,8 +15,6 @@
   );
 </script>
 
-<LanguagePicker />
-
 {#if $effectiveLocale === "en"}
   <p>
     Wate is an open source clone of Wordle in Toki Pona. Play the original
