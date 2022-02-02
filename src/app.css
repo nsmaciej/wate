@@ -1,10 +1,10 @@
 :root {
   /* Keys */
   --key-bg: #e6e6e6;
-  --key-fg: #1b1b1b;
+  --key-fg: #3a3a3a;
   --absent-bg: #4a4a4a;
   --absent-fg: #ffffff;
-  --present-bg: #f9d400;
+  --present-bg: #ffdb0a;
   --present-fg: #ffffff;
   --correct-bg: #25cb25;
   --correct-fg: #ffffff;
