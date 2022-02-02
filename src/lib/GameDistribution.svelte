@@ -17,8 +17,8 @@
 
 <div class="graph">
   {#each { length: ROW_COUNT } as _, i}
-    {@const count = $finishedStats[mode][i] ?? 0}
-    <span class="label">{numberForLocale(i, $effectiveLocale)}</span>
+    {@const count = $finishedStats[mode][1 + i] ?? 0}
+    <span class="label">{numberForLocale(1 + i, $effectiveLocale)}</span>
     <div class="bar" style:width="{Math.max(8, (100 * count) / scaleX)}%">
       {numberForLocale(count, $effectiveLocale)}
     </div>

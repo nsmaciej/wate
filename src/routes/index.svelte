@@ -44,7 +44,7 @@
     ];
     const rowsUsed = $gameState[$mode].length;
     await showToast(message[rowsUsed - 1], 0.5);
-    bumpFinishedStats(rowsUsed - 1);
+    bumpFinishedStats(rowsUsed);
     showShareModal();
   }
 
