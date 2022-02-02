@@ -37,7 +37,8 @@
   "share": {
     "button": "Share Your Game",
     "button-discord": "Share for Discord",
-    "next": "Next Wate"
+    "distribution": "Your Guesses:",
+    "next": "Next Wate in"
   },
   "toast": {
     "clipboard": "Copied result to clipboard",

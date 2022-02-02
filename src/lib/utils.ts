@@ -97,3 +97,7 @@ export function letterLabelForLocale(letter: string, locale: string): string {
     ? sitelenPonaLetters[letter]
     : letter.toUpperCase();
 }
+
+export function numberForLocale(n: number, locale: string): string {
+  return locale === "tok-x-sp" ? numberToSitelen(n) : n.toString();
+}

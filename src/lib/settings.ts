@@ -21,6 +21,19 @@ export const enum Mode {
 export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = writable(Mode.Four);
+export const gameState = localStorageStore("game", {
+  [Mode.Four]: [],
+  [Mode.All]: [],
+  [Mode.Kijetesantakalu]: [],
+});
+
+type FinishedStats = { [game in Mode]: { [rows: number]: number } };
+export const DNF_STATS_KEY = -1;
+export const finishedStats = localStorageStore<FinishedStats>("stats", {
+  [Mode.Four]: {},
+  [Mode.All]: {},
+  [Mode.Kijetesantakalu]: {},
+});
 
 // Deal with theme changes.
 function updateTheme(value: Theme) {

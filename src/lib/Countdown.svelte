@@ -50,6 +50,9 @@
 {/if}
 
 <style>
+  .sitelen {
+    width: 100%;
+  }
   .tenpo {
     margin-top: 11px;
     font-size: var(--font-size-small);
@@ -64,7 +67,7 @@
   }
   .desc {
     text-align: right;
-    padding-right: 1.5ex;
+    padding-right: 0.5ex;
   }
 
   /* Latin. */

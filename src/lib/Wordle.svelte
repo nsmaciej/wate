@@ -3,6 +3,11 @@
   // easier than expecting the solution to change underneath us all the time and
   // having to stop animations mid-way through.
 
+  // It dispatches once on of three events:
+  // * lost - The game was just lost.
+  // * win - The game was just won.
+  // * complete - The game was already finished when the game loaded.
+
   import type { State } from "$lib/game";
   import { ROW_COUNT, findLetterStates } from "$lib/game";
   import { createEventDispatcher } from "svelte";
@@ -39,7 +44,7 @@
   onMount(handleResize);
 
   // Game finished?
-  let gameWonOnLoad = false;
+  let gameFinishedOnLoad = false;
   $: gameWon = submittedRows[submittedRows.length - 1] === solution;
   $: gameLost = submittedRows.length === ROW_COUNT;
   $: gameFinished = gameWon || gameLost;
@@ -48,8 +53,8 @@
   let revealedRows = 0;
   let hiddenRows = submittedRows.length;
   onMount(async () => {
-    if (gameWon) {
-      gameWonOnLoad = true;
+    if (gameFinished) {
+      gameFinishedOnLoad = true;
     }
     await delay(50); // Give everything a second to breathe.
     for (let i = 0; i < submittedRows.length; ++i) {
@@ -60,23 +65,15 @@
 
   async function onReveal(row: number): Promise<void> {
     if (row !== submittedRows.length - 1) return;
+    // This is so we don't update the keyboard before the animation plays.
     letterStates = findLetterStates(solution, submittedRows);
 
-    if (gameWonOnLoad) {
-      // Skip
-      dispatch("win");
+    if (gameFinishedOnLoad) {
+      dispatch("complete");
     } else if (gameWon) {
-      const message = [
-        $_("toast.won-in-one"),
-        $_("toast.won-in-two"),
-        $_("toast.won-in-three"),
-        $_("toast.won-in-four"),
-        $_("toast.won-in-five"),
-      ];
-      await showToast(message[submittedRows.length - 1], 0.5);
       dispatch("win");
     } else if (gameLost) {
-      showToast(solution, 2);
+      dispatch("lost");
     }
   }
 

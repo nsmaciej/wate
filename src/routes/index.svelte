@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
   import { waitLocale } from "svelte-i18n";
-  import { effectiveLocale, Mode } from "$lib/settings";
   import "./i18n";
   import "../app.css";
 
@@ -11,22 +10,15 @@
 
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { mode } from "$lib/settings";
   import { localStorageStore } from "$lib/utils";
-  import { currentGameDay, generateEmojiArt, selectWord } from "$lib/game";
-  import Button from "$lib/Button.svelte";
-  import Countdown from "$lib/Countdown.svelte";
+  import { currentGameDay, selectWord } from "$lib/game";
   import Header from "$lib/Header.svelte";
   import Modal from "$lib/Modal.svelte";
   import Toasts, { showToast } from "$lib/Toasts.svelte";
   import Wordle from "$lib/Wordle.svelte";
   import dictionary from "../../static/dictionary.json";
-
-  const gameState = localStorageStore("game", {
-    [Mode.Four]: [],
-    [Mode.All]: [],
-    [Mode.Kijetesantakalu]: [],
-  });
+  import { DNF_STATS_KEY, finishedStats, gameState, mode } from "$lib/settings";
+  import Share from "$lib/modals/Share.svelte";
 
   const gameDay = currentGameDay();
   const lastDayPlayed = localStorageStore("day", gameDay);
@@ -34,36 +26,37 @@
   $lastDayPlayed = gameDay;
 
   $: solution = selectWord($mode, gameDay, dictionary);
-  let winModalShown = false;
+  let shareModalShown = false;
   let showingHeaderModal = false;
 
-  async function share(discord: boolean) {
-    const art = generateEmojiArt(gameDay, solution, $gameState[$mode], {
-      sitelen: $effectiveLocale === "tok-x-sp",
-      discord,
-    });
-    const share = { text: art };
-    try {
-      if (
-        // Sharing in desktop browsers sucks.
-        /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) &&
-        navigator.canShare?.(share)
-      ) {
-        await navigator.share(share);
-      } else {
-        await navigator.clipboard.writeText(art);
-        // This is a one time toast so give it more time.
-        showToast($_("toast.clipboard"), 2);
-      }
-    } catch (e) {
-      console.log("Share Exception", e);
-      // I have no idea what could go wrong here but I don't want to find out.
-    }
+  function bumpFinishedStats(key: number) {
+    const old = $finishedStats[$mode][key] ?? 0;
+    $finishedStats[$mode][key] = old + 1;
   }
 
-  function handleWin() {
+  async function handleWin() {
+    const message = [
+      $_("toast.won-in-one"),
+      $_("toast.won-in-two"),
+      $_("toast.won-in-three"),
+      $_("toast.won-in-four"),
+      $_("toast.won-in-five"),
+    ];
+    const rowsUsed = $gameState[$mode].length;
+    await showToast(message[rowsUsed - 1], 0.5);
+    bumpFinishedStats(rowsUsed - 1);
+    showShareModal();
+  }
+
+  async function handleLost() {
+    await showToast(solution);
+    bumpFinishedStats(DNF_STATS_KEY);
+    showShareModal();
+  }
+
+  function showShareModal() {
     if (!showingHeaderModal) {
-      winModalShown = true;
+      shareModalShown = true;
     }
   }
 </script>
@@ -78,19 +71,15 @@
     <Wordle
       {dictionary}
       {solution}
+      on:complete={showShareModal}
       on:win={handleWin}
+      on:lost={handleLost}
       bind:submittedRows={$gameState[$mode]}
     />
   {/key}
   <Toasts />
-  <Modal title={$_("modal.share")} bind:shown={winModalShown}>
-    <Countdown />
-    <div class="share">
-      <Button on:click={() => share(false)}>{$_("share.button")}</Button>
-      <Button subtle on:click={() => share(true)}
-        >{$_("share.button-discord")}</Button
-      >
-    </div>
+  <Modal center title={$_("modal.share")} bind:shown={shareModalShown}>
+    <Share {gameDay} {solution} />
   </Modal>
 </main>
 
@@ -104,12 +93,5 @@
     height: 100%;
     margin: 0 auto;
     padding: 10px;
-  }
-  .share {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 8px;
   }
 </style>
