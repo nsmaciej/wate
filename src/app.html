@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="color-scheme" content="dark light">
+    <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#2364dd" />
 
     <meta
@@ -68,7 +68,11 @@
         document.fonts.load("30px linja-pona");
       }
       const theme = localStorage.getItem("theme");
-      if (theme === "auto" || window.matchMedia("(prefers-color-scheme: dark)").matches)  {
+      if (
+        theme === '"dark"' ||
+        (theme === '"auto"' &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
         document.body.classList.add("dark");
       }
     </script>
