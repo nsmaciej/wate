@@ -37,7 +37,7 @@
   }
   button.topRight {
     align-items: flex-start;
-    justify-content: right;
+    justify-content: flex-end;
   }
   svg {
     width: 30px;
