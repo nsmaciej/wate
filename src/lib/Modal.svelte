@@ -61,7 +61,7 @@
   }
 
   .header {
-    padding: 10px var(--modal-margin) 0;
+    padding: 20px var(--modal-margin) 0;
     min-height: 2.8em;
     position: sticky;
     top: 0;

@@ -69,7 +69,6 @@
       }
       const theme = localStorage.getItem("theme");
       if (theme === "auto" || window.matchMedia("(prefers-color-scheme: dark)").matches)  {
-        document.body.style.background = "#121212";
         document.body.classList.add("dark");
       }
     </script>
