@@ -12,7 +12,7 @@
 </script>
 
 <script lang="ts">
-  import { effectiveLocale } from "$lib/settings";
+  import { sitelenLocale } from "$lib/settings";
   import { numberToSitelen } from "$lib/utils";
   import { _ } from "svelte-i18n";
 
@@ -27,7 +27,7 @@
   }
 </script>
 
-{#if $effectiveLocale === "tok-x-sp"}
+{#if $sitelenLocale}
   <div class="sitelen">
     musi [_waso_alasa_toki_esun] li kama sin lon tenpo+suno sin.<br />
     <div class="tenpo">

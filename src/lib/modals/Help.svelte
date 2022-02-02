@@ -1,18 +1,17 @@
 <script lang="ts">
   import LanguagePicker from "$lib/LanguagePicker.svelte";
-  import { effectiveLocale } from "$lib/settings";
+  import { effectiveLocale, sitelenLocale } from "$lib/settings";
   import { derived } from "svelte/store";
 
   const sitelen = derived(
-    effectiveLocale,
-    (locale) => (tokipona: string, sitelen: string) =>
-      locale === "tok-x-sp" ? sitelen : tokipona
+    sitelenLocale,
+    (isSp) => (tokipona: string, sitelen: string) => isSp ? sitelen : tokipona
   );
 
   const combine = derived(
-    effectiveLocale,
-    (locale) => (tokipona: string) =>
-      locale === "tok-x-sp" ? tokipona.split(" ").join("+") : tokipona
+    sitelenLocale,
+    (isSp) => (tokipona: string) =>
+      isSp ? tokipona.split(" ").join("+") : tokipona
   );
 </script>
 

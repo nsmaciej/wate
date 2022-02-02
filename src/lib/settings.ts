@@ -1,4 +1,4 @@
-import { get, writable } from "svelte/store";
+import { derived, get, writable } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
 import { localStorageStore } from "$lib/utils";
@@ -18,6 +18,7 @@ export const enum Mode {
   Kijetesantakalu = "kijetesantakalu",
 }
 
+export const sitelenLocale = derived(effectiveLocale, (x) => x === "tok-x-sp");
 export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = writable(Mode.Four);

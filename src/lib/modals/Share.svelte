@@ -2,7 +2,7 @@
   import { _ } from "svelte-i18n";
   import { showToast } from "$lib/Toasts.svelte";
   import { generateEmojiArt } from "$lib/game";
-  import { effectiveLocale, gameState, mode } from "$lib/settings";
+  import { sitelenLocale, gameState, mode } from "$lib/settings";
   import Button from "$lib/Button.svelte";
   import Countdown from "$lib/Countdown.svelte";
   import GameDistribution from "$lib/GameDistribution.svelte";
@@ -12,7 +12,7 @@
 
   async function share(discord: boolean) {
     const art = generateEmojiArt(gameDay, solution, $gameState[$mode], {
-      sitelen: $effectiveLocale === "tok-x-sp",
+      sitelen: $sitelenLocale,
       discord,
     });
     const share = { text: art };
@@ -41,7 +41,7 @@
     >{$_("share.button-discord")}</Button
   >
 </div>
-<div class="distribution" class:center={$effectiveLocale !== "tok-x-sp"}>
+<div class="distribution" class:center={$sitelenLocale}>
   {$_("share.distribution")}
   <GameDistribution mode={$mode} />
 </div>
