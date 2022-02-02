@@ -59,3 +59,5 @@
     >.
   </p>
 {/if}
+
+<LanguagePicker />
