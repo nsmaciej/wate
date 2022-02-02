@@ -54,17 +54,12 @@ export function generateEmojiArt(
   rows: string[],
   { sitelen = false, discord = false } = {}
 ): string {
-  let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
+  const medals = sitelen ? " +" : "";
+  let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}${medals}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
     for (const x of findRowStates(solution, row)) {
-      if (sitelen) {
-        result +=
-          x === State.Correct ? "🟢" : x === State.Present ? "🟡" : "⚫";
-      } else {
-        result +=
-          x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
-      }
+      result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
     if (i < rows.length - 1) {
       if (discord) result += ` ||${row.toUpperCase()}||`;
