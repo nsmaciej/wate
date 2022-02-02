@@ -1,7 +1,12 @@
+import type { SitelenNumberOptions } from "$lib/utils";
 import { derived, get, writable } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
-import { localStorageStore } from "$lib/utils";
+import {
+  SITELEN_PONA_LETTERS,
+  localStorageStore,
+  numberToSitelen,
+} from "$lib/utils";
 
 // Useful if wating for the sitelen-pona is required.
 export { effectiveLocale };
@@ -18,7 +23,7 @@ export const enum Mode {
   Kijetesantakalu = "kijetesantakalu",
 }
 
-export const sitelenLocale = derived(effectiveLocale, (x) => x === "tok-x-sp");
+// Main stores.
 export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = writable(Mode.Four);
@@ -28,6 +33,7 @@ export const gameState = localStorageStore("game", {
   [Mode.Kijetesantakalu]: [],
 });
 
+// Stats.
 type FinishedStats = { [game in Mode]: { [rows: number]: number } };
 export const DNF_STATS_KEY = -1;
 export const finishedStats = localStorageStore<FinishedStats>("stats", {
@@ -35,6 +41,20 @@ export const finishedStats = localStorageStore<FinishedStats>("stats", {
   [Mode.All]: {},
   [Mode.Kijetesantakalu]: {},
 });
+
+// Derived stores.
+export const sitelenLocale = derived(effectiveLocale, (x) => x === "tok-x-sp");
+export const formatNumber = derived(
+  sitelenLocale,
+  (isSp) =>
+    (n: number, options: Partial<SitelenNumberOptions> = {}) =>
+      isSp ? numberToSitelen(n, options) : n.toString()
+);
+export const formatLetter = derived(
+  sitelenLocale,
+  (isSp) => (letter: string) =>
+    isSp ? SITELEN_PONA_LETTERS[letter] : letter.toUpperCase()
+);
 
 // Deal with theme changes.
 function updateTheme(value: Theme) {

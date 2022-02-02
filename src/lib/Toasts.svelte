@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import { get, writable } from "svelte/store";
   import { delay, fixSitelenForSafari } from "$lib/utils";
-  import { effectiveLocale } from "$lib/settings";
+  import { sitelenLocale } from "$lib/settings";
 
   type Toast = [id: number, message: string];
   const toastList = writable<Toast[]>([]);
@@ -11,7 +11,7 @@
     const thisToast = toastId++;
     toastList.update((x) => [...x, [thisToast, fixSitelenForSafari(message)]]);
     // Give sitelen pona users a lot more time to read the toast.
-    const duration = get(effectiveLocale) === "tok-x-sp" ? 4000 : 2000;
+    const duration = get(sitelenLocale) ? 4000 : 2000;
     await delay(duration * factor);
     toastList.update((x) => x.filter((y) => y[0] !== thisToast));
   }

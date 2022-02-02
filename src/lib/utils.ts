@@ -42,7 +42,15 @@ export function localStorageStore<T>(
   });
 }
 
-export function numberToSitelen(n: number): string {
+export interface SitelenNumberOptions {
+  /// Always prefix with nanpa.
+  nanpa: boolean;
+}
+
+export function numberToSitelen(
+  n: number,
+  { nanpa = false }: Partial<SitelenNumberOptions> = {}
+): string {
   if (!Number.isFinite(n) || !Number.isInteger(n)) return "nanpa nasa";
   if (n === 0) return "ala";
   if (Math.abs(n) > 500) return "mute";
@@ -61,7 +69,7 @@ export function numberToSitelen(n: number): string {
     result.push("weka");
     n = -n;
   }
-  if (n >= 5) {
+  if (n >= 5 || nanpa) {
     // Make sure we know luka/mute/ale is a number here.
     result.push("nanpa");
   }
@@ -74,7 +82,7 @@ export function numberToSitelen(n: number): string {
   return result.join(" ");
 }
 
-const sitelenPonaLetters = {
+export const SITELEN_PONA_LETTERS = {
   a: "alasa",
   e: "esun",
   i: "ilo",
@@ -91,13 +99,3 @@ const sitelenPonaLetters = {
   w: "waso",
   " ": " ",
 };
-
-export function letterLabelForLocale(letter: string, locale: string): string {
-  return locale === "tok-x-sp"
-    ? sitelenPonaLetters[letter]
-    : letter.toUpperCase();
-}
-
-export function numberForLocale(n: number, locale: string): string {
-  return locale === "tok-x-sp" ? numberToSitelen(n) : n.toString();
-}

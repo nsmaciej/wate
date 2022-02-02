@@ -1,12 +1,11 @@
 <script lang="ts">
   import { State } from "$lib/game";
-  import { effectiveLocale } from "$lib/settings";
-  import { letterLabelForLocale } from "$lib/utils";
+  import { formatLetter } from "$lib/settings";
 
   export let letter = " ";
   export let flipped = false;
   export let state: State = State.Unknown;
-  $: label = letterLabelForLocale(letter, $effectiveLocale);
+  $: label = $formatLetter(letter);
 </script>
 
 <div class={state} class:flipped>{label}</div>
