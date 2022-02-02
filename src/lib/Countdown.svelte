@@ -14,7 +14,7 @@
 <script lang="ts">
   import { effectiveLocale } from "$lib/settings";
   import { numberToSitelen } from "$lib/utils";
-  import { t } from "svelte-intl-precompile";
+  import { _ } from "svelte-i18n";
 
   const nextDay = nextDayTimestamp();
   $: secondsLeft = Math.max(0, nextDay - $timestamp);
@@ -44,7 +44,7 @@
   </div>
 {:else}
   <div class="countdown">
-    <p>{$t("share.next")}</p>
+    <p>{$_("share.next")}</p>
     <b>{pad(hours)}:{pad(minutes)}:{pad(seconds)}</b>
   </div>
 {/if}

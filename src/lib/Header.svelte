@@ -6,7 +6,7 @@
 
 <script lang="ts">
   import { onMount } from "svelte";
-  import { t } from "svelte-intl-precompile";
+  import { _ } from "svelte-i18n";
   import IconButton from "$lib/IconButton.svelte";
   import Help from "$lib/modals/Help.svelte";
   import Modal from "$lib/Modal.svelte";
@@ -29,27 +29,27 @@
 
 <heading>
   <div>
-    <h1>{$t("name")}</h1>
+    <h1>{$_("name")}</h1>
     <span class="tagline">
-      {$t("description")}
+      {$_("description")}
       <button
         on:click={() => (olukinalaShown = true)}
         class="olukinala"
         tabindex="-1"
       >
-        {$t("olukinala")}
+        {$_("olukinala")}
       </button>
     </span>
   </div>
   <div class="buttons">
     <IconButton
-      title={$t("modal.settings")}
+      title={$_("modal.settings")}
       icon="settings"
       sitelen="nasin"
       on:click={() => (settingsShown = true)}
     />
     <IconButton
-      title={$t("modal.help")}
+      title={$_("modal.help")}
       icon="help"
       sitelen="seme"
       on:click={() => (helpShown = true)}
@@ -57,17 +57,17 @@
   </div>
 </heading>
 
-<Modal bind:shown={settingsShown} title={$t("modal.settings")}>
+<Modal bind:shown={settingsShown} title={$_("modal.settings")}>
   <Settings />
 </Modal>
 <Modal
   bind:shown={helpShown}
-  title={$t("modal.help")}
+  title={$_("modal.help")}
   on:close={() => ($startupHelp = false)}
 >
   <Help />
 </Modal>
-<Modal bind:shown={olukinalaShown} title={$t("olukinala")}>
+<Modal bind:shown={olukinalaShown} title={$_("olukinala")}>
   <div class="linja-pona">
     o lukin ala e lipu ni. o tawa!<br />
     sina toki e ona tawa jan mute la lipu ni li kama ike.<br />

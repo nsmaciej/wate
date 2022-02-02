@@ -1,6 +1,6 @@
 import { get, writable } from "svelte/store";
 import { browser } from "$app/env";
-import { locale as effectiveLocale } from "svelte-intl-precompile";
+import { locale as effectiveLocale } from "svelte-i18n";
 import { localStorageStore } from "$lib/utils";
 
 // Useful if wating for the sitelen-pona is required.
@@ -41,7 +41,7 @@ if (browser) {
   theme.subscribe(updateTheme);
 }
 
-// Actually set the svelte-intl-precompile locale and deal with sitelen pona.
+// Actually set the svelte-i18n locale and deal with sitelen pona.
 locale.subscribe(async (value) => {
   if (!browser) {
     effectiveLocale.set(value);

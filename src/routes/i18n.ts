@@ -1,10 +1,10 @@
-import { addMessages, init } from "svelte-intl-precompile";
+import { addMessages, init } from "svelte-i18n";
 import { get } from "svelte/store";
 import { locale } from "$lib/settings";
 
-import en from "$locales/en";
-import tok from "$locales/tok";
-import tokSp from "$locales/tok-x-sp";
+import en from "../locales/en.json";
+import tok from "../locales/tok.json";
+import tokSp from "../locales/tok-x-sp.json";
 
 addMessages("en", en);
 addMessages("tok", tok);
@@ -15,9 +15,9 @@ addMessages("tok-x-sp", tokSp);
 
 // 1. A dedicated snippet in `app.html` starts preloading the font if the locale
 //    is already tok-x-sp.
-// 2. Below we never set the initial svelte-intl-precompile locale to tok-x-sp,
-//    instead choosing tok. This is what the site will show in the time between
-//    the JavaScript having loaded and the font finishing loading.
+// 2. Below we never set the initial svelte-i18n locale to tok-x-sp, instead
+//    choosing tok. This is what the site will show in the time between the
+//    JavaScript having loaded and the font finishing loading.
 // 3. settings.ts also asks for the font to be preloaded, but this also covers
 //    the user switching to sitelen pona for the first time. It will only set the
 //    .linja-pona class and update the svelte-i18 locale once the font is ready.

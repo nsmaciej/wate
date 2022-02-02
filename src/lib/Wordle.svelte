@@ -11,7 +11,7 @@
   import { showToast } from "$lib/Toasts.svelte";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/keyboard/Keyboard.svelte";
-  import { t } from "svelte-intl-precompile";
+  import { _ } from "svelte-i18n";
 
   // Main state.
   export let dictionary: string[] = [];
@@ -67,11 +67,11 @@
       dispatch("win");
     } else if (gameWon) {
       const message = [
-        $t("toast.won-in-one"),
-        $t("toast.won-in-two"),
-        $t("toast.won-in-three"),
-        $t("toast.won-in-four"),
-        $t("toast.won-in-five"),
+        $_("toast.won-in-one"),
+        $_("toast.won-in-two"),
+        $_("toast.won-in-three"),
+        $_("toast.won-in-four"),
+        $_("toast.won-in-five"),
       ];
       await showToast(message[submittedRows.length - 1], 0.5);
       dispatch("win");
@@ -111,9 +111,9 @@
 
     if (currentRow === "mu") await showToast("mu");
     if (currentRow.length < solution.length) {
-      showToast($t("toast.missing-letters"));
+      showToast($_("toast.missing-letters"));
     } else if (!dictionary.includes(currentRow)) {
-      showToast($t("toast.unrecognised-word"));
+      showToast($_("toast.unrecognised-word"));
     } else {
       submittedRows = [...submittedRows, currentRow];
       revealedRows += 1;

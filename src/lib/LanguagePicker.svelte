@@ -1,16 +1,16 @@
 <script lang="ts">
-  import { t } from "svelte-intl-precompile";
+  import { _ } from "svelte-i18n";
   import { locale } from "$lib/settings";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
   import Segment from "$lib/Segment.svelte";
 </script>
 
 <fieldset>
-  <legend>{$t("setting.name.language")}</legend>
+  <legend>{$_("setting.name.language")}</legend>
   <SegmentedControl bind:selected={$locale}>
-    <Segment key="en" title={$t("setting.language.en")} />
-    <Segment key="tok" title={$t("setting.language.tok")} />
-    <Segment key="tok-x-sp" title={$t("setting.language.tok-x-sp")} />
+    <Segment key="en" title={$_("setting.language.en")} />
+    <Segment key="tok" title={$_("setting.language.tok")} />
+    <Segment key="tok-x-sp" title={$_("setting.language.tok-x-sp")} />
   </SegmentedControl>
   {#if $locale === "en"}
     <p>
