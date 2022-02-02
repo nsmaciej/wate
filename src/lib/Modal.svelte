@@ -62,7 +62,7 @@
 
   .header {
     padding: 20px var(--modal-margin) 0;
-    min-height: 2.8em;
+    min-height: 3.2em;
     position: sticky;
     top: 0;
     background: var(--page-background);
