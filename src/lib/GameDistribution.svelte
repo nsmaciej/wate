@@ -30,7 +30,11 @@
     {#each { length: ROW_COUNT } as _, i}
       {@const count = $finishedStats[mode][1 + i] ?? 0}
       <span class="label">{$formatNumber(1 + i)}</span>
-      <div class="bar" style:width="{Math.max(8, (100 * count) / scaleX)}%">
+      <div
+        class="bar"
+        class:round={$sitelenLocale}
+        style:width={count === 0 ? "fit-content" : (100 * count) / scaleX + "%"}
+      >
         {$formatNumber(count)}
       </div>
     {/each}
@@ -65,6 +69,9 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding-right: 2px;
+    padding: 0 4px;
+  }
+  .bar.round {
+    border-radius: 4px;
   }
 </style>
