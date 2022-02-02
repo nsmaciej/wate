@@ -20,5 +20,6 @@
     width: 100%;
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
+    font-size: clamp(var(--font-size-small), 4vw, var(--font-size));
   }
 </style>

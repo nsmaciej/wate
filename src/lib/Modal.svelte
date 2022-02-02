@@ -75,7 +75,7 @@
   }
 
   .header.scrollShadow {
-    box-shadow: 0 5px 5px #00000033;
+    box-shadow: 0 5px 5px var(--modal-header-shadow);
   }
 
   .contents {

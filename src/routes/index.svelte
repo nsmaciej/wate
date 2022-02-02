@@ -90,8 +90,9 @@
     align-items: center;
     justify-content: space-around;
     max-width: var(--app-width);
-    height: 100%;
+    min-height: 100%;
     margin: 0 auto;
     padding: 10px;
+    gap: 8px;
   }
 </style>

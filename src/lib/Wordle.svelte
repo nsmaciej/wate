@@ -33,10 +33,13 @@
   const tileSize = 70;
   let scale = 1;
   function handleResize() {
-    scale = Math.min(
-      1,
-      (document.body.clientHeight - 300) / (tileSize * ROW_COUNT),
-      (document.body.clientWidth - 20) / (tileSize * solution.length)
+    scale = Math.max(
+      0.7,
+      Math.min(
+        1,
+        (document.body.clientHeight - 300) / (tileSize * ROW_COUNT),
+        (document.body.clientWidth - 20) / (tileSize * solution.length)
+      )
     );
   }
   // Used by Tile styling to shrink font size.

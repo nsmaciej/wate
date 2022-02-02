@@ -18,6 +18,7 @@
   /* Modal */
   --overlay-background: #ffffffbb;
   --modal-border: #dadada;
+  --modal-header-shadow: #00000033;
   --correct-bg-soft: #50bf50;
   /* Segmented Control */
   --segmented-background: #ebebeb;
@@ -47,6 +48,7 @@
   /* Modal */
   --overlay-background: #121212cf;
   --modal-border: #212121;
+  --modal-header-shadow: #00000087;
   --correct-bg-soft: #4dbf4d;
   /* Segmented Control */
   --segmented-background: #303030;
