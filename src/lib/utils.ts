@@ -14,7 +14,7 @@ export function fixSitelenForSafari(sitelen: string): string {
   // Safari's layout engine doesn't deal well with big jumps due to ligatures,
   // uncombine sitelen pona characters for it.
   const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-  return isSafari ? sitelen.replace(/[+-]/, " ") : sitelen;
+  return isSafari ? sitelen.replace(/[+-]/g, " ") : sitelen;
 }
 
 export function localStorageStore<T>(
