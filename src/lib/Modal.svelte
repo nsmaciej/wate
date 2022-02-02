@@ -6,6 +6,10 @@
 
   export let shown = false;
   export let title = "Modal";
+  export let center = false;
+  let modalContainer: HTMLDivElement;
+  let modalScrollPx = 0;
+  let overflowing = false;
   const dispatch = createEventDispatcher();
 
   function close() {
@@ -25,10 +29,13 @@
   <div class="overlay" aria-modal="true" on:click={close}>
     <div
       class="modal"
+      class:overflowing
+      bind:this={modalContainer}
+      on:scroll={() => (modalScrollPx = modalContainer.scrollTop)}
       on:click={(e) => e.stopPropagation()}
       transition:fly={{ y: 50, duration: 200 }}
     >
-      <div class="header">
+      <div class="header" class:scrollShadow={modalScrollPx > 25}>
         <h2>{title}</h2>
         <div class="close">
           <IconButton
@@ -40,7 +47,7 @@
           />
         </div>
       </div>
-      <div class="contents">
+      <div class="contents" class:center>
         <slot />
       </div>
     </div>
@@ -48,20 +55,42 @@
 {/if}
 
 <style>
-  h2 {
-    margin-bottom: 15px;
+  /* Modal-global variables. */
+  .overlay {
+    --modal-radius: 12px;
+    --modal-margin: 25px;
   }
+
   .header {
+    margin: var(--modal-margin) 0 0.5em;
+    padding: 0 25px;
+    min-height: 1.3em;
+    position: sticky;
+    top: 0;
+    background: var(--page-background);
+    z-index: 10;
     display: flex;
-    gap: 20px;
     justify-content: space-between;
-    min-height: 1.5em;
+    transition: box-shadow 300ms;
+    /* Safari doesn't seem to clip this properly otherwise. */
+    border-radius: var(--modal-radius) var(--modal-radius) 0 0;
   }
+
+  .header.scrollShadow {
+    box-shadow: 0 5px 5px #00000033;
+  }
+
   .contents {
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding: 0 var(--modal-margin) var(--modal-margin);
   }
+
+  .contents.center {
+    align-items: center;
+  }
+
   .overlay {
     position: fixed;
     width: 100%;
@@ -78,13 +107,17 @@
     /* https://bugs.webkit.org/show_bug.cgi?id=61824 */
     transform: translateZ(200px);
   }
+
   .modal {
     background: var(--page-background);
-    padding: 25px;
-    border-radius: 12px;
+    border-radius: var(--modal-radius);
     border: 1px solid var(--modal-border);
-    box-shadow: 0 4px 25px 0 #00000033;
     margin: 10px;
     width: min(100vw, 50px + var(--app-width));
+    max-height: 85vh;
+    /* For the close button. */
+    position: relative;
+    overflow-y: auto;
+    box-shadow: 0 4px 25px 0 #00000033;
   }
 </style>
