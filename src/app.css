@@ -4,9 +4,9 @@
   --key-fg: #1b1b1b;
   --absent-bg: #4a4a4a;
   --absent-fg: #ffffff;
-  --present-bg: #ffd900;
+  --present-bg: #f9d400;
   --present-fg: #ffffff;
-  --correct-bg: #00cc00;
+  --correct-bg: #25cb25;
   --correct-fg: #ffffff;
   /* Other colors */
   --unknown-tile-border: #cacaca;
@@ -18,6 +18,7 @@
   /* Modal */
   --overlay-background: #ffffffbb;
   --modal-border: #dadada;
+  --correct-bg-soft: #50bf50;
   /* Segmented Control */
   --segmented-background: #ebebeb;
   --segmented-selected: #ffffff;
@@ -32,7 +33,7 @@
   --key-fg: #e8e8e8;
   --absent-bg: #383838;
   --absent-fg: #ffffff;
-  --present-bg: #d5b500;
+  --present-bg: #dbba00;
   --present-fg: #ffffff;
   --correct-bg: #12aa12;
   --correct-fg: #ffffff;
@@ -46,6 +47,7 @@
   /* Modal */
   --overlay-background: #121212cf;
   --modal-border: #212121;
+  --correct-bg-soft: #4dbf4d;
   /* Segmented Control */
   --segmented-background: #303030;
   --segmented-selected: #565656;

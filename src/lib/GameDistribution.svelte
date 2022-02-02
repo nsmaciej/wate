@@ -6,6 +6,7 @@
     finishedStats,
     sitelenLocale,
     formatNumber,
+    gameState,
   } from "$lib/settings";
 
   export let mode: Mode = Mode.Four;
@@ -32,6 +33,7 @@
       <span class="label">{$formatNumber(1 + i)}</span>
       <div
         class="bar"
+        class:current={$gameState[mode].length - 1 === i}
         class:round={$sitelenLocale}
         style:width={count === 0 ? "fit-content" : (100 * count) / scaleX + "%"}
       >
@@ -63,6 +65,7 @@
     align-self: center;
     padding-right: 0.5ex;
   }
+
   .bar {
     background: var(--segmented-background);
     color: var(--accent-color);
@@ -73,5 +76,9 @@
   }
   .bar.round {
     border-radius: 4px;
+  }
+  .bar.current {
+    background: var(--correct-bg-soft);
+    color: var(--page-background);
   }
 </style>

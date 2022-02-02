@@ -55,7 +55,7 @@
 <style>
   .grid {
     display: grid;
-    grid-template:
+    grid:
       "stats stats"
       "count share"
       "count discord" / 1fr 1fr;
@@ -64,7 +64,7 @@
     justify-items: center;
   }
   .grid.sitelen {
-    grid-template:
+    grid:
       "share discord"
       "stats stats"
       "count count" / auto 1fr;

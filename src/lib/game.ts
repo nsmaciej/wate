@@ -54,7 +54,7 @@ export function generateEmojiArt(
   rows: string[],
   { sitelen = false, discord = false } = {}
 ): string {
-  const medals = sitelen ? " +" : "";
+  const medals = sitelen ? "." : "";
   let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}${medals}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
