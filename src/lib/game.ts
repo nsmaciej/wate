@@ -66,10 +66,10 @@ export function generateEmojiArt(
           x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
       }
     }
-    if (discord && i < rows.length - 1) {
-      result += ` ||${row.toUpperCase()}||`;
+    if (i < rows.length - 1) {
+      if (discord) result += ` ||${row.toUpperCase()}||`;
+      result += "\n";
     }
-    result += "\n";
   }
   return result;
 }
