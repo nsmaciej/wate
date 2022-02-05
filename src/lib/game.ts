@@ -62,7 +62,7 @@ export function generateEmojiArt(
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
     if (i < rows.length - 1) {
-      if (discord) result += ` ||${row.toUpperCase()}||`;
+      if (discord) result += ` ||\`${row.toUpperCase()}\`||`;
       result += "\n";
     }
   }
