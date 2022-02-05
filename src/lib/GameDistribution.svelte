@@ -30,14 +30,14 @@
   <div class="graph">
     {#each { length: ROW_COUNT } as _, i}
       {@const count = $finishedStats[mode][1 + i] ?? 0}
-      <span class="label">{$formatNumber(1 + i)}</span>
+      <span class="label">{$formatNumber(1 + i, { nanpa: false })}</span>
       <div
         class="bar"
         class:current={$gameState[mode].length - 1 === i}
         class:round={$sitelenLocale}
         style:width={count === 0 ? "fit-content" : (100 * count) / scaleX + "%"}
       >
-        {$formatNumber(count)}
+        {$formatNumber(count, { nanpa: false })}
       </div>
     {/each}
   </div>

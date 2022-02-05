@@ -34,11 +34,11 @@
       ona li kama kepeken ilo+tenpo lon ni:
       <div class="tenpo-grid">
         <span class="desc">tenpo suli:</span>
-        <span class="nanpa">{numberToSitelen(hours)}</span>
+        <span class="nanpa">{numberToSitelen(hours, { nanpa: false })}</span>
         <span class="desc">tenpo lili:</span>
-        <span class="nanpa">{numberToSitelen(minutes)}</span>
+        <span class="nanpa">{numberToSitelen(minutes, { nanpa: false })}</span>
         <span class="desc">tenpo lili lili:</span>
-        <span class="nanpa">{numberToSitelen(seconds)}</span>
+        <span class="nanpa">{numberToSitelen(seconds, { nanpa: false })}</span>
       </div>
     </div>
   </div>

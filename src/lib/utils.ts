@@ -58,13 +58,13 @@ export function matchMediaStore(mediaString: string): Readable<boolean> {
 }
 
 export interface SitelenNumberOptions {
-  /// Always prefix with nanpa.
-  nanpa: boolean;
+  /// Whether to prefix with "nanpa", set to undefined for the default.
+  nanpa?: boolean;
 }
 
 export function numberToSitelen(
   n: number,
-  { nanpa = false }: Partial<SitelenNumberOptions> = {}
+  { nanpa }: Partial<SitelenNumberOptions> = {}
 ): string {
   if (!Number.isFinite(n) || !Number.isInteger(n)) return "nanpa nasa";
   if (n === 0) return "ala";
@@ -84,7 +84,7 @@ export function numberToSitelen(
     result.push("weka");
     n = -n;
   }
-  if (n >= 5 || nanpa) {
+  if ((nanpa == null && n >= 5) || nanpa === true) {
     // Make sure we know luka/mute/ale is a number here.
     result.push("nanpa");
   }
