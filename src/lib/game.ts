@@ -66,9 +66,6 @@ export function generateEmojiArt(
       result += "\n";
     }
   }
-  if (discord) {
-    result += "\n<https://wate.maciej.ie>";
-  }
   return result;
 }
 
