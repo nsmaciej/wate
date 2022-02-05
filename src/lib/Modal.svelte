@@ -34,7 +34,7 @@
       on:click={(e) => e.stopPropagation()}
       transition:fly={{ y: 50, duration: $reduceMotion ? 0 : 200 }}
     >
-      <div class="header" class:scrollShadow={modalScrollPx > 25}>
+      <div class="header" class:scrollShadow={modalScrollPx > 0}>
         <h2>{title}</h2>
         <div class="close">
           <IconButton
@@ -91,10 +91,10 @@
 
   .overlay {
     position: fixed;
-    width: 100%;
-    height: 100%;
     left: 0;
     right: 0;
+    top: 0;
+    bottom: 0;
     background: var(--overlay-background);
     display: flex;
     align-items: center;
