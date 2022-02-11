@@ -1,4 +1,9 @@
+import type { Dayjs } from "dayjs";
+import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc.js";
 import { Mode } from "$lib/settings";
+
+dayjs.extend(utc);
 
 export const ROW_COUNT = 5;
 
@@ -22,20 +27,19 @@ function modePredicate(mode: Mode): (x: number) => boolean {
 }
 
 // Set to `Math.floor(Date.now() / 1000) - 24 * 60 * 60 + 10` for testing.
-const WATE_EPOCH = 1642464000;
-const DAY_SECONDS = 86400;
+const WATE_EPOCH_UTC = 1642464000;
 
-export function unixTimestamp(): number {
-  return Math.floor(Date.now() / 1000);
+export function wateEpochForLocalTime(): Dayjs {
+  return dayjs.unix(WATE_EPOCH_UTC).local().startOf("day");
 }
 
-export function nextDayTimestamp(): number {
-  const day = currentGameDay();
-  return (day + 1) * DAY_SECONDS + WATE_EPOCH;
+export function nextDayTime(): Dayjs {
+  // Note this works with daylight saving since dayjs keeps the hour the same.
+  return wateEpochForLocalTime().add(currentGameDay() + 1, "day");
 }
 
 export function currentGameDay(): number {
-  return Math.floor((unixTimestamp() - WATE_EPOCH) / DAY_SECONDS);
+  return dayjs().diff(wateEpochForLocalTime(), "day");
 }
 
 export function selectWord(

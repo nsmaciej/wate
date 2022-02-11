@@ -1,11 +1,16 @@
 <script context="module" lang="ts">
+  import type { Dayjs } from "dayjs";
+  import dayjs from "dayjs";
+  import duration from "dayjs/plugin/duration.js";
   import { readable } from "svelte/store";
-  import { unixTimestamp, nextDayTimestamp } from "$lib/game";
+  import { nextDayTime } from "$lib/game";
 
-  const timestamp = readable<number>(null, (set) => {
-    set(unixTimestamp());
+  dayjs.extend(duration);
+
+  const currentTime = readable<Dayjs>(null, (set) => {
+    set(dayjs());
     const interval = setInterval(() => {
-      set(unixTimestamp());
+      set(dayjs());
     }, 1000);
     return () => clearInterval(interval);
   });
@@ -16,15 +21,8 @@
   import { numberToSitelen } from "$lib/utils";
   import { _ } from "svelte-i18n";
 
-  const nextDay = nextDayTimestamp();
-  $: secondsLeft = Math.max(0, nextDay - $timestamp);
-  $: hours = Math.floor(secondsLeft / 60 / 60);
-  $: minutes = Math.floor((secondsLeft / 60) % 60);
-  $: seconds = secondsLeft % 60;
-
-  function pad(n: number): string {
-    return String(n).padStart(2, "0");
-  }
+  const nextDay = nextDayTime();
+  $: timeLeft = dayjs.duration(Math.max(0, nextDay.diff($currentTime)));
 </script>
 
 {#if $sitelenLocale}
@@ -34,18 +32,24 @@
       ona li kama kepeken ilo+tenpo lon ni:
       <div class="tenpo-grid">
         <span class="desc">tenpo suli:</span>
-        <span class="nanpa">{numberToSitelen(hours, { nanpa: false })}</span>
+        <span class="nanpa"
+          >{numberToSitelen(timeLeft.hours(), { nanpa: false })}</span
+        >
         <span class="desc">tenpo lili:</span>
-        <span class="nanpa">{numberToSitelen(minutes, { nanpa: false })}</span>
+        <span class="nanpa"
+          >{numberToSitelen(timeLeft.minutes(), { nanpa: false })}</span
+        >
         <span class="desc">tenpo lili lili:</span>
-        <span class="nanpa">{numberToSitelen(seconds, { nanpa: false })}</span>
+        <span class="nanpa"
+          >{numberToSitelen(timeLeft.seconds(), { nanpa: false })}</span
+        >
       </div>
     </div>
   </div>
 {:else}
   <div class="countdown">
     <p>{$_("share.next")}</p>
-    <b class="clock">{pad(hours)}:{pad(minutes)}:{pad(seconds)}</b>
+    <b class="clock">{timeLeft.format("HH:mm:ss")}</b>
   </div>
 {/if}
 
