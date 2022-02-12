@@ -1,7 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { theme, mode, Theme, Mode } from "$lib/settings";
-  import LanguagePicker from "$lib/LanguagePicker.svelte";
+  import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
 </script>

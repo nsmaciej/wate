@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LanguagePicker from "$lib/LanguagePicker.svelte";
+  import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import { effectiveLocale, sitelenLocale } from "$lib/settings";
   import { derived } from "svelte/store";
 

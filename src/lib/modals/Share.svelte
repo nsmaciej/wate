@@ -4,8 +4,8 @@
   import { generateEmojiArt } from "$lib/game";
   import { sitelenLocale, gameState, mode } from "$lib/settings";
   import Button from "$lib/Button.svelte";
-  import Countdown from "$lib/Countdown.svelte";
-  import GameDistribution from "$lib/GameDistribution.svelte";
+  import Countdown from "$lib/modals/atoms/Countdown.svelte";
+  import GameDistribution from "$lib/modals/atoms/GameDistribution.svelte";
 
   export let gameDay = 0;
   export let solution = "";
