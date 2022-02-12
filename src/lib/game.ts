@@ -1,6 +1,6 @@
+// Be careful with the imports here to keep this testable.
 import type { Dayjs } from "dayjs";
 import { englishWords } from "$static/config.json";
-import { TokiPonaMode } from "$lib/settings";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
 import dictionary from "$static/dictionary.json";
@@ -8,6 +8,12 @@ import dictionary from "$static/dictionary.json";
 dayjs.extend(utc);
 
 export const ROW_COUNT = englishWords ? 6 : 5;
+
+export const enum TokiPonaMode {
+  Four = "four",
+  All = "all",
+  Kijetesantakalu = "kijetesantakalu",
+}
 
 export enum State {
   Unknown = "unknown",

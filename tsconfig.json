@@ -28,5 +28,10 @@
       "$static/*": ["static/*"]
     }
   },
-  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "src/**/*.ts", "src/**/*.svelte"],
+  "ts-node": {
+    "moduleTypes": {
+      "jest.config.ts": "cjs",
+    }
+  },
 }

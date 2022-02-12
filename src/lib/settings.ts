@@ -1,8 +1,9 @@
 import type { SitelenNumberOptions } from "$lib/utils";
-import { englishWords } from "$static/config.json";
 import { derived, get, readable, writable } from "svelte/store";
-import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
+import { englishWords } from "$static/config.json";
+import { browser } from "$app/env";
+import { TokiPonaMode } from "$lib/game";
 import {
   SITELEN_PONA_LETTERS,
   localStorageStore,
@@ -17,12 +18,6 @@ export const enum Theme {
   Dark = "dark",
   Light = "light",
   Auto = "auto",
-}
-
-export const enum TokiPonaMode {
-  Four = "four",
-  All = "all",
-  Kijetesantakalu = "kijetesantakalu",
 }
 
 // Main stores.
