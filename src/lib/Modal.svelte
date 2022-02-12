@@ -74,7 +74,7 @@
 
   .close {
     position: absolute;
-    top: var(--modal-margin);
+    top: 20px;
     right: var(--modal-margin);
   }
 
