@@ -1,5 +1,7 @@
 <script context="module" lang="ts">
   import { waitLocale } from "svelte-i18n";
+  import { englishWords } from "$static/config.json";
+  import dictionary from "$static/dictionary.json";
   import "./i18n";
   import "../app.css";
 
@@ -9,15 +11,23 @@
 </script>
 
 <script lang="ts">
+  import {
+    currentGameDay,
+    selectEnglishWord,
+    selectTokiPonaWord,
+  } from "$lib/game";
+  import {
+    DNF_STATS_KEY,
+    finishedStats,
+    gameState,
+    tokiPonaMode,
+  } from "$lib/settings";
   import { _ } from "svelte-i18n";
   import { localStorageStore } from "$lib/utils";
-  import { currentGameDay, selectWord } from "$lib/game";
   import Header from "$lib/Header.svelte";
   import Modal from "$lib/Modal.svelte";
   import Toasts, { showToast } from "$lib/Toasts.svelte";
   import Wordle from "$lib/Wordle.svelte";
-  import dictionary from "../../static/dictionary.json";
-  import { DNF_STATS_KEY, finishedStats, gameState, mode } from "$lib/settings";
   import Share from "$lib/modals/Share.svelte";
 
   const gameDay = currentGameDay();
@@ -25,13 +35,15 @@
   if (gameDay !== $lastDayPlayed) gameState.reset();
   $lastDayPlayed = gameDay;
 
-  $: solution = selectWord($mode, gameDay, dictionary);
+  $: solution = englishWords
+    ? selectEnglishWord(gameDay)
+    : selectTokiPonaWord($tokiPonaMode, gameDay);
   let shareModalShown = false;
   let showingHeaderModal = false;
 
   function bumpFinishedStats(key: number) {
-    const old = $finishedStats[$mode][key] ?? 0;
-    $finishedStats[$mode][key] = old + 1;
+    const old = $finishedStats[$tokiPonaMode][key] ?? 0;
+    $finishedStats[$tokiPonaMode][key] = old + 1;
   }
 
   async function handleWin() {
@@ -42,7 +54,7 @@
       $_("toast.won-in-four"),
       $_("toast.won-in-five"),
     ];
-    const rowsUsed = $gameState[$mode].length;
+    const rowsUsed = $gameState[$tokiPonaMode].length;
     await showToast(message[rowsUsed - 1], 0.5);
     bumpFinishedStats(rowsUsed);
     showShareModal();
@@ -62,10 +74,10 @@
 </script>
 
 <svelte:head>
-  <title>Wate</title>
+  <title>{$_("name")}</title>
 </svelte:head>
 
-<main>
+<main style:--app-width="{englishWords ? 500 : 360}px">
   <Header bind:showingModal={showingHeaderModal} />
   {#key solution}
     <Wordle
@@ -74,7 +86,7 @@
       on:complete={showShareModal}
       on:win={handleWin}
       on:lost={handleLost}
-      bind:submittedRows={$gameState[$mode]}
+      bind:submittedRows={$gameState[$tokiPonaMode]}
     />
   {/key}
   <Toasts />

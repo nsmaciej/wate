@@ -1,6 +1,7 @@
 <script lang="ts">
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import DemoRow from "$lib/modals/atoms/DemoRow.svelte";
+  import { englishWords } from "$static/config.json";
   import { SITELEN_PONA_LETTERS } from "$lib/utils";
   import { effectiveLocale, sitelenLocale } from "$lib/settings";
   import { State } from "$lib/game";
@@ -21,13 +22,24 @@
   $: latinDot = $sitelenLocale ? "" : ".";
 </script>
 
-<LanguagePicker />
+{#if !englishWords}
+  <LanguagePicker />
+{/if}
 
 {#if $effectiveLocale === "en"}
-  <p>
-    Wate is an open source clone of Wordle in Toki Pona. Play the original
-    <a href="https://www.powerlanguage.co.uk/wordle/">here</a>.
-  </p>
+  {#if englishWords}
+    <p>
+      Wordy is an open source clone of Wordle. Play the original
+      <a href="https://www.nytimes.com/games/wordle/index.html">here</a>. You
+      can also play a version in the constructed language Toki Pona
+      <a href="https://wate.maciej.ie/">here</a>.
+    </p>
+  {:else}
+    <p>
+      Wate is an open source clone of Wordle in Toki Pona. Play the original
+      <a href="https://www.nytimes.com/games/wordle/index.html">here</a>.
+    </p>
+  {/if}
   <p>
     Project by
     <a href="https://maciej.ie">Maciej Goszczycki</a>. Check out the code on
@@ -38,21 +50,34 @@
   will change:
   <div class="demo">
     <div class="demo-grid">
-      <DemoRow letters="toki" state={State.Correct} statePosition={0} />
+      <DemoRow
+        letters={englishWords ? "times" : "toki"}
+        state={State.Correct}
+        statePosition={0}
+      />
       <p>The letter <b>T</b> is in the word and in the correct spot.</p>
-      <DemoRow letters="pona" state={State.Present} statePosition={1} />
-      <p>The letter <b>O</b> is in the word but in a different spot.</p>
-      <DemoRow letters="awen" state={State.Absent} statePosition={3} />
-      <p>The letter <b>N</b> is not in the word.</p>
+      <DemoRow
+        letters={englishWords ? "games" : "kasi"}
+        state={State.Present}
+        statePosition={1}
+      />
+      <p>The letter <b>A</b> is in the word but in a different spot.</p>
+      <DemoRow
+        letters={englishWords ? "razed" : "kule"}
+        state={State.Absent}
+        statePosition={3}
+      />
+      <p>The letter <b>E</b> is not in the word.</p>
     </div>
   </div>
 {:else}
   <p>
     musi {$sitelen("Wate", "[_waso_alasa_toki_esun]")} li sama musi nanpa wan
     {$sitelen("Wordle", "[_waso_alasa_toki_esun]")}.
-    <a href="https://www.powerlanguage.co.uk/wordle/" title="Wordle"
+    <a href="https://www.nytimes.com/games/wordle/index.html" title="Wordle"
       >o musi e musi {$sitelen("Wordle", "nanpa wan")}</a
     >.
+    <!-- todo link inli version -->
   </p>
   <p>
     lipu ni tan

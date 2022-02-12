@@ -1,12 +1,21 @@
 <script lang="ts">
+  import {
+    theme,
+    tokiPonaMode,
+    Theme,
+    TokiPonaMode,
+    colorBlind,
+  } from "$lib/settings";
   import { _ } from "svelte-i18n";
-  import { theme, mode, Theme, Mode, colorBlind } from "$lib/settings";
+  import { englishWords } from "$static/config.json";
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
 </script>
 
-<LanguagePicker />
+{#if !englishWords}
+  <LanguagePicker />
+{/if}
 
 <fieldset>
   <legend>{$_("setting.name.theme")}</legend>
@@ -17,17 +26,19 @@
   </SegmentedControl>
 </fieldset>
 
-<fieldset>
-  <legend>{$_("setting.name.mode")}</legend>
-  <SegmentedControl bind:selected={$mode}>
-    <Segment key={Mode.All} title={$_("setting.mode.all")} />
-    <Segment key={Mode.Four} title={$_("setting.mode.four")} />
-    <Segment
-      key={Mode.Kijetesantakalu}
-      title={$_("setting.mode.kijetesantakalu")}
-    />
-  </SegmentedControl>
-</fieldset>
+{#if !englishWords}
+  <fieldset>
+    <legend>{$_("setting.name.mode")}</legend>
+    <SegmentedControl bind:selected={$tokiPonaMode}>
+      <Segment key={TokiPonaMode.All} title={$_("setting.mode.all")} />
+      <Segment key={TokiPonaMode.Four} title={$_("setting.mode.four")} />
+      <Segment
+        key={TokiPonaMode.Kijetesantakalu}
+        title={$_("setting.mode.kijetesantakalu")}
+      />
+    </SegmentedControl>
+  </fieldset>
+{/if}
 
 <fieldset>
   <legend>{$_("setting.name.colorblind")}</legend>

@@ -1,5 +1,6 @@
 import type { SitelenNumberOptions } from "$lib/utils";
-import { derived, get, writable } from "svelte/store";
+import { englishWords } from "$static/config.json";
+import { derived, get, readable, writable } from "svelte/store";
 import { browser } from "$app/env";
 import { locale as effectiveLocale } from "svelte-i18n";
 import {
@@ -18,30 +19,32 @@ export const enum Theme {
   Auto = "auto",
 }
 
-export const enum Mode {
+export const enum TokiPonaMode {
   Four = "four",
   All = "all",
   Kijetesantakalu = "kijetesantakalu",
 }
 
 // Main stores.
-export const locale = localStorageStore("locale", "tok");
+export const locale = englishWords
+  ? readable("en")
+  : localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
-export const mode = writable(Mode.Four);
+export const tokiPonaMode = writable(TokiPonaMode.Four);
 export const colorBlind = localStorageStore("colorblind", false);
 export const gameState = localStorageStore("game", {
-  [Mode.Four]: [],
-  [Mode.All]: [],
-  [Mode.Kijetesantakalu]: [],
+  [TokiPonaMode.Four]: [],
+  [TokiPonaMode.All]: [],
+  [TokiPonaMode.Kijetesantakalu]: [],
 });
 
 // Stats.
-type FinishedStats = { [game in Mode]: { [rows: number]: number } };
+type FinishedStats = { [game in TokiPonaMode]: { [rows: number]: number } };
 export const DNF_STATS_KEY = -1;
 export const finishedStats = localStorageStore<FinishedStats>("stats", {
-  [Mode.Four]: {},
-  [Mode.All]: {},
-  [Mode.Kijetesantakalu]: {},
+  [TokiPonaMode.Four]: {},
+  [TokiPonaMode.All]: {},
+  [TokiPonaMode.Kijetesantakalu]: {},
 });
 
 // Derived stores.

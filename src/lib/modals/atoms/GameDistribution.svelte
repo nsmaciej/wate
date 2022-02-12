@@ -2,14 +2,14 @@
   import { _ } from "svelte-i18n";
   import { ROW_COUNT } from "$lib/game";
   import {
-    Mode,
+    TokiPonaMode,
     finishedStats,
     sitelenLocale,
     formatNumber,
     gameState,
   } from "$lib/settings";
 
-  export let mode: Mode = Mode.Four;
+  export let mode: TokiPonaMode = TokiPonaMode.Four;
   $: [plays, scaleX] = calculateStats();
 
   function calculateStats(): [plays: number, barScale: number] {

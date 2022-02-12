@@ -1,11 +1,13 @@
 import type { Dayjs } from "dayjs";
+import { englishWords } from "$static/config.json";
+import { TokiPonaMode } from "$lib/settings";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
-import { Mode } from "$lib/settings";
+import dictionary from "$static/dictionary.json";
 
 dayjs.extend(utc);
 
-export const ROW_COUNT = 5;
+export const ROW_COUNT = englishWords ? 6 : 5;
 
 export enum State {
   Unknown = "unknown",
@@ -14,13 +16,13 @@ export enum State {
   Present = "present",
 }
 
-function modePredicate(mode: Mode): (x: number) => boolean {
+function modePredicate(mode: TokiPonaMode): (x: number) => boolean {
   switch (mode) {
-    case Mode.All:
+    case TokiPonaMode.All:
       return (x) => x >= 2 && x !== 4 && x !== 15;
-    case Mode.Kijetesantakalu:
+    case TokiPonaMode.Kijetesantakalu:
       return (x) => x === 15;
-    case Mode.Four:
+    case TokiPonaMode.Four:
     default:
       return (x) => x === 4;
   }
@@ -42,13 +44,17 @@ export function currentGameDay(): number {
   return dayjs().diff(wateEpochForLocalTime(), "day");
 }
 
-export function selectWord(
-  mode: Mode,
-  day: number,
-  dictionary: string[]
+export function selectTokiPonaWord(
+  tokiPonaMode: TokiPonaMode,
+  day: number
 ): string {
-  const predicate = modePredicate(mode);
+  const predicate = modePredicate(tokiPonaMode);
   const candidates = dictionary.filter((x) => predicate(x.length));
+  return candidates[day % candidates.length];
+}
+
+export function selectEnglishWord(day: number): string {
+  const candidates = dictionary.filter((x) => x.length === 5);
   return candidates[day % candidates.length];
 }
 
@@ -59,7 +65,8 @@ export function generateEmojiArt(
   { sitelen = false, discord = false } = {}
 ): string {
   const medals = sitelen ? "." : "";
-  let result = `Wate ${gameDay + 1} ${rows.length}/${ROW_COUNT}${medals}\n`;
+  const name = englishWords ? "Wordy" : "Wate";
+  let result = `${name} ${gameDay + 1} ${rows.length}/${ROW_COUNT}${medals}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
     for (const x of findRowStates(solution, row)) {

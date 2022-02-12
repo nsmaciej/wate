@@ -1,0 +1,56 @@
+{
+  "description": "Open Source Wordle",
+  "key": {
+    "backspace": "Delete",
+    "enter": "Enter"
+  },
+  "modal": {
+    "close": "Close",
+    "help": "What is this?",
+    "settings": "Settings",
+    "share": "Share"
+  },
+  "name": "Wordy",
+  "olukinala": "Do Not Look",
+  "setting": {
+    "language": {
+      "en": "English",
+      "tok": "toki pona",
+      "tok-x-sp": "sitelen pona"
+    },
+    "mode": {
+      "all": "Any",
+      "four": "4",
+      "kijetesantakalu": "15"
+    },
+    "name": {
+      "colorblind": "Color Blind Mode:",
+      "language": "Language:",
+      "mode": "Number of Letters:",
+      "theme": "Theme:"
+    },
+    "off": "Off",
+    "on": "On",
+    "theme": {
+      "automatic": "Automatic",
+      "dark": "Dark",
+      "light": "Light"
+    }
+  },
+  "share": {
+    "button": "Share Your Game",
+    "button-discord": "Share for Discord",
+    "distribution": "You played Wordy {times, plural, one {1 time} other {{times} times}}",
+    "next": "Next Wordy in"
+  },
+  "toast": {
+    "clipboard": "Copied result to clipboard",
+    "missing-letters": "Not enough letters",
+    "unrecognised-word": "Word not in pu or ku suli",
+    "won-in-five": "All is well",
+    "won-in-four": "Good",
+    "won-in-one": "Genius",
+    "won-in-three": "Very Good",
+    "won-in-two": "Smart"
+  }
+}

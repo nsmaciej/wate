@@ -1,14 +1,20 @@
 import { addMessages, init } from "svelte-i18n";
 import { get } from "svelte/store";
 import { locale } from "$lib/settings";
+import { englishWords } from "$static/config.json";
 
 import en from "../locales/en.json";
+import enWordy from "../locales/en-wordy.json";
 import tok from "../locales/tok.json";
 import tokSp from "../locales/tok-x-sp.json";
 
-addMessages("en", en);
-addMessages("tok", tok);
-addMessages("tok-x-sp", tokSp);
+if (englishWords) {
+  addMessages("en", enWordy);
+} else {
+  addMessages("en", en);
+  addMessages("tok", tok);
+  addMessages("tok-x-sp", tokSp);
+}
 
 // I'm doing my best to avoid flashes of "raw" sitelen pona text. For posterity,
 // a typical load looks like this:

@@ -1,12 +1,14 @@
 <script lang="ts">
   import type { State } from "$lib/game";
+  import { _ } from "svelte-i18n";
   import { createEventDispatcher } from "svelte";
+  import { englishWords } from "$static/config.json";
   import Key from "$lib/keyboard/Key.svelte";
   import Row from "$lib/keyboard/Row.svelte";
-  import { _ } from "svelte-i18n";
 
   export let letterStates = new Map<string, State>();
   const dispatch = createEventDispatcher();
+  const qwerty = englishWords;
 
   function handleKeyDown(event: KeyboardEvent): void {
     if (event.repeat) return;
@@ -25,13 +27,23 @@
 </script>
 
 <svelte:window on:keydown={handleKeyDown} />
-<div class="keyboard">
-  <Row offset letters="aeijk" on:press {letterStates} />
-  <Row letters="lmnops" on:press {letterStates} />
+<div class="keyboard" style:grid="auto-flow / repeat({qwerty ? 20 : 12}, 1fr)">
+  <Row
+    offset={!qwerty}
+    letters={qwerty ? "qwertyuiop" : "aeijk"}
+    on:press
+    {letterStates}
+  />
+  <Row
+    offset={qwerty}
+    letters={qwerty ? "asdfghjkl" : "lmnops"}
+    on:press
+    {letterStates}
+  />
   <Key big slot="start" on:click={() => dispatch("enter")}>
     {$_("key.enter")}
   </Key>
-  <Row letters="tuw" on:press {letterStates} />
+  <Row letters={qwerty ? "zxcvbnm" : "tuw"} on:press {letterStates} />
   <Key big slot="end" on:click={() => dispatch("backspace")}>
     {$_("key.backspace")}
   </Key>
@@ -43,7 +55,6 @@
     /* Disable tap to zoom if you miss-tap a key. */
     touch-action: manipulation;
     display: grid;
-    grid: auto-flow / repeat(12, 1fr);
     gap: 8px;
     /* Visually center the wordle. */
     margin-top: 16px;
