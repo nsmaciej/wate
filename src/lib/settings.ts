@@ -100,5 +100,7 @@ locale.subscribe(async (value) => {
 
 // Set the color-blind class.
 colorBlind.subscribe((value) => {
-  document.body.classList.toggle("color-blind", value);
+  if (browser) {
+    document.body.classList.toggle("color-blind", value);
+  }
 });
