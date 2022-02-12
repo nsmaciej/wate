@@ -1,6 +1,6 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { theme, mode, Theme, Mode } from "$lib/settings";
+  import { theme, mode, Theme, Mode, colorBlind } from "$lib/settings";
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
@@ -26,5 +26,13 @@
       key={Mode.Kijetesantakalu}
       title={$_("setting.mode.kijetesantakalu")}
     />
+  </SegmentedControl>
+</fieldset>
+
+<fieldset>
+  <legend>{$_("setting.name.colorblind")}</legend>
+  <SegmentedControl bind:selected={$colorBlind}>
+    <Segment key={false} title={$_("setting.off")} />
+    <Segment key={true} title={$_("setting.on")} />
   </SegmentedControl>
 </fieldset>

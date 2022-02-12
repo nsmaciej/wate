@@ -24,10 +24,13 @@
       "kijetesantakalu": "15"
     },
     "name": {
+      "colorblind": "laso en loje li sama tawa mi:",
       "language": "toki:",
       "mode": "sitelen nanpa:",
       "theme": "kule:"
     },
+    "off": "ala",
+    "on": "lon",
     "theme": {
       "automatic": "tan ilo ni",
       "dark": "pimeja",

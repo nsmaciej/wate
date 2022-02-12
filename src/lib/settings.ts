@@ -28,6 +28,7 @@ export const enum Mode {
 export const locale = localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const mode = writable(Mode.Four);
+export const colorBlind = localStorageStore("colorblind", false);
 export const gameState = localStorageStore("game", {
   [Mode.Four]: [],
   [Mode.All]: [],
@@ -95,4 +96,9 @@ locale.subscribe(async (value) => {
   } catch {
     alert("Could not load the sitelen pona font 😢");
   }
+});
+
+// Set the color-blind class.
+colorBlind.subscribe((value) => {
+  document.body.classList.toggle("color-blind", value);
 });

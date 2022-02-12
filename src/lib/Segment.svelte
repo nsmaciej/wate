@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { SegmentContext } from "$lib/SegmentedControl.svelte";
+  import type { SegmentContext, Key } from "$lib/SegmentedControl.svelte";
   import { getContext } from "svelte";
   import { fixSitelenForSafari } from "$lib/utils";
 
-  export let key = "";
+  export let key: Key = "";
   export let title = "";
 
   const context = getContext<SegmentContext>("segment");

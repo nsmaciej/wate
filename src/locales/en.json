@@ -24,10 +24,13 @@
       "kijetesantakalu": "15"
     },
     "name": {
+      "colorblind": "Color Blind Mode:",
       "language": "Language:",
       "mode": "Number of Letters:",
       "theme": "Theme:"
     },
+    "off": "Off",
+    "on": "On",
     "theme": {
       "automatic": "Automatic",
       "dark": "Dark",

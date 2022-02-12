@@ -62,7 +62,7 @@
       >{$sitelen("lipu GitHub", "lipu [_kulupu_ilo_toki_awen_pona]")}</a
     >.
   </p>
-  <h2>o alasa e nimi</h2>
+  <h2>musi li seme?</h2>
   sina wile sona e nimi. tenpo luka la sina ken pana e nimi. pana la ni li kama kule
   e ni:
   <div class="demo">
