@@ -52,7 +52,7 @@
     {#if $guessMode === GuessMode.Easy}
       {$_("setting.guessmode.easy-text")}
     {:else if $guessMode === GuessMode.Hard}
-      {$_("setting.guessmode.easy-hard")}
+      {$_("setting.guessmode.hard-text")}
     {/if}
   </p>
 </fieldset>

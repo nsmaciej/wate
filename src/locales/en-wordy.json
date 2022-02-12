@@ -15,7 +15,9 @@
   "setting": {
     "guessmode": {
       "easy": "Easy",
+      "easy-text": "Your guesses do not need to be valid words.",
       "hard": "Hard",
+      "hard-text": "Your guesses must use all previous hints.",
       "normal": "Normal"
     },
     "language": {

@@ -15,7 +15,9 @@
   "setting": {
     "guessmode": {
       "easy": "sitelen ale",
+      "easy-text": "nasin ni la nimi pu ala en ku ala li pona.",
       "hard": "ike",
+      "hard-text": "sina kama sona e sitelen la sina wile pana e ni.",
       "normal": "pona"
     },
     "language": {
