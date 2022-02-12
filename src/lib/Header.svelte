@@ -61,7 +61,7 @@
   <Settings />
 </Modal>
 <Modal
-  width={500}
+  width={530}
   bind:shown={helpShown}
   title={$_("modal.help")}
   on:close={() => ($startupHelp = false)}

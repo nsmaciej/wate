@@ -30,8 +30,8 @@
 
 <style>
   button {
-    min-width: 48px;
-    min-height: 48px;
+    min-width: var(--tap-target-size);
+    min-height: var(--tap-target-size);
     align-items: center;
     justify-content: center;
   }

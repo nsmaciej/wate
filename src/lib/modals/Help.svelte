@@ -16,6 +16,8 @@
     (isSp) => (tokipona: string) =>
       isSp ? tokipona.split(" ").join("+") : tokipona
   );
+
+  $: latinDot = $sitelenLocale ? "" : ".";
 </script>
 
 <LanguagePicker />
@@ -68,17 +70,18 @@
       <div class="demo-grid">
         <DemoRow letters="toki" state={State.Correct} statePosition={0} />
         <p>
-          sitelen <b>{$sitelen("T", `[_${SITELEN_PONA_LETTERS["t"]}]`)}</b> li lon.
+          sitelen <b>{$sitelen("T", `[_${SITELEN_PONA_LETTERS["t"]}]`)}</b> li
+          lon{latinDot}
         </p>
         <DemoRow letters="pona" state={State.Present} statePosition={1} />
         <p>
           sitelen <b>{$sitelen("O", `[_${SITELEN_PONA_LETTERS["o"]}]`)}</b> li
-          lon. taso ni li lon {$combine("poka ante")}.
+          lon. taso ni li lon {$combine("poka ante")}{latinDot}
         </p>
         <DemoRow letters="awen" state={State.Absent} statePosition={3} />
         <p>
-          sitelen <b>{$sitelen("N", `[_${SITELEN_PONA_LETTERS["n"]}]`)}</b> li lon
-          ala.
+          sitelen <b>{$sitelen("N", `[_${SITELEN_PONA_LETTERS["n"]}]`)}</b> li
+          lon ala{latinDot}
         </p>
       </div>
     {/key}

@@ -62,6 +62,7 @@
   --font-size: 16px;
   --font-size-small: 14px;
   --app-width: 360px;
+  --tap-target-size: 48px;
 }
 
 .linja-pona {

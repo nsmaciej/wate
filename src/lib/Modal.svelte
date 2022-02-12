@@ -64,7 +64,7 @@
 
   .header {
     padding: 20px var(--modal-margin) 0;
-    height: max(3.2em, var(--modal-margin) + 48px);
+    height: calc(var(--modal-margin) + max(2.2em, var(--tap-target-size)));
     position: sticky;
     top: 0;
     background: var(--page-background);
