@@ -1,7 +1,7 @@
 <script lang="ts" context="module">
   import { localStorageStore } from "$lib/utils";
 
-  const startupHelp = localStorageStore("help", true);
+  const startupHelp = localStorageStore("helpshown", true);
 </script>
 
 <script lang="ts">
