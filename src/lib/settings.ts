@@ -70,6 +70,9 @@ function updateTheme(value: Theme) {
   document
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", dark ? "#121212" : "#ffffff");
+  document
+    .querySelector('meta[name="color-scheme"]')
+    .setAttribute("content", dark ? "dark only" : "light only");
 }
 
 if (browser) {
