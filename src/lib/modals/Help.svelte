@@ -61,7 +61,7 @@
     >.
   </p>
   <h2>o alasa e nimi</h2>
-  sina wile sona e nimi. tenpo luka la sina ken pana e nini. pana la ni li kama kule
+  sina wile sona e nimi. tenpo luka la sina ken pana e nimi. pana la ni li kama kule
   e ni:
   <div class="demo">
     {#key $effectiveLocale}
