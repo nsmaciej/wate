@@ -5,7 +5,15 @@
   export let offset = false;
 </script>
 
-<button on:click class:big class:offset class={state} tabindex="-1">
+<!-- The preventDefault here prevents these buttons from ever getting focus. -->
+<button
+  on:click
+  on:mousedown={(e) => e.preventDefault()}
+  class:big
+  class:offset
+  class={state}
+  tabindex="-1"
+>
   <slot />
 </button>
 

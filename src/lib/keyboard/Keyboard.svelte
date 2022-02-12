@@ -9,6 +9,8 @@
   const dispatch = createEventDispatcher();
 
   function handleKeyDown(event: KeyboardEvent): void {
+    if (event.repeat) return;
+
     const key = event.key;
     if (key === "Backspace") {
       dispatch("backspace");
