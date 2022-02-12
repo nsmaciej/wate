@@ -6,6 +6,7 @@
   import { State } from "$lib/game";
   import { derived } from "svelte/store";
 
+  // Only needed here since everywhere else we rely on the tok-x-sp locale.
   const sitelen = derived(
     sitelenLocale,
     (isSp) => (tokipona: string, sitelen: string) => isSp ? sitelen : tokipona
@@ -62,7 +63,7 @@
       >{$sitelen("lipu GitHub", "lipu [_kulupu_ilo_toki_awen_pona]")}</a
     >.
   </p>
-  <h2>musi li seme?</h2>
+  <h2>nasin musi li seme?</h2>
   sina wile sona e nimi. tenpo luka la sina ken pana e nimi. pana la ni li kama kule
   e ni:
   <div class="demo">
