@@ -7,6 +7,8 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import { _ } from "svelte-i18n";
+  import { guessMode } from "$lib/settings";
+  import { guessModeMedal } from "$lib/game";
   import IconButton from "$lib/IconButton.svelte";
   import Help from "$lib/modals/Help.svelte";
   import Modal from "$lib/Modal.svelte";
@@ -29,7 +31,9 @@
 
 <heading>
   <div>
-    <h1>{$_("name")}</h1>
+    <h1>
+      {$_("name")}{guessModeMedal($guessMode)}
+    </h1>
     <span class="tagline">
       {$_("description")}
       <button

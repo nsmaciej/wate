@@ -13,6 +13,11 @@
   "name": "Wate",
   "olukinala": "o lukin ala",
   "setting": {
+    "guessmode": {
+      "easy": "sitelen ale",
+      "hard": "ike",
+      "normal": "pona"
+    },
     "language": {
       "en": "English",
       "tok": "toki pona",
@@ -25,6 +30,7 @@
     },
     "name": {
       "colorblind": "laso en loje li sama tawa mi:",
+      "guessmode": "nasin musi",
       "language": "toki:",
       "mode": "sitelen nanpa:",
       "theme": "kule:"

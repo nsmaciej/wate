@@ -3,7 +3,7 @@ import { derived, get, readable, writable } from "svelte/store";
 import { locale as effectiveLocale } from "svelte-i18n";
 import { englishWords } from "$static/config.json";
 import { browser } from "$app/env";
-import { TokiPonaMode } from "$lib/game";
+import { GuessMode, TokiPonaMode } from "$lib/game";
 import {
   SITELEN_PONA_LETTERS,
   localStorageStore,
@@ -26,6 +26,7 @@ export const locale = englishWords
   : localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const tokiPonaMode = writable(TokiPonaMode.Four);
+export const guessMode = localStorageStore("mode", GuessMode.Normal);
 export const colorBlind = localStorageStore("colorblind", false);
 export const gameState = localStorageStore("game", {
   [TokiPonaMode.Four]: [],

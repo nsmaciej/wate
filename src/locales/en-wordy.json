@@ -13,6 +13,11 @@
   "name": "Wordy",
   "olukinala": "Do Not Look",
   "setting": {
+    "guessmode": {
+      "easy": "Easy",
+      "hard": "Hard",
+      "normal": "Normal"
+    },
     "language": {
       "en": "English",
       "tok": "toki pona",
@@ -25,6 +30,7 @@
     },
     "name": {
       "colorblind": "Color Blind Mode:",
+      "guessmode": "Difficulty",
       "language": "Language:",
       "mode": "Number of Letters:",
       "theme": "Theme:"
@@ -46,7 +52,7 @@
   "toast": {
     "clipboard": "Copied result to clipboard",
     "missing-letters": "Not enough letters",
-    "unrecognised-word": "Word not in pu or ku suli",
+    "unrecognised-word": "Not in the word list",
     "won-in-five": "All is well",
     "won-in-four": "Good",
     "won-in-one": "Genius",

@@ -15,6 +15,12 @@ export const enum TokiPonaMode {
   Kijetesantakalu = "kijetesantakalu",
 }
 
+export const enum GuessMode {
+  Easy = "easy",
+  Normal = "normal",
+  Hard = "hard",
+}
+
 export enum State {
   Unknown = "unknown",
   Absent = "absent",
@@ -64,15 +70,25 @@ export function selectEnglishWord(day: number): string {
   return candidates[day % candidates.length];
 }
 
+export function guessModeMedal(mode: GuessMode): string {
+  if (mode === GuessMode.Easy) return "°";
+  if (mode === GuessMode.Hard) return "*";
+  return "";
+}
+
 export function generateEmojiArt(
   gameDay: number,
   solution: string,
   rows: string[],
-  { sitelen = false, discord = false } = {}
+  {
+    sitelen,
+    discord,
+    guessMode,
+  }: { sitelen: boolean; discord: boolean; guessMode: GuessMode }
 ): string {
-  const medals = sitelen ? "." : "";
-  const name = englishWords ? "Wordy" : "Wate";
-  let result = `${name} ${gameDay + 1} ${rows.length}/${ROW_COUNT}${medals}\n`;
+  const medals = guessModeMedal(guessMode);
+  const name = englishWords ? "Wordy" : sitelen ? "wate" : "Wate";
+  let result = `${name}${medals} ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
     for (const x of findRowStates(solution, row)) {
@@ -113,6 +129,14 @@ export function findLetterStates(
     }
   }
   return result;
+}
+
+export function validHardModeGuess(
+  solution: string,
+  rows: string[],
+  guess: string
+): { use: string; position?: number } | undefined {
+  return;
 }
 
 export function findRowStates(solution: string, row: string): State[] {

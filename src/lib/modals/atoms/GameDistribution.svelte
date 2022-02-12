@@ -1,8 +1,7 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
-  import { ROW_COUNT } from "$lib/game";
+  import { ROW_COUNT, TokiPonaMode } from "$lib/game";
   import {
-    TokiPonaMode,
     finishedStats,
     sitelenLocale,
     formatNumber,

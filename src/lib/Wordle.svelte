@@ -8,15 +8,14 @@
   // * win - The game was just won.
   // * complete - The game was already finished when the game loaded.
 
-  import type { State } from "$lib/game";
-  import { ROW_COUNT, findLetterStates } from "$lib/game";
-  import { createEventDispatcher } from "svelte";
+  import { _ } from "svelte-i18n";
+  import { createEventDispatcher, onMount } from "svelte";
+  import { ROW_COUNT, GuessMode, State, findLetterStates } from "$lib/game";
   import { delay } from "$lib/utils";
-  import { onMount } from "svelte";
   import { showToast } from "$lib/Toasts.svelte";
+  import { guessMode } from "$lib/settings";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/keyboard/Keyboard.svelte";
-  import { _ } from "svelte-i18n";
 
   // Main state.
   export let dictionary: string[] = [];
@@ -96,6 +95,7 @@
   async function handleEnter(): Promise<void> {
     if (gameFinished) return;
 
+    // Easter eggs.
     if (currentRow === "awkt") {
       currentRow = "";
       localStorage.clear();
@@ -108,17 +108,28 @@
       showToast("Show me the bibliography");
       return;
     }
+    if (currentRow === "mu") {
+      await showToast("mu");
+    }
 
-    if (currentRow === "mu") await showToast("mu");
+    // Rule checks.
     if (currentRow.length < solution.length) {
       showToast($_("toast.missing-letters"));
-    } else if (!dictionary.includes(currentRow)) {
-      showToast($_("toast.unrecognised-word"));
-    } else {
-      submittedRows = [...submittedRows, currentRow];
-      revealedRows += 1;
-      currentRow = "";
+      return;
     }
+    if ($guessMode !== GuessMode.Easy && !dictionary.includes(currentRow)) {
+      showToast($_("toast.unrecognised-word"));
+      return;
+    }
+    if ($guessMode === GuessMode.Hard) {
+      showToast($_("toast.unrecognised-word"));
+      return;
+    }
+
+    // Checks passed.
+    submittedRows = [...submittedRows, currentRow];
+    revealedRows += 1;
+    currentRow = "";
   }
 </script>
 

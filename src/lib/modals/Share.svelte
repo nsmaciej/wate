@@ -1,8 +1,13 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
+  import {
+    sitelenLocale,
+    gameState,
+    tokiPonaMode,
+    guessMode,
+  } from "$lib/settings";
   import { showToast } from "$lib/Toasts.svelte";
   import { generateEmojiArt } from "$lib/game";
-  import { sitelenLocale, gameState, tokiPonaMode } from "$lib/settings";
   import Button from "$lib/Button.svelte";
   import Countdown from "$lib/modals/atoms/Countdown.svelte";
   import GameDistribution from "$lib/modals/atoms/GameDistribution.svelte";
@@ -13,6 +18,7 @@
   async function share(discord: boolean) {
     const art = generateEmojiArt(gameDay, solution, $gameState[$tokiPonaMode], {
       sitelen: $sitelenLocale,
+      guessMode: $guessMode,
       discord,
     });
     const share = { text: art };

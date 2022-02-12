@@ -13,6 +13,11 @@
   "name": "Wate",
   "olukinala": "Do Not Look",
   "setting": {
+    "guessmode": {
+      "easy": "Easy",
+      "hard": "Hard",
+      "normal": "Normal"
+    },
     "language": {
       "en": "English",
       "tok": "toki pona",
@@ -25,6 +30,7 @@
     },
     "name": {
       "colorblind": "Color Blind Mode:",
+      "guessmode": "Difficulty",
       "language": "Language:",
       "mode": "Number of Letters:",
       "theme": "Theme:"
