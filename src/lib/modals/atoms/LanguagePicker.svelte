@@ -13,14 +13,15 @@
     <Segment key="tok-x-sp" title={$_("setting.language.tok-x-sp")} />
   </SegmentedControl>
   {#if $locale === "en"}
-    <p>
-      <b>Note:</b> The words themselves are in Toki Pona.
+    <p class="note">
+      <b>Note:</b> The words themselves will still be in Toki Pona.
     </p>
   {/if}
 </fieldset>
 
 <style>
-  p {
-    margin-top: 5px;
+  .note {
+    margin-top: 3px;
+    color: var(--accent-color);
   }
 </style>

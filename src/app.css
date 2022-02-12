@@ -123,6 +123,7 @@ h1 {
 h2 {
   font-size: 22px;
   font-weight: 700;
+  text-align: center;
 }
 
 .linja-pona h2 {
@@ -159,4 +160,9 @@ fieldset {
 legend {
   margin-bottom: 5px;
   font-weight: bold;
+}
+
+hr {
+  border: none;
+  border-top: 2px solid var(--accent-color);
 }

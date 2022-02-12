@@ -62,16 +62,20 @@
 
   .header {
     padding: 20px var(--modal-margin) 0;
-    min-height: 3.2em;
+    height: max(3.2em, var(--modal-margin) + 48px);
     position: sticky;
     top: 0;
     background: var(--page-background);
     z-index: 10;
-    display: flex;
-    justify-content: space-between;
     transition: box-shadow 300ms;
     /* Safari doesn't seem to clip this properly otherwise. */
     border-radius: var(--modal-radius) var(--modal-radius) 0 0;
+  }
+
+  .close {
+    position: absolute;
+    top: var(--modal-margin);
+    right: var(--modal-margin);
   }
 
   .header.scrollShadow {
@@ -111,7 +115,7 @@
     border-radius: var(--modal-radius);
     border: 1px solid var(--modal-border);
     margin: 10px;
-    width: min(100vw, 50px + var(--app-width));
+    width: min(95vw, 90px + var(--app-width));
     max-height: 85vh;
     /* For the close button. */
     position: relative;

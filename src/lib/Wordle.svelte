@@ -151,8 +151,7 @@
 
 <style>
   div.wordle {
-    user-select: none;
-    -webkit-user-select: none;
     display: grid;
+    gap: 4px;
   }
 </style>

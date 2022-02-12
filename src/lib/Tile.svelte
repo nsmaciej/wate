@@ -16,11 +16,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 2px;
     font-weight: bold;
     transition: transform 200ms ease-in;
     /* This stops the grid caring about our content. */
     min-width: 0;
+    user-select: none;
+    -webkit-user-select: none;
   }
   div.flipped {
     transform: rotateX(-90deg);
