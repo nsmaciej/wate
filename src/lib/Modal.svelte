@@ -8,6 +8,7 @@
   export let shown = false;
   export let title = "Modal";
   export let center = false;
+  export let width = 450;
   let modalContainer: HTMLDivElement;
   let modalScrollPx = 0;
   const dispatch = createEventDispatcher();
@@ -32,6 +33,7 @@
       bind:this={modalContainer}
       on:scroll={() => (modalScrollPx = modalContainer.scrollTop)}
       on:click={(e) => e.stopPropagation()}
+      style:width="min(95vw, {width}px)"
       transition:fly={{ y: 50, duration: $reduceMotion ? 0 : 200 }}
     >
       <div class="header" class:scrollShadow={modalScrollPx > 0}>
@@ -115,7 +117,6 @@
     border-radius: var(--modal-radius);
     border: 1px solid var(--modal-border);
     margin: 10px;
-    width: min(95vw, 90px + var(--app-width));
     max-height: 85vh;
     /* For the close button. */
     position: relative;
