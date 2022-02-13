@@ -8,6 +8,7 @@
   } from "$lib/settings";
   import { showToast } from "$lib/Toasts.svelte";
   import { generateEmojiArt } from "$lib/game";
+  import { recordEvent } from "$lib/countClick";
   import Button from "$lib/Button.svelte";
   import Countdown from "$lib/modals/atoms/Countdown.svelte";
   import GameDistribution from "$lib/modals/atoms/GameDistribution.svelte";
@@ -16,6 +17,7 @@
   export let solution = "";
 
   async function share(discord: boolean) {
+    recordEvent("share", discord ? "discord" : "classic");
     const art = generateEmojiArt(gameDay, solution, $gameState[$tokiPonaMode], {
       sitelen: $sitelenLocale,
       guessMode: $guessMode,

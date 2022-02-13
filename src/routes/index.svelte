@@ -20,10 +20,12 @@
     DNF_STATS_KEY,
     finishedStats,
     gameState,
+    gatherSettings,
     tokiPonaMode,
   } from "$lib/settings";
   import { _ } from "svelte-i18n";
   import { localStorageStore } from "$lib/utils";
+  import { recordEvent } from "$lib/countClick";
   import Header from "$lib/Header.svelte";
   import Modal from "$lib/Modal.svelte";
   import Toasts, { showToast } from "$lib/Toasts.svelte";
@@ -41,9 +43,15 @@
   let shareModalShown = false;
   let showingHeaderModal = false;
 
-  function bumpFinishedStats(key: number) {
+  function recordGameFinish(key: number) {
     const old = $finishedStats[$tokiPonaMode][key] ?? 0;
     $finishedStats[$tokiPonaMode][key] = old + 1;
+    // Acceptable data collection. General settings plus the board.
+    recordEvent(
+      key === DNF_STATS_KEY ? "dnf" : "finish",
+      ...gatherSettings(),
+      $gameState[$tokiPonaMode].join(",")
+    );
   }
 
   async function handleWin() {
@@ -56,13 +64,13 @@
     ];
     const rowsUsed = $gameState[$tokiPonaMode].length;
     await showToast(message[rowsUsed - 1], 0.5);
-    bumpFinishedStats(rowsUsed);
+    recordGameFinish(rowsUsed);
     showShareModal();
   }
 
   async function handleLost() {
     await showToast(solution);
-    bumpFinishedStats(DNF_STATS_KEY);
+    recordGameFinish(DNF_STATS_KEY);
     showShareModal();
   }
 

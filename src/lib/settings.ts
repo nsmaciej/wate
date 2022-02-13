@@ -34,6 +34,16 @@ export const gameState = localStorageStore("game", {
   [TokiPonaMode.Kijetesantakalu]: [],
 });
 
+export function gatherSettings(): string[] {
+  return [
+    get(effectiveLocale),
+    get(theme),
+    get(tokiPonaMode),
+    "gm" + get(guessMode),
+    get(colorBlind) ? "cb" : "ns",
+  ];
+}
+
 // Stats.
 type FinishedStats = { [game in TokiPonaMode]: { [rows: number]: number } };
 export const DNF_STATS_KEY = -1;

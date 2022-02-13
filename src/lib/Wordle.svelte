@@ -14,6 +14,7 @@
   import { delay } from "$lib/utils";
   import { showToast } from "$lib/Toasts.svelte";
   import { guessMode } from "$lib/settings";
+  import { recordEvent } from "$lib/countClick";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/keyboard/Keyboard.svelte";
 
@@ -95,34 +96,40 @@
   async function handleEnter(): Promise<void> {
     if (gameFinished) return;
 
-    // Easter eggs.
+    // Handy.
     if (currentRow === "awkt") {
       currentRow = "";
       localStorage.clear();
       showToast("Local Storage Cleared");
       return;
     }
+
+    // Easter eggs. Suppress rule check toasts but otherwise don't do anything
+    // else in case we are making a valid guess (easy mode etc).
+    let showToasts = true;
     if (currentRow === "pono") {
-      currentRow = "";
+      showToasts = false;
+      recordEvent("pono");
       await showToast("Give me a break");
       showToast("Show me the bibliography");
-      return;
     }
     if (currentRow === "mu") {
+      showToasts = false;
+      recordEvent("mu");
       await showToast("mu");
     }
 
     // Rule checks.
     if (currentRow.length < solution.length) {
-      showToast($_("toast.missing-letters"));
+      if (showToasts) showToast($_("toast.missing-letters"));
       return;
     }
     if ($guessMode !== GuessMode.Easy && !dictionary.includes(currentRow)) {
-      showToast($_("toast.unrecognised-word"));
+      if (showToasts) showToast($_("toast.unrecognised-word"));
       return;
     }
     if ($guessMode === GuessMode.Hard) {
-      showToast($_("toast.unrecognised-word"));
+      if (showToasts) showToast($_("toast.unrecognised-word"));
       return;
     }
 

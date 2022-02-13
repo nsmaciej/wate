@@ -64,6 +64,11 @@
   </head>
   <body>
     <script>
+      window.goatcounter = {
+        path: function (p) {
+          return location.host + p;
+        },
+      };
       if (localStorage.getItem("locale") === '"tok-x-sp"') {
         document.fonts.load("30px linja-pona");
       }
@@ -80,7 +85,7 @@
     <script
       data-goatcounter="https://stats.maciej.ie/count"
       async
-      src="//stats.maciej.ie/count.js"
+      src="https://stats.maciej.ie/count.js"
     ></script>
   </body>
 </html>

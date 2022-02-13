@@ -1,6 +1,7 @@
 <script lang="ts">
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import DemoRow from "$lib/modals/atoms/DemoRow.svelte";
+  import count from "$lib/countClick";
   import { englishWords } from "$static/config.json";
   import { SITELEN_PONA_LETTERS } from "$lib/utils";
   import { effectiveLocale, sitelenLocale } from "$lib/settings";
@@ -30,20 +31,24 @@
   {#if englishWords}
     <p>
       Wordy is an open source clone of Wordle. Play the original
-      <a href="https://www.nytimes.com/games/wordle/index.html">here</a>. You
-      can also play a version in the constructed language Toki Pona
-      <a href="https://wate.maciej.ie/">here</a>.
+      <a use:count href="https://www.nytimes.com/games/wordle/index.html"
+        >here</a
+      >. You can also play a version in the constructed language Toki Pona
+      <a use:count href="https://wate.maciej.ie/">here</a>.
     </p>
   {:else}
     <p>
       Wate is an open source clone of Wordle in Toki Pona. Play the original
-      <a href="https://www.nytimes.com/games/wordle/index.html">here</a>.
+      <a use:count href="https://www.nytimes.com/games/wordle/index.html"
+        >here</a
+      >.
     </p>
   {/if}
   <p>
     Project by
-    <a href="https://maciej.ie">Maciej Goszczycki</a>. Check out the code on
-    <a href="https://github.com/mgoszcz2/wate">GitHub</a>.
+    <a use:count href="https://maciej.ie">Maciej Goszczycki</a>. Check out the
+    code on
+    <a use:count href="https://github.com/mgoszcz2/wate">GitHub</a>.
   </p>
   <h2>Rules</h2>
   You need to guess a word in five tries. After each guess the color of the tiles
@@ -74,17 +79,19 @@
   <p>
     musi {$sitelen("Wate", "[_waso_alasa_toki_esun]")} li sama musi nanpa wan
     {$sitelen("Wordle", "[_waso_alasa_toki_esun]")}.
-    <a href="https://www.nytimes.com/games/wordle/index.html" title="Wordle"
-      >o musi e musi {$sitelen("Wordle", "nanpa wan")}</a
+    <a
+      use:count
+      href="https://www.nytimes.com/games/wordle/index.html"
+      title="Wordle">o musi e musi {$sitelen("Wordle", "nanpa wan")}</a
     >.
     <!-- todo link inli version -->
   </p>
   <p>
     lipu ni tan
-    <a href="https://maciej.ie" title="Maciej Goszczycki"
+    <a use:count href="https://maciej.ie" title="Maciej Goszczycki"
       >{$sitelen("jan Masije", "jan [_mun_ante_sona_ilo_jan_esun]")}</a
     >. o lukin e ilo kon ni lon
-    <a href="https://github.com/mgoszcz2/wate" title="GitHub"
+    <a use:count href="https://github.com/mgoszcz2/wate" title="GitHub"
       >{$sitelen("lipu GitHub", "lipu [_kulupu_ilo_toki_awen_pona]")}</a
     >.
   </p>

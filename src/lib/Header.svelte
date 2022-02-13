@@ -9,6 +9,7 @@
   import { _ } from "svelte-i18n";
   import { guessMode } from "$lib/settings";
   import { guessModeMedal } from "$lib/game";
+  import { recordEvent } from "$lib/countClick";
   import IconButton from "$lib/IconButton.svelte";
   import Help from "$lib/modals/Help.svelte";
   import Modal from "$lib/Modal.svelte";
@@ -37,7 +38,10 @@
     <span class="tagline">
       {$_("description")}
       <button
-        on:click={() => (olukinalaShown = true)}
+        on:click={() => {
+          olukinalaShown = true;
+          recordEvent("olukinala"); // Curious if somebody will find this.
+        }}
         class="olukinala"
         tabindex="-1"
       >
@@ -68,7 +72,12 @@
   width={530}
   bind:shown={helpShown}
   title={$_("modal.help")}
-  on:close={() => ($startupHelp = false)}
+  on:close={() => {
+    // Good to know since we don't record anything else until the game is
+    // finished: how many people actually do anything at all.
+    if ($startupHelp) recordEvent("tutorial");
+    $startupHelp = false;
+  }}
 >
   <Help />
 </Modal>
