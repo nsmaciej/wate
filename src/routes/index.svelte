@@ -86,7 +86,7 @@
 </script>
 
 <svelte:head>
-  <title>{$_("name")}</title>
+  <title>{$_("name-title")}</title>
 </svelte:head>
 
 <main style:--app-width="{englishWords ? 500 : 360}px">
