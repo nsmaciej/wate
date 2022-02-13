@@ -61,12 +61,12 @@ export function selectTokiPonaWord(
   day: number
 ): string {
   const predicate = modePredicate(tokiPonaMode);
-  const candidates = dictionary.filter((x) => predicate(x.length));
+  const candidates = dictionary.solutions.filter((x) => predicate(x.length));
   return candidates[day % candidates.length];
 }
 
 export function selectEnglishWord(day: number): string {
-  const candidates = dictionary.filter((x) => x.length === 5);
+  const candidates = dictionary.solutions.filter((x) => x.length === 5);
   return candidates[day % candidates.length];
 }
 

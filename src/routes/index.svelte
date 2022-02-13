@@ -32,6 +32,7 @@
   import Wordle from "$lib/Wordle.svelte";
   import Share from "$lib/modals/Share.svelte";
 
+  const acceptableWords = dictionary.solutions.concat(dictionary.words);
   const gameDay = currentGameDay();
   const lastDayPlayed = localStorageStore("day", gameDay);
   if (gameDay !== $lastDayPlayed) gameState.reset();
@@ -89,7 +90,7 @@
   <Header bind:showingModal={showingHeaderModal} />
   {#key solution}
     <Wordle
-      {dictionary}
+      dictionary={acceptableWords}
       {solution}
       on:complete={showShareModal}
       on:win={handleWin}
