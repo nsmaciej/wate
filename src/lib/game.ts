@@ -3,7 +3,6 @@ import type { Dayjs } from "dayjs";
 import { englishWords } from "$static/config.json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
-import dictionary from "$static/dictionary.json";
 
 dayjs.extend(utc);
 
@@ -40,34 +39,31 @@ function modePredicate(mode: TokiPonaMode): (x: number) => boolean {
   }
 }
 
-// Set to `Math.floor(Date.now() / 1000) - 24 * 60 * 60 + 10` for testing.
-const WATE_EPOCH_UTC = 1642464000;
-
-export function wateEpochForLocalTime(): Dayjs {
-  return dayjs.unix(WATE_EPOCH_UTC).local().startOf("day");
-}
+const WATE_EPOCH = dayjs("2022-01-18");
+const WORDLE_EPOCH = dayjs("2021-06-19");
+const GAME_EPOCH = englishWords ? WORDLE_EPOCH : WATE_EPOCH;
 
 export function nextDayTime(): Dayjs {
   // Note this works with daylight saving since dayjs keeps the hour the same.
-  return wateEpochForLocalTime().add(currentGameDay() + 1, "day");
+  return GAME_EPOCH.add(currentGameDay() + 1, "day");
 }
 
 export function currentGameDay(): number {
-  return dayjs().diff(wateEpochForLocalTime(), "day");
+  return dayjs().diff(GAME_EPOCH, "day");
 }
 
 export function selectTokiPonaWord(
+  words: string[],
   tokiPonaMode: TokiPonaMode,
   day: number
 ): string {
   const predicate = modePredicate(tokiPonaMode);
-  const candidates = dictionary.solutions.filter((x) => predicate(x.length));
+  const candidates = words.filter((x) => predicate(x.length));
   return candidates[day % candidates.length];
 }
 
-export function selectEnglishWord(day: number): string {
-  const candidates = dictionary.solutions.filter((x) => x.length === 5);
-  return candidates[day % candidates.length];
+export function selectEnglishWord(words: string[], day: number): string {
+  return words[day % words.length];
 }
 
 export function guessModeMedal(mode: GuessMode): string {

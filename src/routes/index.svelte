@@ -1,7 +1,10 @@
 <script context="module" lang="ts">
-  import { waitLocale } from "svelte-i18n";
+  import dictionaryTok from "$static/dictionary-tok.json";
+  import dictionaryEn from "$static/dictionary-en.json";
   import { englishWords } from "$static/config.json";
-  import dictionary from "$static/dictionary.json";
+  const dictionary = englishWords ? dictionaryEn : dictionaryTok;
+
+  import { waitLocale } from "svelte-i18n";
   import "./i18n";
   import "../app.css";
 
@@ -39,8 +42,8 @@
   $lastDayPlayed = gameDay;
 
   $: solution = englishWords
-    ? selectEnglishWord(gameDay)
-    : selectTokiPonaWord($tokiPonaMode, gameDay);
+    ? selectEnglishWord(dictionary.solutions, gameDay)
+    : selectTokiPonaWord(dictionary.solutions, $tokiPonaMode, gameDay);
   let shareModalShown = false;
   let showingHeaderModal = false;
 

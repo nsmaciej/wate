@@ -14,11 +14,15 @@
     if (event.repeat) return;
 
     const key = event.key;
+    const alphabet = englishWords
+      ? "abcdefghijklmnopqrstuvwxyz"
+      : "aeijklmnopstuw";
+
     if (key === "Backspace") {
       dispatch("backspace");
     } else if (key === "Enter") {
       dispatch("enter");
-    } else if (key.length === 1 && "aeijklmnopstuw".includes(key)) {
+    } else if (key.length === 1 && alphabet.includes(key)) {
       dispatch("press", key);
     } else {
       return;
