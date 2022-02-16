@@ -12,6 +12,7 @@
 
   function handleKeyDown(event: KeyboardEvent): void {
     if (event.repeat) return;
+    if (event.metaKey || event.ctrlKey) return;
 
     const key = event.key;
     const alphabet = wordy ? "abcdefghijklmnopqrstuvwxyz" : "aeijklmnopstuw";
