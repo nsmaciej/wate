@@ -34,7 +34,7 @@
   let scale = 1;
   function handleResize() {
     scale = Math.max(
-      0.7,
+      0.1,
       Math.min(
         1,
         (document.body.clientHeight - 300) / (tileSize * ROW_COUNT),
