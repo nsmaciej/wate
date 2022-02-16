@@ -11,7 +11,6 @@
   const qwerty = wordy;
 
   function handleKeyDown(event: KeyboardEvent): void {
-    if (event.repeat) return;
     if (event.metaKey || event.ctrlKey) return;
 
     const key = event.key;
@@ -19,12 +18,15 @@
 
     if (key === "Backspace") {
       dispatch("backspace");
-    } else if (key === "Enter") {
+    }
+
+    // Only check now, we want repeat backspace.
+    if (event.repeat) return;
+
+    if (key === "Enter") {
       dispatch("enter");
     } else if (key.length === 1 && alphabet.includes(key)) {
       dispatch("press", key);
-    } else {
-      return;
     }
   }
 </script>
