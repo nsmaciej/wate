@@ -29,8 +29,8 @@
   @media screen and (hover) and (min-width: 550px) {
     a {
       position: absolute;
-      bottom: 5px;
-      right: 5px;
+      bottom: 15px;
+      right: 15px;
       cursor: default;
       display: flex;
     }
