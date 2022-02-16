@@ -1,13 +1,26 @@
 name: Build and Deploy
+concurrency: ci-${{ github.ref }}
 
 on:
   push:
     branches: [main]
   workflow_dispatch:
+  repository_dispatch:
+    types: [build-and-deploy]
 
 jobs:
+  dispatch-wordy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Dispatch Wordy
+        uses: peter-evans/repository-dispatch@v1
+        repository: maciej-irl/wate
+        with:
+          token: ${{ secrets.WORDY_ACCESS_TOKEN }}
+          event-type: build-and-deploy
+
   build-and-deploy:
-    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
