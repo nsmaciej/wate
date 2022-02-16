@@ -1,7 +1,7 @@
 import type { SitelenNumberOptions } from "$lib/utils";
 import { derived, get, readable, writable } from "svelte/store";
 import { locale as effectiveLocale } from "svelte-i18n";
-import { englishWords } from "$static/config.json";
+import { wordy } from "$static/config.json";
 import { browser } from "$app/env";
 import { GuessMode, TokiPonaMode } from "$lib/game";
 import {
@@ -21,12 +21,12 @@ export const enum Theme {
 }
 
 // Main stores.
-export const locale = englishWords
+export const locale = wordy
   ? readable("en")
   : localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 export const tokiPonaMode = writable(TokiPonaMode.Four);
-export const guessMode = localStorageStore("mode", GuessMode.Normal);
+export const guessMode = localStorageStore("guessmode", GuessMode.Normal);
 export const colorBlind = localStorageStore("colorblind", false);
 export const gameState = localStorageStore("game", {
   [TokiPonaMode.Four]: [],

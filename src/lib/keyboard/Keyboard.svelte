@@ -2,21 +2,19 @@
   import type { State } from "$lib/game";
   import { _ } from "svelte-i18n";
   import { createEventDispatcher } from "svelte";
-  import { englishWords } from "$static/config.json";
+  import { wordy } from "$static/config.json";
   import Key from "$lib/keyboard/Key.svelte";
   import Row from "$lib/keyboard/Row.svelte";
 
   export let letterStates = new Map<string, State>();
   const dispatch = createEventDispatcher();
-  const qwerty = englishWords;
+  const qwerty = wordy;
 
   function handleKeyDown(event: KeyboardEvent): void {
     if (event.repeat) return;
 
     const key = event.key;
-    const alphabet = englishWords
-      ? "abcdefghijklmnopqrstuvwxyz"
-      : "aeijklmnopstuw";
+    const alphabet = wordy ? "abcdefghijklmnopqrstuvwxyz" : "aeijklmnopstuw";
 
     if (key === "Backspace") {
       dispatch("backspace");

@@ -1,12 +1,12 @@
 // Be careful with the imports here to keep this testable.
 import type { Dayjs } from "dayjs";
-import { englishWords } from "$static/config.json";
+import { wordy } from "$static/config.json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
 
 dayjs.extend(utc);
 
-export const ROW_COUNT = englishWords ? 6 : 5;
+export const ROW_COUNT = wordy ? 6 : 5;
 
 export const enum TokiPonaMode {
   Four = "four",
@@ -41,7 +41,7 @@ function modePredicate(mode: TokiPonaMode): (x: number) => boolean {
 
 const WATE_EPOCH = dayjs("2022-01-18");
 const WORDLE_EPOCH = dayjs("2021-06-19");
-const GAME_EPOCH = englishWords ? WORDLE_EPOCH : WATE_EPOCH;
+const GAME_EPOCH = wordy ? WORDLE_EPOCH : WATE_EPOCH;
 
 export function nextDayTime(): Dayjs {
   // Note this works with daylight saving since dayjs keeps the hour the same.
@@ -83,7 +83,7 @@ export function generateEmojiArt(
   }: { sitelen: boolean; discord: boolean; guessMode: GuessMode }
 ): string {
   const medals = guessModeMedal(guessMode);
-  const name = englishWords ? "Wordy" : sitelen ? "wate" : "Wate";
+  const name = wordy ? "Wordy" : sitelen ? "wate" : "Wate";
   let result = `${name}${medals} ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];

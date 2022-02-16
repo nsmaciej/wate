@@ -2,7 +2,7 @@
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import DemoRow from "$lib/modals/atoms/DemoRow.svelte";
   import count from "$lib/countClick";
-  import { englishWords } from "$static/config.json";
+  import { wordy } from "$static/config.json";
   import { SITELEN_PONA_LETTERS } from "$lib/utils";
   import { effectiveLocale, sitelenLocale } from "$lib/settings";
   import { State } from "$lib/game";
@@ -23,12 +23,12 @@
   $: latinDot = $sitelenLocale ? "" : ".";
 </script>
 
-{#if !englishWords}
+{#if !wordy}
   <LanguagePicker />
 {/if}
 
 {#if $effectiveLocale === "en"}
-  {#if englishWords}
+  {#if wordy}
     <p>
       Wordy is an open source clone of Wordle. Play the original
       <a use:count href="https://www.nytimes.com/games/wordle/index.html"
@@ -56,19 +56,19 @@
   <div class="demo">
     <div class="demo-grid">
       <DemoRow
-        letters={englishWords ? "times" : "toki"}
+        letters={wordy ? "times" : "toki"}
         state={State.Correct}
         statePosition={0}
       />
       <p>The letter <b>T</b> is in the word and in the correct spot.</p>
       <DemoRow
-        letters={englishWords ? "games" : "kasi"}
+        letters={wordy ? "games" : "kasi"}
         state={State.Present}
         statePosition={1}
       />
       <p>The letter <b>A</b> is in the word but in a different spot.</p>
       <DemoRow
-        letters={englishWords ? "razed" : "kule"}
+        letters={wordy ? "razed" : "kule"}
         state={State.Absent}
         statePosition={3}
       />

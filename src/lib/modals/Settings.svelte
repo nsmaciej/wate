@@ -8,13 +8,13 @@
   } from "$lib/settings";
   import { _ } from "svelte-i18n";
   import { GuessMode, TokiPonaMode } from "$lib/game";
-  import { englishWords } from "$static/config.json";
+  import { wordy } from "$static/config.json";
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
 </script>
 
-{#if !englishWords}
+{#if !wordy}
   <LanguagePicker />
 {/if}
 
@@ -27,7 +27,7 @@
   </SegmentedControl>
 </fieldset>
 
-{#if !englishWords}
+{#if !wordy}
   <fieldset>
     <legend>{$_("setting.name.mode")}</legend>
     <SegmentedControl bind:selected={$tokiPonaMode}>
