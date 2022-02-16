@@ -28,6 +28,7 @@
   }
   button.big {
     grid-column-end: span 3;
+    font-size: 0.8em;
   }
   button.offset {
     grid-column-start: 2;

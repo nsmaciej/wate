@@ -43,7 +43,7 @@
     );
   }
   // Used by Tile styling to shrink font size.
-  let kijetesantakalu = solution.length === 15;
+  let agressiveScaling = solution.length === 15;
   onMount(handleResize);
 
   // Game finished?
@@ -144,7 +144,6 @@
 
 <div
   class="wordle"
-  class:kijetesantakalu
   style:grid="auto-flow 1fr / repeat({solution.length}, 1fr)"
   style:width="{tileSize * solution.length * scale}px"
   style:height="{tileSize * ROW_COUNT * scale}px"
@@ -152,6 +151,7 @@
   {#each { length: ROW_COUNT } as _, i}
     <Row
       {solution}
+      {agressiveScaling}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
       letters={i === submittedRows.length ? currentRow : submittedRows[i] ?? ""}

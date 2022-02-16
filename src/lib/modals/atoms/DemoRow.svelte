@@ -27,9 +27,9 @@
 >
   {#each letters as letter, i}
     {#if i === statePosition}
-      <Tile {letter} state={revealed ? state : State.Unknown} {flipped} />
+      <Tile demo {letter} state={revealed ? state : State.Unknown} {flipped} />
     {:else}
-      <Tile {letter} />
+      <Tile demo {letter} />
     {/if}
   {/each}
 </div>
