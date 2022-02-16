@@ -16,7 +16,7 @@ jobs:
       - name: Dispatch Wordy
         uses: peter-evans/repository-dispatch@v1
         with:
-          repository: maciej-irl/wate
+          repository: maciej-irl/wordy
           event-type: build-and-deploy
           token: ${{ secrets.WORDY_ACCESS_TOKEN }}
 
