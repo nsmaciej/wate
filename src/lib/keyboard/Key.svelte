@@ -28,11 +28,16 @@
   }
   button.big {
     grid-column-end: span 3;
-    font-size: 0.8em;
+    font-size: 0.9em;
+  }
+  :global(.linja-pona) button.big {
+    font-size: 1em;
   }
   button.offset {
     grid-column-start: 2;
   }
+
+  /* States. */
   @media (hover) {
     /* Disable the hover on mobile devices. */
     button:hover {
@@ -45,6 +50,8 @@
   button:active {
     transform: translateY(1px);
   }
+
+  /* Colors. */
   :global(.linja-pona) button.big {
     color: var(--link-color);
   }

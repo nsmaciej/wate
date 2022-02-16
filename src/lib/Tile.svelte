@@ -42,7 +42,7 @@
 
   /* Font sizes. */
   div {
-    font-size: clamp(10px, 10vw, 35px);
+    font-size: clamp(10px, 8vw, 35px);
   }
   .demo {
     font-size: 28px;
@@ -52,7 +52,6 @@
     font-size: clamp(10px, 3vw, 35px);
   }
   :global(.linja-pona) div {
-    font-size: clamp(10px, 10vw, 35px);
     border-radius: 8px;
   }
 
