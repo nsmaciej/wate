@@ -15,10 +15,10 @@ jobs:
     steps:
       - name: Dispatch Wordy
         uses: peter-evans/repository-dispatch@v1
-        repository: maciej-irl/wate
         with:
-          token: ${{ secrets.WORDY_ACCESS_TOKEN }}
+          repository: maciej-irl/wate
           event-type: build-and-deploy
+          token: ${{ secrets.WORDY_ACCESS_TOKEN }}
 
   build-and-deploy:
     runs-on: ubuntu-latest
