@@ -5,7 +5,6 @@
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#2364dd" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    %svelte.head%
     <style>
       @font-face {
         font-family: linja-pona;
@@ -36,17 +35,23 @@
         font-display: swap;
       }
     </style>
-  </head>
-  <body>
     <script>
       window.goatcounter = {
         path: function (p) {
           return location.host + p;
         },
       };
+      // Don't wait for the app and css the load to request essential fonts.
+      document.fonts.load("16px Nunito Sans");
       if (localStorage.getItem("locale") === '"tok-x-sp"') {
-        document.fonts.load("30px linja-pona");
+        document.fonts.load("29px linja-pona");
       }
+    </script>
+    %svelte.head%
+  </head>
+  <body>
+    <script>
+      // Prevent flash of white.
       const theme = localStorage.getItem("theme");
       if (
         theme === '"dark"' ||
