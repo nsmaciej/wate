@@ -56,19 +56,19 @@
   <div class="demo">
     <div class="demo-grid">
       <DemoRow
-        letters={wordy ? "times" : "toki"}
+        letters={wordy ? "today" : "toki"}
         state={State.Correct}
         statePosition={0}
       />
       <p>The letter <b>T</b> is in the word and in the correct spot.</p>
       <DemoRow
-        letters={wordy ? "games" : "kasi"}
+        letters={wordy ? "favor" : "kasi"}
         state={State.Present}
         statePosition={1}
       />
       <p>The letter <b>A</b> is in the word but in a different spot.</p>
       <DemoRow
-        letters={wordy ? "razed" : "kule"}
+        letters={wordy ? "fewer" : "kule"}
         state={State.Absent}
         statePosition={3}
       />
@@ -106,14 +106,14 @@
           sitelen <b>{$sitelen("T", `[_${SITELEN_PONA_LETTERS["t"]}]`)}</b> li
           lon{latinDot}
         </p>
-        <DemoRow letters="pona" state={State.Present} statePosition={1} />
+        <DemoRow letters="kasi" state={State.Present} statePosition={1} />
         <p>
-          sitelen <b>{$sitelen("O", `[_${SITELEN_PONA_LETTERS["o"]}]`)}</b> li
+          sitelen <b>{$sitelen("A", `[_${SITELEN_PONA_LETTERS["a"]}]`)}</b> li
           lon. taso ni li lon {$combine("poka ante")}{latinDot}
         </p>
-        <DemoRow letters="awen" state={State.Absent} statePosition={3} />
+        <DemoRow letters="kule" state={State.Absent} statePosition={3} />
         <p>
-          sitelen <b>{$sitelen("N", `[_${SITELEN_PONA_LETTERS["n"]}]`)}</b> li
+          sitelen <b>{$sitelen("E", `[_${SITELEN_PONA_LETTERS["e"]}]`)}</b> li
           lon ala{latinDot}
         </p>
       </div>
