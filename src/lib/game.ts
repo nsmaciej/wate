@@ -40,8 +40,8 @@ function modePredicate(mode: TokiPonaMode): (x: number) => boolean {
 }
 
 const WATE_EPOCH = dayjs("2022-01-18");
-const WORDLE_EPOCH = dayjs("2021-06-19");
-const GAME_EPOCH = wordy ? WORDLE_EPOCH : WATE_EPOCH;
+const WORDY_EPOCH = dayjs("2022-02-17");
+const GAME_EPOCH = wordy ? WORDY_EPOCH : WATE_EPOCH;
 
 export function nextDayTime(): Dayjs {
   // Note this works with daylight saving since dayjs keeps the hour the same.
