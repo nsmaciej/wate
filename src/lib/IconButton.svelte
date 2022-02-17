@@ -11,6 +11,7 @@
 </script>
 
 <script lang="ts">
+  import { fade } from "svelte/transition";
   import { sitelenLocale } from "$lib/settings";
 
   export let icon: keyof typeof icons = "help";
@@ -20,7 +21,7 @@
   export let topRight = false;
 </script>
 
-<button on:click class:topRight {title}>
+<button on:click class:topRight {title} transition:fade={{ duration: 100 }}>
   {#if $sitelenLocale}
     <div class="sp">{sitelen}</div>
   {:else}
