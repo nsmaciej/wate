@@ -10,7 +10,15 @@
 
   import { _ } from "svelte-i18n";
   import { createEventDispatcher, onMount } from "svelte";
-  import { ROW_COUNT, GuessMode, State, findLetterStates } from "$lib/game";
+  import {
+    ROW_COUNT,
+    GuessMode,
+    State,
+    findLetterStates,
+    gameFinished,
+    gameWon,
+    gameLost,
+  } from "$lib/game";
   import { delay } from "$lib/utils";
   import { showToast } from "$lib/Toasts.svelte";
   import { guessMode } from "$lib/settings";
@@ -48,15 +56,13 @@
 
   // Game finished?
   let gameFinishedOnLoad = false;
-  $: gameWon = submittedRows[submittedRows.length - 1] === solution;
-  $: gameLost = submittedRows.length === ROW_COUNT;
-  $: gameFinished = gameWon || gameLost;
+  $: gameComplete = gameFinished(solution, submittedRows);
 
   // Gradual row reveal.
   let revealedRows = 0;
   let hiddenRows = submittedRows.length;
   onMount(async () => {
-    if (gameFinished) {
+    if (gameComplete) {
       gameFinishedOnLoad = true;
     }
     await delay(50); // Give everything a second to breathe.
@@ -73,28 +79,28 @@
 
     if (gameFinishedOnLoad) {
       dispatch("complete");
-    } else if (gameWon) {
+    } else if (gameWon(solution, submittedRows)) {
       dispatch("win");
-    } else if (gameLost) {
+    } else if (gameLost(solution, submittedRows)) {
       dispatch("lost");
     }
   }
 
   // Keyboard handling.
   function handlePress(event: CustomEvent<string>): void {
-    if (!gameFinished && currentRow.length < solution.length) {
+    if (!gameComplete && currentRow.length < solution.length) {
       currentRow += event.detail;
     }
   }
 
   function handleBackspace(): void {
-    if (!gameFinished) {
+    if (!gameComplete) {
       currentRow = currentRow.slice(0, -1);
     }
   }
 
   async function handleEnter(): Promise<void> {
-    if (gameFinished) return;
+    if (gameComplete) return;
 
     // Handy.
     if (currentRow === "awkt") {

@@ -85,7 +85,7 @@ export function generateEmojiArt(
   { name, discord, guessMode }: EmojiArtConfig
 ): string {
   const medals = guessModeMedal(guessMode);
-  const count = rows[rows.length - 1] !== solution ? "X" : rows.length;
+  const count = gameLost(solution, rows) ? "X" : rows.length;
   let result = `${name}${medals} ${gameDay + 1} ${count}/${ROW_COUNT}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
@@ -165,4 +165,16 @@ export function findRowStates(solution: string, row: string): State[] {
     }
   }
   return states;
+}
+
+export function gameWon(solution: string, rows: string[]): boolean {
+  return rows[rows.length - 1] === solution;
+}
+
+export function gameLost(solution: string, rows: string[]): boolean {
+  return rows[rows.length - 1] !== solution && rows.length >= ROW_COUNT;
+}
+
+export function gameFinished(solution: string, rows: string[]): boolean {
+  return rows[rows.length - 1] === solution || rows.length >= ROW_COUNT;
 }

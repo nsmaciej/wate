@@ -105,14 +105,18 @@ describe("generateEmojiArt", () => {
 
   test("shows X after a lost game", () => {
     expect(
-      generateEmojiArt(0, "pona", ["jaki"], {
+      generateEmojiArt(0, "W", ["_", "_", "_", "_", "_"], {
         discord: false,
         guessMode: GuessMode.Normal,
         name: "Wate",
       })
     ).toMatchInlineSnapshot(`
       "Wate 1 X/5
-      ⬛🟨⬛⬛"
+      ⬛
+      ⬛
+      ⬛
+      ⬛
+      ⬛"
     `);
   });
 

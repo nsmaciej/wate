@@ -50,6 +50,7 @@
     </span>
   </div>
   <div class="buttons">
+    <slot />
     <IconButton
       title={$_("modal.settings")}
       icon="settings"
@@ -100,6 +101,7 @@
   .tagline {
     color: var(--accent-color);
     display: block;
+    font-size: clamp(8px, 3.8vw, var(--font-size));
   }
   :global(.linja-pona) .tagline {
     font-size: 16px;

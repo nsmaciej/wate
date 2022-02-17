@@ -8,7 +8,7 @@
   } from "$lib/settings";
   import { wordy } from "$static/config.json";
   import { showToast } from "$lib/Toasts.svelte";
-  import { generateEmojiArt } from "$lib/game";
+  import { gameWon, generateEmojiArt } from "$lib/game";
   import { recordEvent } from "$lib/countClick";
   import Button from "$lib/Button.svelte";
   import Countdown from "$lib/modals/atoms/Countdown.svelte";
@@ -16,8 +16,6 @@
 
   export let gameDay = 0;
   export let solution = "";
-  $: currentState = $gameState[$tokiPonaMode];
-  $: won = currentState[currentState.length - 1] === solution;
 
   async function share(discord: boolean) {
     recordEvent("share", discord ? "discord" : "classic");
@@ -58,7 +56,9 @@
   <div style:grid-area="stats" style:width="100%">
     <GameDistribution
       mode={$tokiPonaMode}
-      highlight={won ? currentState.length - 1 : -1}
+      highlight={gameWon(solution, $gameState[$tokiPonaMode])
+        ? $gameState[$tokiPonaMode].length - 1
+        : -1}
     />
   </div>
   <div style:grid-area="count">
@@ -83,7 +83,7 @@
       "stats stats"
       "count count" / auto 1fr;
     grid-gap: 30px 8px;
-    align-items: baseline;
+    align-items: center;
     justify-items: start;
   }
 </style>

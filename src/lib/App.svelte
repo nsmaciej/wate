@@ -28,6 +28,7 @@
   import Wordle from "$lib/Wordle.svelte";
   import Share from "$lib/modals/Share.svelte";
   import Backdoor from "$lib/Backdoor.svelte";
+  import IconButton from "./IconButton.svelte";
 
   const acceptableWords = dictionary.solutions.concat(dictionary.words);
   const gameDay = currentGameDay();
@@ -40,6 +41,8 @@
     : selectTokiPonaWord(dictionary.solutions, $tokiPonaMode, gameDay);
   let shareModalShown = false;
   let showingHeaderModal = false;
+  let showShareButton = false;
+  $: $tokiPonaMode, (showShareButton = false);
 
   function recordGameFinish(key: number) {
     const old = $finishedStats[$tokiPonaMode][key] ?? 0;
@@ -76,11 +79,21 @@
     if (!showingHeaderModal) {
       shareModalShown = true;
     }
+    showShareButton = true;
   }
 </script>
 
 <main style:--app-width="{wordy ? 500 : 360}px">
-  <Header bind:showingModal={showingHeaderModal} />
+  <Header bind:showingModal={showingHeaderModal}>
+    {#if showShareButton}
+      <IconButton
+        title={$_("modal.share")}
+        icon="share"
+        sitelen="pana"
+        on:click={() => (shareModalShown = true)}
+      />
+    {/if}
+  </Header>
   {#key solution}
     <Wordle
       dictionary={acceptableWords}
