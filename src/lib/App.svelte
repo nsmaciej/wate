@@ -78,8 +78,10 @@
   function showShareModal() {
     if (!showingHeaderModal) {
       shareModalShown = true;
+    } else {
+      // Since closing the modal won't trigger it.
+      showShareButton = true;
     }
-    showShareButton = true;
   }
 </script>
 
@@ -105,7 +107,11 @@
     />
   {/key}
   <Toasts />
-  <Modal title={$_("modal.share")} bind:shown={shareModalShown}>
+  <Modal
+    title={$_("modal.share")}
+    bind:shown={shareModalShown}
+    on:close={() => (showShareButton = true)}
+  >
     <Share {gameDay} {solution} />
   </Modal>
   <Backdoor />

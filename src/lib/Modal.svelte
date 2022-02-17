@@ -1,4 +1,5 @@
 <script lang="ts">
+  // Dispatches a "close" event when closed.
   import { fly, fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { reduceMotion } from "$lib/settings";
