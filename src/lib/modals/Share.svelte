@@ -16,6 +16,8 @@
 
   export let gameDay = 0;
   export let solution = "";
+  $: currentState = $gameState[$tokiPonaMode];
+  $: won = currentState[currentState.length - 1] === solution;
 
   async function share(discord: boolean) {
     recordEvent("share", discord ? "discord" : "classic");
@@ -54,7 +56,10 @@
     >
   </div>
   <div style:grid-area="stats" style:width="100%">
-    <GameDistribution mode={$tokiPonaMode} />
+    <GameDistribution
+      mode={$tokiPonaMode}
+      highlight={won ? currentState.length - 1 : -1}
+    />
   </div>
   <div style:grid-area="count">
     <Countdown />

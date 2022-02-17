@@ -1,14 +1,10 @@
 <script lang="ts">
   import { _ } from "svelte-i18n";
   import { ROW_COUNT, TokiPonaMode } from "$lib/game";
-  import {
-    finishedStats,
-    sitelenLocale,
-    formatNumber,
-    gameState,
-  } from "$lib/settings";
+  import { finishedStats, sitelenLocale, formatNumber } from "$lib/settings";
 
   export let mode: TokiPonaMode = TokiPonaMode.Four;
+  export let highlight = -1;
   $: [plays, scaleX] = calculateStats();
 
   function calculateStats(): [plays: number, barScale: number] {
@@ -32,7 +28,7 @@
       <span class="label">{$formatNumber(1 + i, { nanpa: false })}</span>
       <div
         class="bar"
-        class:current={$gameState[mode].length - 1 === i}
+        class:current={highlight === i}
         class:round={$sitelenLocale}
         style:width={count === 0 ? "fit-content" : (100 * count) / scaleX + "%"}
       >
