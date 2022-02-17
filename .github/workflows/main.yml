@@ -4,7 +4,9 @@ concurrency: ci-${{ github.ref }}
 on:
   push:
     branches: [main]
-    paths: ["!**/*.md"]
+    paths:
+      - "**"
+      - "!**.md"
   workflow_dispatch:
   repository_dispatch:
     types: [build-and-deploy]
