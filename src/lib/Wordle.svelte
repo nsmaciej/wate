@@ -38,20 +38,13 @@
   // max-width/height, but it seems a bit messy and Safari definitely doesn't
   // like it. Note this can't be done in css calc() because we can't divide
   // anything by a non-unit less number (which 70px is).
-  const tileSize = 70;
-  let scale = 1;
+  const baseTile = 70;
+  let tileSize = baseTile;
   function handleResize() {
-    scale = Math.max(
-      0.1,
-      Math.min(
-        1,
-        (document.body.clientHeight - 300) / (tileSize * ROW_COUNT),
-        (document.body.clientWidth - 20) / (tileSize * solution.length)
-      )
-    );
+    const h = (document.body.clientHeight - 300) / (baseTile * ROW_COUNT);
+    const w = (document.body.clientWidth - 40) / (baseTile * solution.length);
+    tileSize = baseTile * Math.max(0.1, Math.min(1, w, h));
   }
-  // Used by Tile styling to shrink font size.
-  let agressiveScaling = solution.length === 15;
   onMount(handleResize);
 
   // Game finished?
@@ -150,14 +143,12 @@
 
 <div
   class="wordle"
-  style:grid="auto-flow 1fr / repeat({solution.length}, 1fr)"
-  style:width="{tileSize * solution.length * scale}px"
-  style:height="{tileSize * ROW_COUNT * scale}px"
+  style:--tile-size="{tileSize}px"
+  style:grid="auto-flow {tileSize}px / repeat({solution.length}, {tileSize}px)"
 >
   {#each { length: ROW_COUNT } as _, i}
     <Row
       {solution}
-      {agressiveScaling}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
       letters={i === submittedRows.length ? currentRow : submittedRows[i] ?? ""}

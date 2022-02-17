@@ -25,7 +25,6 @@
   export let hideBeforeReveal = false;
   export let revealed = false;
   // Used for kijetesantakalu mode.
-  export let agressiveScaling = false;
 
   const dispatch = createEventDispatcher();
 
@@ -40,7 +39,6 @@
 
 {#each letters.padEnd(solution.length) as letter, i}
   <Tile
-    {agressiveScaling}
     letter={hideBeforeReveal && reveledStates[i] === State.Unknown
       ? " "
       : letter}

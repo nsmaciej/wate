@@ -23,13 +23,14 @@
 
 <div
   class="row"
+  style:--tile-size="{size}px"
   style:grid="auto-flow {size}px / repeat({letters.length}, {size}px)"
 >
   {#each letters as letter, i}
     {#if i === statePosition}
-      <Tile demo {letter} state={revealed ? state : State.Unknown} {flipped} />
+      <Tile {letter} state={revealed ? state : State.Unknown} {flipped} />
     {:else}
-      <Tile demo {letter} />
+      <Tile {letter} />
     {/if}
   {/each}
 </div>

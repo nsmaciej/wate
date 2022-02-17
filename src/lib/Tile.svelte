@@ -1,16 +1,15 @@
 <script lang="ts">
+  // This expects a --tile-size CSS variable to be present.
   import { State } from "$lib/game";
   import { formatLetter } from "$lib/settings";
 
   export let letter = " ";
   export let flipped = false;
-  export let demo = false;
-  export let agressiveScaling = false;
   export let state: State = State.Unknown;
   $: label = $formatLetter(letter);
 </script>
 
-<div class={state} class:flipped class:demo class:agressiveScaling>
+<div class={state} class:flipped>
   {label}
 </div>
 
@@ -42,14 +41,7 @@
 
   /* Font sizes. */
   div {
-    font-size: clamp(10px, 8vw, 35px);
-  }
-  .demo {
-    font-size: 28px;
-    font-weight: 700;
-  }
-  .agressiveScaling {
-    font-size: clamp(10px, 3vw, 35px);
+    font-size: calc(var(--tile-size) * 0.5);
   }
   :global(.linja-pona) div {
     border-radius: 8px;
