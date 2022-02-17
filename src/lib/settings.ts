@@ -25,6 +25,7 @@ export const locale = wordy
   ? readable("en")
   : localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
+// Note this is still present in Wordy mode but is ignored.
 export const tokiPonaMode = writable(TokiPonaMode.Four);
 export const guessMode = localStorageStore("guessmode", GuessMode.Normal);
 export const colorBlind = localStorageStore("colorblind", false);
@@ -39,7 +40,7 @@ export function gatherSettings(): string[] {
     get(effectiveLocale),
     get(theme),
     get(tokiPonaMode),
-    "gm" + get(guessMode),
+    get(guessMode),
     get(colorBlind) ? "cb" : "ns",
   ];
 }

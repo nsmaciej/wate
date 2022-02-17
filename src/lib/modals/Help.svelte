@@ -30,7 +30,7 @@
 {#if $effectiveLocale === "en"}
   {#if wordy}
     <p>
-      Wordy is an open source clone of Wordle. Play the original
+      Wordy is an open source game inspired by Wordle. Play the original
       <a use:count href="https://www.nytimes.com/games/wordle/index.html"
         >here</a
       >. You can also play a version in the constructed language Toki Pona
@@ -38,10 +38,12 @@
     </p>
   {:else}
     <p>
-      Wate is an open source clone of Wordle in Toki Pona. Play the original
+      Wate is an open source Toki Pona game inspired by Wordle. Play the
+      original
       <a use:count href="https://www.nytimes.com/games/wordle/index.html"
         >here</a
-      >.
+      >. You can also play a version with an English word list
+      <a use:count href="https://wordy.maciej.ie/">here</a>.
     </p>
   {/if}
   <p>
@@ -83,21 +85,21 @@
       use:count
       href="https://www.nytimes.com/games/wordle/index.html"
       title="Wordle">o musi e musi {$sitelen("Wordle", "nanpa wan")}</a
-    >.
-    <!-- todo link inli version -->
+    >. musi ni li lon toki {$sitelen("Inli", "[_ilo_nasa_linja_ijo]")} kin.
+    <a href="https://wordy.maciej.ie/">o musi e ona</a>.
   </p>
   <p>
     lipu ni tan
     <a use:count href="https://maciej.ie" title="Maciej Goszczycki"
-      >{$sitelen("jan Masije", "jan [_mun_ante_sona_ilo_jan_esun]")}</a
-    >. o lukin e ilo kon ni lon
+      >jan {$sitelen("Masije", "[_mun_ante_sona_ilo_jan_esun]")}</a
+    >. o lukin e ilo kon ona lon
     <a use:count href="https://github.com/mgoszcz2/wate" title="GitHub"
-      >{$sitelen("lipu GitHub", "lipu [_kulupu_ilo_toki_awen_pona]")}</a
+      >lipu {$sitelen("GitHub", "[_kulupu_ilo_toki_awen_pona]")}</a
     >.
   </p>
   <h2>nasin musi li seme?</h2>
-  sina wile sona e nimi. tenpo luka la sina ken pana e nimi. pana la ni li kama kule
-  e ni:
+  sina wile sona e nimi. tenpo luka la sina ken pana e nimi. pana la ona li kama
+  kule e ni:
   <div class="demo">
     {#key $effectiveLocale}
       <div class="demo-grid">
@@ -109,7 +111,7 @@
         <DemoRow letters="kasi" state={State.Present} statePosition={1} />
         <p>
           sitelen <b>{$sitelen("A", `[_${SITELEN_PONA_LETTERS["a"]}]`)}</b> li
-          lon. taso ni li lon {$combine("poka ante")}{latinDot}
+          lon. taso ona lon {$combine("poki ante")}{latinDot}
         </p>
         <DemoRow letters="kule" state={State.Absent} statePosition={3} />
         <p>
