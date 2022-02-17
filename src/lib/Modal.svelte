@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { fly } from "svelte/transition";
+  import { fly, fade } from "svelte/transition";
   import { _ } from "svelte-i18n";
   import { reduceMotion } from "$lib/settings";
   import { createEventDispatcher } from "svelte";
@@ -9,8 +9,8 @@
   export let title = "Modal";
   export let center = false;
   export let width = 450;
-  let modalContainer: HTMLDivElement;
-  let modalScrollPx = 0;
+  let scrollContainer: HTMLDivElement;
+  let contentScrollPx = 0;
   const dispatch = createEventDispatcher();
 
   function close() {
@@ -27,16 +27,19 @@
 />
 
 {#if shown}
-  <div class="overlay" aria-modal="true" on:click={close}>
+  <div
+    class="overlay"
+    aria-modal="true"
+    on:click={close}
+    transition:fade={{ duration: 200 }}
+  >
     <div
       class="modal"
-      bind:this={modalContainer}
-      on:scroll={() => (modalScrollPx = modalContainer.scrollTop)}
-      on:click={(e) => e.stopPropagation()}
       style:width="min(95vw, {width}px)"
       transition:fly={{ y: 50, duration: $reduceMotion ? 0 : 200 }}
+      on:click={(e) => e.stopPropagation()}
     >
-      <div class="header" class:scrollShadow={modalScrollPx > 0}>
+      <div class="header" class:scrollShadow={contentScrollPx > 0}>
         <h2>{title}</h2>
         <div class="close">
           <IconButton
@@ -48,7 +51,13 @@
           />
         </div>
       </div>
-      <div class="contents" class:center>
+
+      <div
+        class="contents"
+        class:center
+        bind:this={scrollContainer}
+        on:scroll={() => (contentScrollPx = scrollContainer.scrollTop)}
+      >
         <slot />
       </div>
     </div>
@@ -62,13 +71,25 @@
     --modal-margin: 25px;
   }
 
+  .modal {
+    background: var(--page-background);
+    border-radius: var(--modal-radius);
+    border: 1px solid var(--modal-border);
+    margin: 10px;
+    max-height: 85vh;
+    /* For the close button. */
+    position: relative;
+    box-shadow: var(--modal-shadow);
+    display: flex;
+    flex-direction: column;
+    /* Important to clip the scrolling box shadow. */
+    overflow: hidden;
+  }
+
   .header {
     padding: 20px var(--modal-margin) 0;
     height: calc(var(--modal-margin) + max(2.2em, var(--tap-target-size)));
-    position: sticky;
-    top: 0;
     background: var(--page-background);
-    z-index: 10;
     transition: box-shadow 300ms;
     /* Safari doesn't seem to clip this properly otherwise. */
     border-radius: var(--modal-radius) var(--modal-radius) 0 0;
@@ -81,11 +102,12 @@
   }
 
   .header.scrollShadow {
-    box-shadow: 0 5px 5px var(--modal-header-shadow);
+    box-shadow: var(--modal-header-shadow);
   }
 
   .contents {
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     gap: 1em;
     padding: 0 var(--modal-margin) var(--modal-margin);
@@ -110,17 +132,5 @@
     /* Same but Safari seems to discard z-indexes. Lift the modal over the animation. */
     /* https://bugs.webkit.org/show_bug.cgi?id=61824 */
     transform: translateZ(200px);
-  }
-
-  .modal {
-    background: var(--page-background);
-    border-radius: var(--modal-radius);
-    border: 1px solid var(--modal-border);
-    margin: 10px;
-    max-height: 85vh;
-    /* For the close button. */
-    position: relative;
-    overflow-y: auto;
-    box-shadow: 0 4px 25px 0 #00000033;
   }
 </style>
