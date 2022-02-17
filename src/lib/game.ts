@@ -84,7 +84,8 @@ export function generateEmojiArt(
 ): string {
   const medals = guessModeMedal(guessMode);
   const name = wordy ? "Wordy" : sitelen ? "wate" : "Wate";
-  let result = `${name}${medals} ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
+  // Just like the real Wordle we use the index directly. The first day is day 0.
+  let result = `${name}${medals} ${gameDay} ${rows.length}/${ROW_COUNT}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
     for (const x of findRowStates(solution, row)) {
