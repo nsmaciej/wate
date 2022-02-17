@@ -17,7 +17,6 @@ English words, using the [Wordy][wordy] mode.
 [wate]: https://wate.maciej.ie
 [wordy]: https://wordy.maciej.ie
 
-
 ## Features
 
 - Clean interface
@@ -32,7 +31,6 @@ English words, using the [Wordy][wordy] mode.
 - Kijetesantakalu mode - Uses 15 letter words for solutions
 - Easter eggs
 
-
 ## Configuration
 
 All configuration lives in `static/config.json`.
@@ -45,7 +43,6 @@ code:
 }
 ```
 
-
 ## Running
 
 Install the dependencies with `npm install`, then start the development server
@@ -54,7 +51,6 @@ with:
 ```sh
 npm run dev
 ```
-
 
 ## Building
 
@@ -66,14 +62,13 @@ npm run build
 
 You can then preview the result using `npm run preview`.
 
-
 ## Translation
 
 With exception of the `src/lib/modals/Help.svelte` code which is too complex
 to easily internationalize, all translation strings can be found in
 `src/locales`.
 
-* `en.json` - Wate - English
-* `tok.json` - Wate - Toki Pona
-* `tok-x-sp.json` - Wate - Sitelen Pona
-* `en-wordy.json` - Wordy - English
+- `en.json` - Wate - English
+- `tok.json` - Wate - Toki Pona
+- `tok-x-sp.json` - Wate - Sitelen Pona
+- `en-wordy.json` - Wordy - English
