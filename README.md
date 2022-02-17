@@ -6,7 +6,7 @@ English Wordle avaliable in English.
 
 # Wate & Wordy
 
-[![Build and Deploy](https://github.com/maciej-irl/wate/actions/workflows/main.yml/badge.svg)](https://github.com/maciej-irl/wate/actions/workflows/main.yml)
+[![Build and Deploy](https://github.com/maciej-irl/wate/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/maciej-irl/wate/actions/workflows/build-and-deploy.yml)
 
 [Wate][wate] is an open source game inspired by [Wordle][wordle]. Wate has been
 written with Toki Pona words in mind, with the interface avaliable in English,
