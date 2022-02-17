@@ -41,7 +41,9 @@ The `wordy` property, enables or disables the Wordy version of the
 code:
 
 ```json
-{"wordy": true}
+{
+    "wordy": true
+}
 ```
 
 ## Running
