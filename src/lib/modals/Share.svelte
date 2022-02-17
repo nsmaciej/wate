@@ -6,6 +6,7 @@
     tokiPonaMode,
     guessMode,
   } from "$lib/settings";
+  import { wordy } from "$static/config.json";
   import { showToast } from "$lib/Toasts.svelte";
   import { generateEmojiArt } from "$lib/game";
   import { recordEvent } from "$lib/countClick";
@@ -19,7 +20,7 @@
   async function share(discord: boolean) {
     recordEvent("share", discord ? "discord" : "classic");
     const art = generateEmojiArt(gameDay, solution, $gameState[$tokiPonaMode], {
-      sitelen: $sitelenLocale,
+      name: wordy ? "Wordy" : $sitelenLocale ? "wate" : "Wate",
       guessMode: $guessMode,
       discord,
     });

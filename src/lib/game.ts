@@ -72,19 +72,21 @@ export function guessModeMedal(mode: GuessMode): string {
   return "";
 }
 
+export interface EmojiArtConfig {
+  discord: boolean;
+  guessMode: GuessMode;
+  name: string;
+}
+
 export function generateEmojiArt(
   gameDay: number,
   solution: string,
   rows: string[],
-  {
-    sitelen,
-    discord,
-    guessMode,
-  }: { sitelen: boolean; discord: boolean; guessMode: GuessMode }
+  { name, discord, guessMode }: EmojiArtConfig
 ): string {
   const medals = guessModeMedal(guessMode);
-  const name = wordy ? "Wordy" : sitelen ? "wate" : "Wate";
-  let result = `${name}${medals} ${gameDay + 1} ${rows.length}/${ROW_COUNT}\n`;
+  const count = rows[rows.length - 1] !== solution ? "X" : rows.length;
+  let result = `${name}${medals} ${gameDay + 1} ${count}/${ROW_COUNT}\n`;
   for (let i = 0; i < rows.length; ++i) {
     const row = rows[i];
     for (const x of findRowStates(solution, row)) {

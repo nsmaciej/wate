@@ -1,8 +1,10 @@
 import {
+  GuessMode,
   State,
   findRowStates,
   findLetterStates,
   validHardModeGuess,
+  generateEmojiArt,
 } from "./game";
 
 function states(fmt: string): State[] {
@@ -58,7 +60,7 @@ describe("findLetterStates", () => {
   });
 });
 
-describe("validHardModeGuess", () => {
+describe.skip("validHardModeGuess", () => {
   test("allows multiple unlucky guesses", () => {
     expect(validHardModeGuess("wxyz", ["abcd"], "efgh")).toBeUndefined();
   });
@@ -84,4 +86,89 @@ describe("validHardModeGuess", () => {
   });
 
   // test("work with duplicate letters", ());
+});
+
+describe("generateEmojiArt", () => {
+  test("name changes", () => {
+    const base = { discord: false, guessMode: GuessMode.Normal };
+    expect(generateEmojiArt(0, "_", ["_"], { ...base, name: "Wate" }))
+      .toMatchInlineSnapshot(`
+      "Wate 1 1/5
+      🟩"
+    `);
+    expect(generateEmojiArt(0, "_", ["_"], { ...base, name: "Wordy" }))
+      .toMatchInlineSnapshot(`
+      "Wordy 1 1/5
+      🟩"
+    `);
+  });
+
+  test("shows X after a lost game", () => {
+    expect(
+      generateEmojiArt(0, "pona", ["jaki"], {
+        discord: false,
+        guessMode: GuessMode.Normal,
+        name: "Wate",
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate 1 X/5
+      ⬛🟨⬛⬛"
+    `);
+  });
+
+  test("works with close shave victories", () => {
+    expect(
+      generateEmojiArt(0, "W", ["_", "_", "_", "_", "W"], {
+        discord: false,
+        guessMode: GuessMode.Normal,
+        name: "Wate",
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate 1 5/5
+      ⬛
+      ⬛
+      ⬛
+      ⬛
+      🟩"
+    `);
+  });
+
+  test("shows medals", () => {
+    const base = { discord: false, name: "Wate" };
+    expect(
+      generateEmojiArt(0, "pona", ["pona"], {
+        ...base,
+        guessMode: GuessMode.Easy,
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate° 1 1/5
+      🟩🟩🟩🟩"
+    `);
+    expect(
+      generateEmojiArt(0, "pona", ["pona"], {
+        ...base,
+        guessMode: GuessMode.Hard,
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate* 1 1/5
+      🟩🟩🟩🟩"
+    `);
+  });
+
+  test("includes Discord spoilers", () => {
+    expect(
+      generateEmojiArt(0, "xyz", ["abc", "def", "ghi", "jkl", "xyz"], {
+        discord: true,
+        guessMode: GuessMode.Normal,
+        name: "Wate",
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate 1 5/5
+      ⬛⬛⬛ ||\`ABC\`||
+      ⬛⬛⬛ ||\`DEF\`||
+      ⬛⬛⬛ ||\`GHI\`||
+      ⬛⬛⬛ ||\`JKL\`||
+      🟩🟩🟩"
+    `);
+  });
 });
