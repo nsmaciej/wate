@@ -1,38 +1,37 @@
-# Wate
-
-**[<img src="static/icon-tok.png" width="18" align="center"> Play Wate][1]**  
+**[<img src="static/icon-tok.png" width="18" align="center"> Play Wate][wate]**  
 Toki Pona Wordle avaliable in English, Toki Pona, and Sitelen Pona.
-<br/>
-<br/>
-**[<img src="static/icon-en.png" width="18" align="center"> Play Wordy][2]**  
+
+**[<img src="static/icon-en.png" width="18" align="center"> Play Wordy][wordle]**  
 English Wordle avaliable in English.
 
----
+# Wate & Wordy
 
 [![Build and Deploy](https://github.com/maciej-irl/wate/actions/workflows/main.yml/badge.svg)](https://github.com/maciej-irl/wate/actions/workflows/main.yml)
 
-[Wate][1] is an open source game inspired by
-[Wordle](https://www.nytimes.com/games/wordle/index.html).
-Wate has been written with Toki Pona words in mind, with the interface avaliable
-in English, Toki Pona, and the Sitelen Pona script. However it can also be
-configured to use English words, using the [Wordy][2] mode.
+[Wate][wate] is an open source game inspired by [Wordle][wordle]. Wate has been
+written with Toki Pona words in mind, with the interface avaliable in English,
+Toki Pona, and the Sitelen Pona script. However it can also be configured to use
+English words, using the [Wordy][wordy] mode.
 
-[1]: https://wate.maciej.ie
-[2]: https://wordy.maciej.ie
+[wordle]: https://wate.maciej.ie
+[wate]: https://wate.maciej.ie
+[wordy]: https://wordy.maciej.ie
+
 
 ## Features
 
-- Clean interfact
+- Clean interface
 - Sharing with Discord spoiler tags
 - No cookies, no personally identifiable information
 - Support for English, Toki Pona and the Sitelen Pona script
-- Easy mode - Allows invalid words as guesses
+- Easy mode - Allows unrecognized words as guesses
 - Hard mode - Requires guesses to use all previous hints
 - Respects Reduced Motion preference
 - Color blind mode
 - Any word mode - Uses Toki Pona words of any length for solutions
 - Kijetesantakalu mode - Uses 15 letter words for solutions
 - Easter eggs
+
 
 ## Configuration
 
@@ -42,18 +41,20 @@ code:
 
 ```json
 {
-    "wordy": true
+  "wordy": true
 }
 ```
 
+
 ## Running
 
-Install the dependencies with `npm install`, then run the development server
+Install the dependencies with `npm install`, then start the development server
 with:
 
 ```sh
 npm run dev
 ```
+
 
 ## Building
 
@@ -69,7 +70,7 @@ You can then preview the result using `npm run preview`.
 ## Translation
 
 With exception of the `src/lib/modals/Help.svelte` code which is too complex
-to easily internationalize. All translation strings can be found in
+to easily internationalize, all translation strings can be found in
 `src/locales`.
 
 * `en.json` - Wate - English
