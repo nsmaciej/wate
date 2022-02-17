@@ -35,7 +35,7 @@
       } else {
         await navigator.clipboard.writeText(art);
         // This is a one time toast so give it more time.
-        showToast($_("toast.clipboard"), 2);
+        showToast($_("toast.clipboard"), { delay: 2 });
       }
     } catch (e) {
       console.log("Share Exception", e);

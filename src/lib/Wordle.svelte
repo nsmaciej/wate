@@ -99,7 +99,7 @@
     if (currentRow === "awkt") {
       currentRow = "";
       localStorage.clear();
-      showToast("Local Storage Cleared");
+      showToast("Local Storage Cleared", { latin: true });
       return;
     }
 
@@ -109,8 +109,8 @@
     if (currentRow === "pono") {
       showToasts = false;
       recordEvent("pono");
-      await showToast("Give me a break");
-      showToast("Show me the bibliography");
+      await showToast("Give me a break", { latin: true });
+      showToast("Show me the bibliography", { latin: true });
     }
     if (currentRow === "mu") {
       showToasts = false;

@@ -9,6 +9,7 @@
   import { _ } from "svelte-i18n";
   import { GuessMode, TokiPonaMode } from "$lib/game";
   import { wordy } from "$static/config.json";
+  import count from "$lib/countClick";
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";
   import SegmentedControl from "$lib/SegmentedControl.svelte";
@@ -65,9 +66,25 @@
   </SegmentedControl>
 </fieldset>
 
+<footer class="latin">
+  © 2022 <a use:count href="https://maciej.ie">Maciej Goszczycki</a>
+</footer>
+
 <style>
   .note {
     margin-top: 3px;
     color: var(--accent-color);
+  }
+
+  footer {
+    opacity: 0.2;
+    font-size: var(--font-size-small);
+    align-self: center;
+    margin: -0.5em 0 -1em;
+  }
+
+  footer a {
+    text-decoration: none;
+    color: inherit;
   }
 </style>

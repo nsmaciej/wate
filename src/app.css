@@ -67,14 +67,7 @@
 }
 
 :root {
-  --font-size: 16px;
-  --font-size-small: 14px;
   --tap-target-size: 48px;
-}
-
-.linja-pona {
-  --font-size: 29px;
-  --font-size-small: 22px;
 }
 
 * {
@@ -93,16 +86,24 @@ html,
 body {
   background: var(--page-background);
   color: var(--text-color);
+}
+
+body,
+.latin {
+  --font-size: 16px;
+  --font-size-small: 14px;
   font-size: var(--font-size);
   font-family: "Nunito Sans", sans-serif;
   line-height: 1.5;
 }
 
 .linja-pona {
-  font-family: linja-pona;
+  --font-size: 29px;
+  --font-size-small: 22px;
   font-size: var(--font-size);
-  font-feature-settings: "liga";
+  font-family: linja-pona;
   line-height: 1.3;
+  font-feature-settings: "liga";
 }
 
 .linja-pona a {

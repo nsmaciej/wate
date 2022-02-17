@@ -64,7 +64,7 @@
       $_("toast.won-in-five"),
     ];
     const rowsUsed = $gameState[$tokiPonaMode].length;
-    await showToast(message[rowsUsed - 1], 0.5);
+    await showToast(message[rowsUsed - 1], { delay: 0.5 });
     recordGameFinish(rowsUsed);
     showShareModal();
   }
