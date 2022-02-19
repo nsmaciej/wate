@@ -56,7 +56,7 @@
   }
 
   async function handleWin() {
-    const message = [
+    const messages = [
       $_("toast.won-in-one"),
       $_("toast.won-in-two"),
       $_("toast.won-in-three"),
@@ -64,7 +64,11 @@
       $_("toast.won-in-five"),
     ];
     const rowsUsed = $gameState[$tokiPonaMode].length;
-    await showToast(message[rowsUsed - 1], { delay: 0.5 });
+    const toast =
+      rowsUsed < messages.length
+        ? messages[rowsUsed - 1]
+        : $_("toast.won-in-six-or-more");
+    await showToast(toast, { delay: 0.5 });
     recordGameFinish(rowsUsed);
     showShareModal();
   }

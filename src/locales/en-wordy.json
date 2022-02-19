@@ -55,9 +55,10 @@
     "clipboard": "Copied result to clipboard",
     "missing-letters": "Not enough letters",
     "unrecognised-word": "Not in the word list",
-    "won-in-five": "All is well",
+    "won-in-five": "All is Well",
     "won-in-four": "Good",
     "won-in-one": "Genius",
+    "won-in-six-or-more": "Phew",
     "won-in-three": "Very Good",
     "won-in-two": "Smart"
   }
