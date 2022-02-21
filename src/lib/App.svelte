@@ -131,6 +131,5 @@
     min-height: 100%;
     margin: 0 auto;
     padding: 10px;
-    gap: 8px;
   }
 </style>
