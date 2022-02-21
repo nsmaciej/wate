@@ -11,7 +11,7 @@
     flex: auto;
   }
   button:not(.subtle) {
-    background: var(--link-color);
+    background: var(--clickable-color);
     border-radius: 7px;
     padding: 3px 12px;
     color: var(--page-background);
@@ -20,7 +20,7 @@
     max-width: 220px;
   }
   button.subtle {
-    color: var(--link-color);
+    color: var(--clickable-color);
     font-size: var(--font-size-small);
   }
   :global(.linja-pona) button {

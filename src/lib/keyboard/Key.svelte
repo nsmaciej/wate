@@ -39,7 +39,7 @@
     grid-column-start: 2;
   }
   button.highlight {
-    background: var(--link-color) !important;
+    background: var(--clickable-color) !important;
     color: var(--page-background) !important;
   }
 
@@ -59,22 +59,21 @@
 
   /* Colors. */
   :global(.linja-pona) button.big {
-    color: var(--link-color);
+    color: var(--clickable-color);
   }
   button.unknown {
-    background: var(--key-bg);
-    color: var(--key-fg);
+    background: var(--unknown-background);
   }
   button.absent {
-    background: var(--absent-bg);
-    color: var(--absent-fg);
+    background: var(--absent-background);
+    color: var(--evaluated-text-color);
   }
   button.present {
-    background: var(--present-bg);
-    color: var(--present-fg);
+    background: var(--present-background);
+    color: var(--evaluated-text-color);
   }
   button.correct {
-    background: var(--correct-bg);
-    color: var(--correct-fg);
+    background: var(--correct-background);
+    color: var(--evaluated-text-color);
   }
 </style>

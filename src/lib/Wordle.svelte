@@ -35,7 +35,6 @@
   export let submittedRows: string[] = [];
   let currentRow = "";
   let letterStates = new Map<string, State>();
-  let showFocusRing = false;
   $: ruleJudgement = checkRules(solution, currentRow, $guessMode, dictionary);
 
   // Grid size. This might be able to be done only with aspect-ratio and
@@ -69,9 +68,6 @@
       revealedRows += 1;
       await delay(200); //200ms
     }
-    if (submittedRows.length === 0) {
-      showFocusRing = true; // Since row reveal won't.
-    }
   });
 
   async function onReveal(row: number): Promise<void> {
@@ -85,15 +81,12 @@
       dispatch("win");
     } else if (gameLost(solution, submittedRows)) {
       dispatch("lost");
-    } else {
-      showFocusRing = true;
     }
   }
 
   // Keyboard handling.
   function handlePress(event: CustomEvent<string>): void {
     if (!gameComplete && currentRow.length < solution.length) {
-      showFocusRing = true;
       currentRow += event.detail;
     }
   }
@@ -140,7 +133,6 @@
         submittedRows = [...submittedRows, currentRow];
         revealedRows += 1;
         currentRow = "";
-        showFocusRing = false; // To be shown again after the row reveal.
         break;
     }
   }
@@ -159,7 +151,6 @@
       {solution}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
-      focused={isActiveRow && showFocusRing}
       letters={isActiveRow ? currentRow : submittedRows[i] ?? ""}
       on:reveal={() => onReveal(i)}
     />

@@ -24,7 +24,6 @@
   // Used during the initial animation.
   export let hideBeforeReveal = false;
   export let revealed = false;
-  export let focused = false;
 
   const dispatch = createEventDispatcher();
 
@@ -42,7 +41,6 @@
     letter={hideBeforeReveal && reveledStates[i] === State.Unknown
       ? " "
       : letter}
-    focused={focused && letters.length === i}
     state={reveledStates[i]}
     flipped={flipped[i]}
   />

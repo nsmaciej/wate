@@ -60,7 +60,7 @@
   .tenpo {
     margin-top: 11px;
     font-size: var(--font-size-small);
-    color: var(--accent-color);
+    color: var(--secondary-color);
   }
   .tenpo-grid {
     display: grid;

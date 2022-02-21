@@ -1,18 +1,16 @@
 :root {
   /* Keys */
-  --key-bg: #e6e6e6;
-  --key-fg: #3a3a3a;
-  --absent-bg: #4a4a4a;
-  --absent-fg: #ffffff;
-  --present-bg: #ffdb0a;
-  --present-fg: #ffffff;
-  --correct-bg: #25cb25;
-  --correct-fg: #ffffff;
+  --unknown-background: #e6e6e6;
+  --absent-background: #5b5b5b;
+  --present-background: #ffdb0a;
+  --correct-background: #25cb25;
+  --evaluated-text-color: #ffffff;
   /* Other colors */
   --unknown-tile-border: #cacaca;
-  --accent-color: #696969;
+  --filled-tile-border: #949494;
   --text-color: #1b1b1b;
-  --link-color: #2364dd;
+  --secondary-color: #696969;
+  --clickable-color: #2364dd;
   /* Make sure to also change settings.ts */
   --page-background: #ffffff;
   /* Modal */
@@ -20,30 +18,28 @@
   --modal-border: #dadada;
   --modal-shadow: 0 5px 15px #00000020;
   --modal-header-shadow: 0 5px 5px #00000033;
-  --correct-bg-soft: #50bf50;
+  --correct-background-soft: #50bf50;
   /* Segmented Control */
   --segmented-background: #ebebeb;
   --segmented-selected: #ffffff;
   /* Toast */
-  --toast-bg: #121212;
-  --toast-fg: #e8e8e8;
+  --toast-background: #121212;
+  --toast-text-color: #e8e8e8;
 }
 
 .dark {
   /* Keys */
-  --key-bg: #676767;
-  --key-fg: #e8e8e8;
-  --absent-bg: #383838;
-  --absent-fg: #ffffff;
-  --present-bg: #dbba00;
-  --present-fg: #ffffff;
-  --correct-bg: #12aa12;
-  --correct-fg: #ffffff;
+  --unknown-background: #676767;
+  --absent-background: #383838;
+  --present-background: #dbba00;
+  --correct-background: #12aa12;
+  --evaluated-text-color: #ffffff;
   /* Other colors */
-  --unknown-tile-border: #585858;
-  --accent-color: #939393;
+  --unknown-tile-border: #404040;
+  --filled-tile-border: #696969;
   --text-color: #e8e8e8;
-  --link-color: #b7b7fd;
+  --secondary-color: #939393;
+  --clickable-color: #b7b7fd;
   /* Make sure to also change settings.ts */
   --page-background: #121212;
   /* Modal */
@@ -51,19 +47,19 @@
   --modal-border: #212121;
   --modal-shadow: 0 5px 6px #00000050;
   --modal-header-shadow: 0 5px 5px #00000087;
-  --correct-bg-soft: #4dbf4d;
+  --correct-background-soft: #4dbf4d;
   /* Segmented Control */
   --segmented-background: #303030;
   --segmented-selected: #565656;
   /* Toast */
-  --toast-bg: #ffffff;
-  --toast-fg: #1b1b1b;
+  --toast-background: #ffffff;
+  --toast-text-color: #1b1b1b;
 }
 
 .color-blind {
-  --absent-bg: #383838 !important;
-  --present-bg: #0066db !important;
-  --correct-bg: #ff9838 !important;
+  --absent-background: #383838 !important;
+  --present-background: #0066db !important;
+  --correct-background: #ff9838 !important;
 }
 
 :root {
@@ -141,7 +137,7 @@ h2 {
 }
 
 a {
-  color: var(--link-color);
+  color: var(--clickable-color);
 }
 
 button {
@@ -173,5 +169,5 @@ legend {
 
 hr {
   border: none;
-  border-top: 2px solid var(--accent-color);
+  border-top: 2px solid var(--secondary-color);
 }

@@ -73,7 +73,7 @@
 <style>
   .note {
     margin-top: 3px;
-    color: var(--accent-color);
+    color: var(--secondary-color);
   }
 
   footer {

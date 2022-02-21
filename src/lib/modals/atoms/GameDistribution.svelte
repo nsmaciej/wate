@@ -63,7 +63,7 @@
 
   .bar {
     background: var(--segmented-background);
-    color: var(--accent-color);
+    color: var(--secondary-color);
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -73,7 +73,7 @@
     border-radius: 4px;
   }
   .bar.current {
-    background: var(--correct-bg-soft);
+    background: var(--correct-background-soft);
     color: var(--page-background);
   }
 </style>

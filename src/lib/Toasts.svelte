@@ -57,8 +57,8 @@
   }
   .toast {
     text-align: center;
-    background: var(--toast-bg);
-    color: var(--toast-fg);
+    background: var(--toast-background);
+    color: var(--toast-text-color);
     padding: 12px 15px;
     border-radius: 5px;
     font-weight: 700;

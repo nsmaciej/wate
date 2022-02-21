@@ -99,7 +99,7 @@
     height: 70px;
   }
   .tagline {
-    color: var(--accent-color);
+    color: var(--secondary-color);
     display: block;
     font-size: clamp(8px, 3.8vw, var(--font-size));
   }

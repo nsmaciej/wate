@@ -48,10 +48,10 @@
   }
   .sp {
     border-bottom: 2px solid currentcolor;
-    color: var(--link-color);
+    color: var(--clickable-color);
     font-weight: bold;
   }
   path {
-    fill: var(--link-color);
+    fill: var(--clickable-color);
   }
 </style>

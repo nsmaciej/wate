@@ -5,12 +5,11 @@
 
   export let letter = " ";
   export let flipped = false;
-  export let focused = false;
   export let state: State = State.Unknown;
   $: label = $formatLetter(letter);
 </script>
 
-<div class={state} class:flipped class:focused>
+<div class={state} class:flipped class:filled={letter !== " "}>
   <span class="webkit-aa-fix">{label}</span>
 </div>
 
@@ -19,7 +18,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 200ms ease-in, box-shadow 50ms ease, border 50ms ease;
+    transition: transform 200ms ease-in;
     /* This stops the grid caring about our content. */
     min-width: 0;
     user-select: none;
@@ -62,20 +61,19 @@
     border: 2px solid var(--unknown-tile-border);
     background: none;
   }
-  div.unknown.focused {
-    border: 2px solid var(--link-color);
-    box-shadow: 0 0 3px var(--link-color), 0 0 3px var(--link-color) inset;
+  div.unknown.filled {
+    border: 2px solid var(--filled-tile-border);
   }
   div.absent {
-    background: var(--absent-bg);
-    color: var(--absent-fg);
+    background: var(--absent-background);
+    color: var(--evaluated-text-color);
   }
   div.present {
-    background: var(--present-bg);
-    color: var(--present-fg);
+    background: var(--present-background);
+    color: var(--evaluated-text-color);
   }
   div.correct {
-    background: var(--correct-bg);
-    color: var(--correct-fg);
+    background: var(--correct-background);
+    color: var(--evaluated-text-color);
   }
 </style>
