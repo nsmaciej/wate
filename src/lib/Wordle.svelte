@@ -35,6 +35,8 @@
   export let submittedRows: string[] = [];
   let currentRow = "";
   let letterStates = new Map<string, State>();
+  let forceEnterHighlight = false;
+  $: currentRow, (forceEnterHighlight = false);
   $: ruleJudgement = checkRules(solution, currentRow, $guessMode, dictionary);
 
   // Grid size. This might be able to be done only with aspect-ratio and
@@ -86,8 +88,11 @@
 
   // Keyboard handling.
   function handlePress(event: CustomEvent<string>): void {
-    if (!gameComplete && currentRow.length < solution.length) {
+    if (gameComplete) return;
+    if (currentRow.length < solution.length) {
       currentRow += event.detail;
+    } else {
+      forceEnterHighlight = true;
     }
   }
 
@@ -161,7 +166,7 @@
   on:press={handlePress}
   on:enter={handleEnter}
   on:backspace={handleBackspace}
-  highlightEnter={ruleJudgement === RuleJudgement.Valid}
+  highlightEnter={ruleJudgement === RuleJudgement.Valid || forceEnterHighlight}
   {letterStates}
 />
 
