@@ -95,6 +95,11 @@
   async function handleEnter(): Promise<void> {
     if (gameComplete) return;
 
+    if (currentRow.includes(" ")) {
+      showToast($_("toast.unfilled-blanks"));
+      return;
+    }
+
     // Handy.
     if (currentRow === "awkt") {
       currentRow = "";

@@ -23,6 +23,7 @@ English words, using the [Wordy][wordy] mode.
 - Sharing with Discord spoiler tags
 - No cookies, no personally identifiable information
 - Support for English, Toki Pona and the Sitelen Pona script
+- Allows entering, but not submitting blank tiles.
 - Easy mode - Allows unrecognized words as guesses
 - Hard mode - Requires guesses to use all previous hints
 - Respects Reduced Motion preference

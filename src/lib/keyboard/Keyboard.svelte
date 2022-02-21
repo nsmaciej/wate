@@ -1,4 +1,9 @@
 <script lang="ts">
+  // Dispatches one of three events:
+  // * backspace
+  // * enter
+  // * press - with letters limited to the language alphabet + space.
+
   import type { State } from "$lib/game";
   import { _ } from "svelte-i18n";
   import { createEventDispatcher } from "svelte";
@@ -14,7 +19,8 @@
     if (event.metaKey || event.ctrlKey) return;
 
     const key = event.key;
-    const alphabet = wordy ? "abcdefghijklmnopqrstuvwxyz" : "aeijklmnopstuw";
+    // Note this includes space.
+    const alphabet = wordy ? " abcdefghijklmnopqrstuvwxyz" : " aeijklmnopstuw";
 
     if (key === "Backspace") {
       dispatch("backspace");
