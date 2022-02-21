@@ -151,6 +151,7 @@
       {solution}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
+      focused={i === submittedRows.length}
       letters={i === submittedRows.length ? currentRow : submittedRows[i] ?? ""}
       on:reveal={() => onReveal(i)}
     />
