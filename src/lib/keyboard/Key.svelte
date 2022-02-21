@@ -3,6 +3,7 @@
   export let state: State = State.Unknown;
   export let big = false;
   export let offset = false;
+  export let highlight = false;
 </script>
 
 <!-- The preventDefault here prevents these buttons from ever getting focus. -->
@@ -11,6 +12,7 @@
   on:mousedown={(e) => e.preventDefault()}
   class:big
   class:offset
+  class:highlight
   class={state}
   tabindex="-1"
 >
@@ -23,7 +25,7 @@
     height: 50px;
     font-weight: 700;
     padding: 3px;
-    transition: background 100ms ease, color 100ms ease;
+    transition: background 200ms ease, color 200ms ease;
     grid-column-end: span 2;
   }
   button.big {
@@ -35,6 +37,10 @@
   }
   button.offset {
     grid-column-start: 2;
+  }
+  button.highlight {
+    background: var(--link-color) !important;
+    color: var(--page-background) !important;
   }
 
   /* States. */

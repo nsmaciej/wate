@@ -54,7 +54,6 @@
   "toast": {
     "clipboard": "Copied result to clipboard",
     "missing-letters": "Not enough letters",
-    "unfilled-blanks": "Fill in all blanks",
     "unrecognised-word": "Not in the word list",
     "won-in-five": "All is Well",
     "won-in-four": "Good",

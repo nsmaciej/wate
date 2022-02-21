@@ -12,12 +12,13 @@
   import { createEventDispatcher, onMount } from "svelte";
   import {
     ROW_COUNT,
-    GuessMode,
     State,
     findLetterStates,
     gameFinished,
     gameWon,
     gameLost,
+    checkRules,
+    RuleJudgement,
   } from "$lib/game";
   import { delay } from "$lib/utils";
   import { showToast } from "$lib/Toasts.svelte";
@@ -26,13 +27,16 @@
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/keyboard/Keyboard.svelte";
 
+  const dispatch = createEventDispatcher();
+
   // Main state.
   export let dictionary: string[] = [];
   export let solution = "";
   export let submittedRows: string[] = [];
   let currentRow = "";
   let letterStates = new Map<string, State>();
-  const dispatch = createEventDispatcher();
+  let showFocusRing = false;
+  $: ruleJudgement = checkRules(solution, currentRow, $guessMode, dictionary);
 
   // Grid size. This might be able to be done only with aspect-ratio and
   // max-width/height, but it seems a bit messy and Safari definitely doesn't
@@ -41,8 +45,10 @@
   const baseTile = 70;
   let tileSize = baseTile;
   function handleResize() {
-    const h = (document.body.clientHeight - 300) / (baseTile * ROW_COUNT);
-    const w = (document.body.clientWidth - 40) / (baseTile * solution.length);
+    const tilePlusGap = baseTile + 8;
+    const { clientWidth, clientHeight } = document.body;
+    const h = (clientHeight - 300) / (tilePlusGap * ROW_COUNT);
+    const w = (clientWidth - 40) / (tilePlusGap * solution.length);
     tileSize = baseTile * Math.max(0.1, Math.min(1, w, h));
   }
   onMount(handleResize);
@@ -63,6 +69,9 @@
       revealedRows += 1;
       await delay(200); //200ms
     }
+    if (submittedRows.length === 0) {
+      showFocusRing = true; // Since row reveal won't.
+    }
   });
 
   async function onReveal(row: number): Promise<void> {
@@ -76,12 +85,15 @@
       dispatch("win");
     } else if (gameLost(solution, submittedRows)) {
       dispatch("lost");
+    } else {
+      showFocusRing = true;
     }
   }
 
   // Keyboard handling.
   function handlePress(event: CustomEvent<string>): void {
     if (!gameComplete && currentRow.length < solution.length) {
+      showFocusRing = true;
       currentRow += event.detail;
     }
   }
@@ -95,52 +107,42 @@
   async function handleEnter(): Promise<void> {
     if (gameComplete) return;
 
-    if (currentRow.includes(" ")) {
-      showToast($_("toast.unfilled-blanks"));
-      return;
-    }
-
-    // Handy.
+    // Easter eggs. Suppress rule check toasts but otherwise don't do anything
+    // else in case we are making a valid guess (easy mode etc).
+    let showRuleToasts = true;
     if (currentRow === "awkt") {
       currentRow = "";
       localStorage.clear();
       showToast("Local Storage Cleared", { latin: true });
       return;
     }
-
-    // Easter eggs. Suppress rule check toasts but otherwise don't do anything
-    // else in case we are making a valid guess (easy mode etc).
-    let showToasts = true;
     if (currentRow === "pono") {
-      showToasts = false;
+      showRuleToasts = false;
       recordEvent("pono");
       await showToast("Give me a break", { latin: true });
       showToast("Show me the bibliography", { latin: true });
     }
     if (currentRow === "mu") {
-      showToasts = false;
+      showRuleToasts = false;
       recordEvent("mu");
       await showToast("mu");
     }
 
     // Rule checks.
-    if (currentRow.length < solution.length) {
-      if (showToasts) showToast($_("toast.missing-letters"));
-      return;
+    switch (ruleJudgement) {
+      case RuleJudgement.NotEnoughLetters:
+        if (showRuleToasts) showToast($_("toast.missing-letters"));
+        break;
+      case RuleJudgement.NotInDictionary:
+        if (showRuleToasts) showToast($_("toast.unrecognised-word"));
+        break;
+      case RuleJudgement.Valid:
+        submittedRows = [...submittedRows, currentRow];
+        revealedRows += 1;
+        currentRow = "";
+        showFocusRing = false; // To be shown again after the row reveal.
+        break;
     }
-    if ($guessMode !== GuessMode.Easy && !dictionary.includes(currentRow)) {
-      if (showToasts) showToast($_("toast.unrecognised-word"));
-      return;
-    }
-    if ($guessMode === GuessMode.Hard) {
-      if (showToasts) showToast($_("toast.unrecognised-word"));
-      return;
-    }
-
-    // Checks passed.
-    submittedRows = [...submittedRows, currentRow];
-    revealedRows += 1;
-    currentRow = "";
   }
 </script>
 
@@ -152,12 +154,13 @@
   style:grid="auto-flow {tileSize}px / repeat({solution.length}, {tileSize}px)"
 >
   {#each { length: ROW_COUNT } as _, i}
+    {@const isActiveRow = submittedRows.length === i}
     <Row
       {solution}
       revealed={i < revealedRows}
       hideBeforeReveal={i < hiddenRows}
-      focused={i === submittedRows.length}
-      letters={i === submittedRows.length ? currentRow : submittedRows[i] ?? ""}
+      focused={isActiveRow && showFocusRing}
+      letters={isActiveRow ? currentRow : submittedRows[i] ?? ""}
       on:reveal={() => onReveal(i)}
     />
   {/each}
@@ -167,6 +170,7 @@
   on:press={handlePress}
   on:enter={handleEnter}
   on:backspace={handleBackspace}
+  highlightEnter={ruleJudgement === RuleJudgement.Valid}
   {letterStates}
 />
 

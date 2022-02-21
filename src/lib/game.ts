@@ -178,3 +178,28 @@ export function gameLost(solution: string, rows: string[]): boolean {
 export function gameFinished(solution: string, rows: string[]): boolean {
   return rows[rows.length - 1] === solution || rows.length >= ROW_COUNT;
 }
+
+export const enum RuleJudgement {
+  NotEnoughLetters,
+  NotInDictionary,
+  Valid,
+}
+
+export function checkRules(
+  solution: string,
+  row: string,
+  guessMode: GuessMode,
+  dictionary: string[]
+): RuleJudgement {
+  if (row.length < solution.length) {
+    return RuleJudgement.NotEnoughLetters;
+  }
+  if (guessMode !== GuessMode.Easy && !dictionary.includes(row)) {
+    return RuleJudgement.NotInDictionary;
+  }
+  if (guessMode === GuessMode.Hard) {
+    //TODO: Add hard mode.
+    return RuleJudgement.NotInDictionary;
+  }
+  return RuleJudgement.Valid;
+}

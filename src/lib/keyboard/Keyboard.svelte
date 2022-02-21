@@ -2,7 +2,7 @@
   // Dispatches one of three events:
   // * backspace
   // * enter
-  // * press - with letters limited to the language alphabet + space.
+  // * press - with letters limited to the appropriate alphabet
 
   import type { State } from "$lib/game";
   import { _ } from "svelte-i18n";
@@ -12,6 +12,7 @@
   import Row from "$lib/keyboard/Row.svelte";
 
   export let letterStates = new Map<string, State>();
+  export let highlightEnter = false;
   const dispatch = createEventDispatcher();
   const qwerty = wordy;
 
@@ -19,8 +20,7 @@
     if (event.metaKey || event.ctrlKey) return;
 
     const key = event.key;
-    // Note this includes space.
-    const alphabet = wordy ? " abcdefghijklmnopqrstuvwxyz" : " aeijklmnopstuw";
+    const alphabet = wordy ? "abcdefghijklmnopqrstuvwxyz" : "aeijklmnopstuw";
 
     if (key === "Backspace") {
       dispatch("backspace");
@@ -51,7 +51,12 @@
     on:press
     {letterStates}
   />
-  <Key big slot="start" on:click={() => dispatch("enter")}>
+  <Key
+    big
+    slot="start"
+    highlight={highlightEnter}
+    on:click={() => dispatch("enter")}
+  >
     {$_("key.enter")}
   </Key>
   <Row letters={qwerty ? "zxcvbnm" : "tuw"} on:press {letterStates} />
