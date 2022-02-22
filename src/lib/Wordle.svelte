@@ -18,11 +18,14 @@
     gameWon,
     gameLost,
     checkRules,
-    RuleJudgement,
   } from "$lib/game";
   import { delay } from "$lib/utils";
   import { showToast } from "$lib/Toasts.svelte";
-  import { guessMode } from "$lib/settings";
+  import {
+    formatLetterSentence,
+    formatNumberOrdinal,
+    guessMode,
+  } from "$lib/settings";
   import { recordEvent } from "$lib/countClick";
   import Row from "$lib/Row.svelte";
   import Keyboard from "$lib/keyboard/Keyboard.svelte";
@@ -37,7 +40,13 @@
   let letterStates = new Map<string, State>();
   let forceEnterHighlight = false;
   $: currentRow, (forceEnterHighlight = false);
-  $: ruleJudgement = checkRules(solution, currentRow, $guessMode, dictionary);
+  $: ruleJudgement = checkRules(
+    solution,
+    currentRow,
+    $guessMode,
+    submittedRows,
+    dictionary
+  );
 
   // Grid size. This might be able to be done only with aspect-ratio and
   // max-width/height, but it seems a bit messy and Safari definitely doesn't
@@ -127,14 +136,30 @@
     }
 
     // Rule checks.
-    switch (ruleJudgement) {
-      case RuleJudgement.NotEnoughLetters:
+    console.log(ruleJudgement);
+    switch (ruleJudgement.rule) {
+      case "badHardModeGuess":
+        if (showRuleToasts) {
+          const letter = $formatLetterSentence(ruleJudgement.letter);
+          if (ruleJudgement.position) {
+            const values = {
+              letter,
+              position: $formatNumberOrdinal(ruleJudgement.position),
+            };
+            console.log(values);
+            showToast($_("toast.must-contain-letter-at-position", { values }));
+          } else {
+            showToast($_("toast.must-contain-letter", { values: { letter } }));
+          }
+        }
+        break;
+      case "notEnoughLetters":
         if (showRuleToasts) showToast($_("toast.missing-letters"));
         break;
-      case RuleJudgement.NotInDictionary:
+      case "notInDictionary":
         if (showRuleToasts) showToast($_("toast.unrecognised-word"));
         break;
-      case RuleJudgement.Valid:
+      case "valid":
         submittedRows = [...submittedRows, currentRow];
         revealedRows += 1;
         currentRow = "";
@@ -166,7 +191,7 @@
   on:press={handlePress}
   on:enter={handleEnter}
   on:backspace={handleBackspace}
-  highlightEnter={ruleJudgement === RuleJudgement.Valid || forceEnterHighlight}
+  highlightEnter={ruleJudgement.rule === "valid" || forceEnterHighlight}
   {letterStates}
 />
 

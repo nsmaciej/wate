@@ -54,6 +54,8 @@
   "toast": {
     "clipboard": "Copied result to clipboard",
     "missing-letters": "Not enough letters",
+    "must-contain-letter": "Guess must contain {letter}",
+    "must-contain-letter-at-position": "{position} letter must be {letter}",
     "unrecognised-word": "Not in the word list",
     "won-in-five": "All is Well",
     "won-in-four": "Good",

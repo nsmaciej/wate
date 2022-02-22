@@ -4,7 +4,11 @@
   import count from "$lib/countClick";
   import { wordy } from "$static/config.json";
   import { SITELEN_PONA_LETTERS } from "$lib/utils";
-  import { effectiveLocale, sitelenLocale } from "$lib/settings";
+  import {
+    effectiveLocale,
+    formatLetterSentence,
+    sitelenLocale,
+  } from "$lib/settings";
   import { State } from "$lib/game";
   import { derived } from "svelte/store";
 
@@ -105,18 +109,18 @@
       <div class="demo-grid">
         <DemoRow letters="toki" state={State.Correct} statePosition={0} />
         <p>
-          sitelen <b>{$sitelen("T", `[_${SITELEN_PONA_LETTERS["t"]}]`)}</b> li
-          lon{latinDot}
+          sitelen <b>{$formatLetterSentence("t")}</b>
+          li lon{latinDot}
         </p>
         <DemoRow letters="kasi" state={State.Present} statePosition={1} />
         <p>
-          sitelen <b>{$sitelen("A", `[_${SITELEN_PONA_LETTERS["a"]}]`)}</b> li
-          lon. taso ona lon {$combine("poki ante")}{latinDot}
+          sitelen <b>{$formatLetterSentence("a")}</b>
+          li lon. taso ona lon {$combine("poki ante")}{latinDot}
         </p>
         <DemoRow letters="kule" state={State.Absent} statePosition={3} />
         <p>
-          sitelen <b>{$sitelen("E", `[_${SITELEN_PONA_LETTERS["e"]}]`)}</b> li
-          lon ala{latinDot}
+          sitelen <b>{$formatLetterSentence("e")}</b>
+          li lon ala{latinDot}
         </p>
       </div>
     {/key}

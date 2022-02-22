@@ -129,37 +129,69 @@ export function findLetterStates(
   return result;
 }
 
+/// Returns true if the item was present.
+function removeFromArrayBag<T>(bag: T[], item: T): boolean {
+  const ix = bag.lastIndexOf(item);
+  if (ix < 0) return false;
+  bag.splice(ix, 1);
+  return true;
+}
+
+export interface HardModeJudgment {
+  letter: string;
+  position?: number;
+}
+
 export function validHardModeGuess(
   solution: string,
   rows: string[],
   guess: string
-): { use: string; position?: number } | undefined {
-  return;
-}
+): HardModeJudgment | "valid" {
+  if (rows.length === 0) return "valid";
 
-export function findRowStates(solution: string, row: string): State[] {
-  const states: State[] = [];
-  const leftovers = new Map<string, number>();
+  // Only check last row, don't try to check for "integrity" of the playthrough.
+  const lastRow = rows[rows.length - 1];
+  const lastRowHints = findRowStates(solution, lastRow);
+  const guessNonCorrectLetters = [];
 
-  if (row.includes(" ") || row.length !== solution.length) {
-    throw new Error(`incompatible rows "${row}" "${solution}"`);
+  // Check that we used all correct hints.
+  for (let i = 0; i < solution.length; ++i) {
+    if (lastRowHints[i] === State.Correct) {
+      if (guess[i] !== lastRow[i]) return { letter: lastRow[i], position: i };
+    } else {
+      guessNonCorrectLetters.push(guess[i]);
+    }
   }
 
+  // Check that we used all present hints.
   for (let i = 0; i < solution.length; ++i) {
-    if (row[i] === solution[i]) {
+    if (
+      lastRowHints[i] === State.Present &&
+      !removeFromArrayBag(guessNonCorrectLetters, lastRow[i])
+    ) {
+      return { letter: lastRow[i] };
+    }
+  }
+
+  return "valid";
+}
+
+export function findRowStates(solution: string, guess: string): State[] {
+  const states: State[] = [];
+  const presentSolutionLetters = [];
+
+  for (let i = 0; i < solution.length; ++i) {
+    if (guess[i] === solution[i]) {
       states[i] = State.Correct;
     } else {
-      leftovers.set(solution[i], 1 + (leftovers.get(solution[i]) ?? 0));
+      presentSolutionLetters.push(solution[i]);
     }
   }
 
   for (let i = 0; i < solution.length; ++i) {
-    if (row[i] === solution[i]) continue;
-    const left = leftovers.get(row[i]) ?? 0;
-    if (left > 0) {
-      // Only mark as present up to the number of occurences in the solution.
+    if (guess[i] === solution[i]) continue;
+    if (removeFromArrayBag(presentSolutionLetters, guess[i])) {
       states[i] = State.Present;
-      leftovers.set(row[i], left - 1);
     } else {
       states[i] = State.Absent;
     }
@@ -179,27 +211,30 @@ export function gameFinished(solution: string, rows: string[]): boolean {
   return rows[rows.length - 1] === solution || rows.length >= ROW_COUNT;
 }
 
-export const enum RuleJudgement {
-  NotEnoughLetters,
-  NotInDictionary,
-  Valid,
-}
+export type RuleJudgement =
+  | { rule: "notEnoughLetters" }
+  | { rule: "notInDictionary" }
+  | ({ rule: "badHardModeGuess" } & HardModeJudgment)
+  | { rule: "valid" };
 
 export function checkRules(
   solution: string,
-  row: string,
+  guess: string,
   guessMode: GuessMode,
+  rows: string[],
   dictionary: string[]
 ): RuleJudgement {
-  if (row.length < solution.length) {
-    return RuleJudgement.NotEnoughLetters;
+  if (guess.length < solution.length) {
+    return { rule: "notEnoughLetters" };
   }
-  if (guessMode !== GuessMode.Easy && !dictionary.includes(row)) {
-    return RuleJudgement.NotInDictionary;
+  if (guessMode !== GuessMode.Easy && !dictionary.includes(guess)) {
+    return { rule: "notInDictionary" };
   }
   if (guessMode === GuessMode.Hard) {
-    //TODO: Add hard mode.
-    return RuleJudgement.NotInDictionary;
+    const hardModeJudgment = validHardModeGuess(solution, rows, guess);
+    if (hardModeJudgment !== "valid") {
+      return { rule: "badHardModeGuess", ...hardModeJudgment };
+    }
   }
-  return RuleJudgement.Valid;
+  return { rule: "valid" };
 }

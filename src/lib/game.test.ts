@@ -60,27 +60,31 @@ describe("findLetterStates", () => {
   });
 });
 
-describe.skip("validHardModeGuess", () => {
+describe("validHardModeGuess", () => {
   test("allows multiple unlucky guesses", () => {
-    expect(validHardModeGuess("wxyz", ["abcd"], "efgh")).toBeUndefined();
+    expect(validHardModeGuess("wxyz", ["abcd"], "efgh")).toEqual("valid");
   });
 
   test("forces use of present hints", () => {
-    expect(validHardModeGuess("Wxyz", ["_W__"], "____")).toEqual({ use: "W" });
-    expect(validHardModeGuess("Wxyz", ["_WW_"], "____")).toEqual({ use: "W" });
+    expect(validHardModeGuess("Wxyz", ["_W__"], "____")).toEqual({
+      letter: "W",
+    });
+    expect(validHardModeGuess("Wxyz", ["_WW_"], "____")).toEqual({
+      letter: "W",
+    });
   });
 
   test("forces use and position of correct hints", () => {
     expect(validHardModeGuess("Wxyz", ["W___"], "____")).toEqual({
-      use: "W",
+      letter: "W",
       position: 0,
     });
     expect(validHardModeGuess("WWxy", ["WW__"], "W___")).toEqual({
-      use: "W",
+      letter: "W",
       position: 1,
     });
     expect(validHardModeGuess("WWxy", ["WW__"], "_W__")).toEqual({
-      use: "W",
+      letter: "W",
       position: 0,
     });
   });

@@ -1,4 +1,4 @@
-import type { SitelenNumberOptions } from "$lib/utils";
+import { englishOrdinalNumber, SitelenNumberOptions } from "$lib/utils";
 import { derived, get, readable, writable } from "svelte/store";
 import { locale as effectiveLocale } from "svelte-i18n";
 import { wordy } from "$static/config.json";
@@ -62,10 +62,28 @@ export const formatNumber = derived(
     (n: number, options: Partial<SitelenNumberOptions> = {}) =>
       isSp ? numberToSitelen(n, options) : n.toString()
 );
+export const formatNumberOrdinal = derived(
+  effectiveLocale,
+  (locale) =>
+    (n: number, options: Partial<SitelenNumberOptions> = {}) => {
+      if (locale === "tok-x-sp") {
+        return numberToSitelen(n, { ...options, nanpa: true });
+      }
+      if (locale === "tok") {
+        return "nanpa " + n;
+      }
+      return englishOrdinalNumber(n);
+    }
+);
 export const formatLetter = derived(
   sitelenLocale,
   (isSp) => (letter: string) =>
     isSp ? SITELEN_PONA_LETTERS[letter] : letter.toUpperCase()
+);
+export const formatLetterSentence = derived(
+  sitelenLocale,
+  (isSp) => (letter: string) =>
+    isSp ? `[_${SITELEN_PONA_LETTERS[letter]}]` : letter.toUpperCase()
 );
 
 // Media stores.
