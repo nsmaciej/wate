@@ -3,7 +3,6 @@
   import DemoRow from "$lib/modals/atoms/DemoRow.svelte";
   import count from "$lib/countClick";
   import { wordy } from "$static/config.json";
-  import { SITELEN_PONA_LETTERS } from "$lib/utils";
   import {
     effectiveLocale,
     formatLetterSentence,
