@@ -93,11 +93,11 @@ export function generateEmojiArt(
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
     
-    // If we've won, we can stop building the result. This allows for
-    // the final guess to be included as a spoiler if it was incorrect.
-    if (rowStates.every((s) => s === State.Correct)) break;
-    if (discord) result += ` ||\`${row.toUpperCase()}\`||`;
-    if (i < rows.length - 1) result += "\n";
+    // Only include Discord spoilers and new lines if we haven't won yet
+    if (!rowStates.every((s) => s === State.Correct)) {
+      if (discord) result += ` ||\`${row.toUpperCase()}\`||`;
+      if (i < ROW_COUNT - 1) result += "\n";
+    }
   }
   return result;
 }
