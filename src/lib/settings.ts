@@ -1,4 +1,5 @@
-import { englishOrdinalNumber, SitelenNumberOptions } from "$lib/utils";
+import type { SitelenNumberOptions } from "$lib/utils";
+import { englishOrdinalNumber } from "$lib/utils";
 import { derived, get, readable, writable } from "svelte/store";
 import { locale as effectiveLocale } from "svelte-i18n";
 import { wordy } from "$static/config.json";
