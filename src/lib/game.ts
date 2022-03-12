@@ -88,15 +88,16 @@ export function generateEmojiArt(
   const count = gameLost(solution, rows) ? "X" : rows.length;
   let result = `${name}${medals} ${gameDay + 1} ${count}/${ROW_COUNT}\n`;
   for (const [i, row] of rows.entries()) {
-    const rowStates = findRowStates(solution, row);
-    for (const x of rowStates) {
+    for (const x of findRowStates(solution, row)) {
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
     
-    // Only include Discord spoilers and new lines if we haven't won yet
-    if (!rowStates.every((s) => s === State.Correct)) {
-      if (discord) result += ` ||\`${row.toUpperCase()}\`||`;
-      if (i < ROW_COUNT - 1) result += "\n";
+    // Only include Discord spoilers if we haven't won yet
+    if (discord && row !== solution) {
+      result += ` ||\`${row.toUpperCase()}\`||`;
+    }
+    if (i < rows.length - 1) {
+      result += "\n";
     }
   }
   return result;
