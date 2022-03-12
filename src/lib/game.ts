@@ -87,13 +87,16 @@ export function generateEmojiArt(
   const medals = guessModeMedal(guessMode);
   const count = gameLost(solution, rows) ? "X" : rows.length;
   let result = `${name}${medals} ${gameDay + 1} ${count}/${ROW_COUNT}\n`;
-  for (let i = 0; i < rows.length; ++i) {
-    const row = rows[i];
+  for (const [i, row] of rows.entries()) {
     for (const x of findRowStates(solution, row)) {
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
+    
+    // Only include Discord spoilers if we haven't won yet
+    if (discord && row !== solution) {
+      result += ` ||\`${row.toUpperCase()}\`||`;
+    }
     if (i < rows.length - 1) {
-      if (discord) result += ` ||\`${row.toUpperCase()}\`||`;
       result += "\n";
     }
   }

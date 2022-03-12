@@ -179,4 +179,21 @@ describe("generateEmojiArt", () => {
       🟩🟩🟩"
     `);
   });
+
+  test("includes all rows if Discord spoilers and no solution was found", () => {
+    expect(
+      generateEmojiArt(0, "xyz", ["abc", "def", "ghi", "jkl", "mno"], {
+        discord: true,
+        guessMode: GuessMode.Normal,
+        name: "Wate",
+      })
+    ).toMatchInlineSnapshot(`
+      "Wate 1 X/5
+      ⬛⬛⬛ ||\`ABC\`||
+      ⬛⬛⬛ ||\`DEF\`||
+      ⬛⬛⬛ ||\`GHI\`||
+      ⬛⬛⬛ ||\`JKL\`||
+      ⬛⬛⬛ ||\`MNO\`||"
+    `);
+  });
 });
