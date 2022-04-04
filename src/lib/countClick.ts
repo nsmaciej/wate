@@ -16,8 +16,12 @@ export default function countClick(
 }
 
 export function recordEvent(...params: string[]): void {
-  window.goatcounter.count({
-    event: true,
-    path: `${location.host}/${params.join("/")}`,
-  });
+  try {
+    window.goatcounter.count({
+      event: true,
+      path: `${location.host}/${params.join("/")}`,
+    });
+  } catch (e) {
+    console.log("Event Exception", e);
+  }
 }

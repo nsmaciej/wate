@@ -91,7 +91,7 @@ export function generateEmojiArt(
     for (const x of findRowStates(solution, row)) {
       result += x === State.Correct ? "🟩" : x === State.Present ? "🟨" : "⬛";
     }
-    
+
     // Only include Discord spoilers if we haven't won yet
     if (discord && row !== solution) {
       result += ` ||\`${row.toUpperCase()}\`||`;
