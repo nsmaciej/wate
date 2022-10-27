@@ -6,7 +6,7 @@
     tokiPonaMode,
     guessMode,
   } from "$lib/settings";
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
   import { showToast } from "$lib/Toasts.svelte";
   import { gameWon, generateEmojiArt } from "$lib/game";
   import { recordEvent } from "$lib/countClick";

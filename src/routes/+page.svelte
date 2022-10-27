@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
   import App from "$lib/App.svelte";
   import { waitLocale } from "svelte-i18n";
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
   import "./i18n";
   import "../app.css";
 

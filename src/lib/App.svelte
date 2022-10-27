@@ -1,7 +1,7 @@
 <script context="module" lang="ts">
-  import dictionaryTok from "$static/dictionary-tok.json";
-  import dictionaryEn from "$static/dictionary-en.json";
-  import { wordy } from "$static/config.json";
+  import dictionaryTok from "$src/dictionaries/dictionary-tok.json";
+  import dictionaryEn from "$src/dictionaries/dictionary-en.json";
+  import { wordy } from "$src/config.json";
 
   const dictionary = wordy ? dictionaryEn : dictionaryTok;
 </script>

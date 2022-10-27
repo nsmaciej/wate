@@ -28,13 +28,18 @@
 />
 
 {#if shown}
+  <!-- The on:click can't be on svelte:window or the modal insta-closes itself. -->
   <div
+    role="presentation"
     class="overlay"
-    aria-modal="true"
     on:click={close}
     transition:fade={{ duration: 200 }}
   >
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- The key events are handled on svelte:window -->
     <div
+      role="dialog"
+      aria-modal="true"
       class="modal"
       style:width="min(95vw, {width}px)"
       transition:fly={{ y: 50, duration: $reduceMotion ? 0 : 200 }}

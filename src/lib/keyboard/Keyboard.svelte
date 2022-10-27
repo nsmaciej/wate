@@ -7,7 +7,7 @@
   import type { State } from "$lib/game";
   import { _ } from "svelte-i18n";
   import { createEventDispatcher } from "svelte";
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
   import Key from "$lib/keyboard/Key.svelte";
   import Row from "$lib/keyboard/Row.svelte";
 

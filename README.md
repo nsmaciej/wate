@@ -34,7 +34,7 @@ English words, using the [Wordy][wordy] mode.
 
 ## Configuration
 
-All configuration lives in `static/config.json`.
+All configuration lives in `src/config.json`.
 The `wordy` property, enables or disables the Wordy version of the
 code:
 

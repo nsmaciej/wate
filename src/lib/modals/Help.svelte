@@ -2,7 +2,7 @@
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import DemoRow from "$lib/modals/atoms/DemoRow.svelte";
   import count from "$lib/countClick";
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
   import {
     effectiveLocale,
     formatLetterSentence,

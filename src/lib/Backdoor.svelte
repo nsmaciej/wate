@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
 </script>
 
 {#if wordy}

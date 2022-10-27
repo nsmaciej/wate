@@ -1,6 +1,6 @@
 // Be careful with the imports here to keep this testable.
 import type { Dayjs } from "dayjs";
-import { wordy } from "$static/config.json";
+import { wordy } from "$src/config.json";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc.js";
 

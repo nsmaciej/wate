@@ -1,6 +1,6 @@
 import type { Readable, Writable } from "svelte/store";
 import { readable } from "svelte/store";
-import { browser } from "$app/env";
+import { browser } from "$app/environment";
 import { writable } from "svelte/store";
 
 export function delay(ms: number): Promise<void> {

@@ -6,5 +6,6 @@ export default {
   moduleNameMapper: {
     "^\\$static(.*)$": "<rootDir>/static$1",
     "^\\$lib(.*)$": "<rootDir>/src/lib$1",
+    "^\\$src(.*)$": "<rootDir>/src$1",
   },
 };

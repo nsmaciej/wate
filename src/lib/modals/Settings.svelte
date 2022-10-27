@@ -8,7 +8,7 @@
   } from "$lib/settings";
   import { _ } from "svelte-i18n";
   import { GuessMode, TokiPonaMode } from "$lib/game";
-  import { wordy } from "$static/config.json";
+  import { wordy } from "$src/config.json";
   import count from "$lib/countClick";
   import LanguagePicker from "$lib/modals/atoms/LanguagePicker.svelte";
   import Segment from "$lib/Segment.svelte";

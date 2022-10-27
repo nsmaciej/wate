@@ -1,12 +1,12 @@
 import { addMessages, init } from "svelte-i18n";
 import { get } from "svelte/store";
 import { locale } from "$lib/settings";
-import { wordy } from "$static/config.json";
+import { wordy } from "$src/config.json";
 
-import en from "../locales/en.json";
-import enWordy from "../locales/en-wordy.json";
-import tok from "../locales/tok.json";
-import tokSp from "../locales/tok-x-sp.json";
+import en from "$src/locales/en.json";
+import enWordy from "$src/locales/en-wordy.json";
+import tok from "$src/locales/tok.json";
+import tokSp from "$src/locales/tok-x-sp.json";
 
 if (wordy) {
   addMessages("en", enWordy);
