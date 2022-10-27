@@ -2,8 +2,8 @@ import type { SitelenNumberOptions } from "$lib/utils";
 import { englishOrdinalNumber } from "$lib/utils";
 import { derived, get, readable, writable } from "svelte/store";
 import { locale as effectiveLocale } from "svelte-i18n";
-import { wordy } from "$static/config.json";
-import { browser } from "$app/env";
+import { wordy } from "$src/config.json";
+import { browser } from "$app/environment";
 import { GuessMode, TokiPonaMode } from "$lib/game";
 import {
   SITELEN_PONA_LETTERS,
@@ -38,7 +38,7 @@ export const gameState = localStorageStore("game", {
 
 export function gatherSettings(): string[] {
   return [
-    get(effectiveLocale),
+    get(effectiveLocale) ?? "tok",
     get(theme),
     get(tokiPonaMode),
     get(guessMode),
@@ -99,10 +99,10 @@ function updateTheme(value: Theme) {
   document.body.classList.toggle("dark", dark);
   document
     .querySelector('meta[name="theme-color"]')
-    .setAttribute("content", dark ? "#121212" : "#ffffff");
+    ?.setAttribute("content", dark ? "#121212" : "#ffffff");
   document
     .querySelector('meta[name="color-scheme"]')
-    .setAttribute("content", dark ? "dark only" : "light only");
+    ?.setAttribute("content", dark ? "dark only" : "light only");
 }
 
 if (browser) {

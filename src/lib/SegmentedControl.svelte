@@ -1,8 +1,8 @@
 <script lang="ts" context="module">
   export type Key = string | boolean | number;
   export interface SegmentContext {
-    select(key: Key);
-    register(key: Key);
+    select(key: Key): void;
+    register(key: Key): void;
   }
 </script>
 

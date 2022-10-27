@@ -27,7 +27,7 @@
 
   const dispatch = createEventDispatcher();
 
-  let reveledStates;
+  let reveledStates: State[];
   $: flipped = new Array(solution.length).fill(false);
   $: {
     // Runs when the solution or revealed changes.

@@ -107,17 +107,17 @@ export function findLetterStates(
   solution: string,
   rows: string[]
 ): Map<string, State> {
-  const allStates = {
+  const allStates: { [state in State]: Set<string> } = {
     [State.Correct]: new Set<string>(),
     [State.Absent]: new Set<string>(),
     [State.Present]: new Set<string>(),
+    // Kept but not used.
+    [State.Unknown]: new Set<string>(),
   };
   for (const row of rows) {
     const states = findRowStates(solution, row);
     for (let i = 0; i < row.length; ++i) {
-      if (states[i] !== State.Unknown) {
-        allStates[states[i]].add(row[i]);
-      }
+      allStates[states[i]].add(row[i]);
     }
   }
 

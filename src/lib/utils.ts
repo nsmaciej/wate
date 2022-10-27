@@ -44,7 +44,7 @@ export function localStorageStore<T>(
 }
 
 export function matchMediaStore(mediaString: string): Readable<boolean> {
-  return readable(null, (set) => {
+  return readable<boolean>(undefined, (set) => {
     if (browser) {
       const media = window.matchMedia(mediaString);
       set(media.matches);
@@ -97,7 +97,7 @@ export function numberToSitelen(
   return result.join(" ");
 }
 
-export const SITELEN_PONA_LETTERS = {
+export const SITELEN_PONA_LETTERS: { [letter: string]: string } = {
   a: "alasa",
   e: "esun",
   i: "ilo",

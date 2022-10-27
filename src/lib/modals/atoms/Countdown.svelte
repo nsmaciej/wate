@@ -7,7 +7,7 @@
 
   dayjs.extend(duration);
 
-  const currentTime = readable<Dayjs>(null, (set) => {
+  const currentTime = readable<Dayjs>(undefined, (set) => {
     set(dayjs());
     const interval = setInterval(() => {
       set(dayjs());

@@ -8,7 +8,7 @@ import {
 } from "./game";
 
 function states(fmt: string): State[] {
-  const TYPES = {
+  const TYPES: { [shortcut: string]: State } = {
     c: State.Correct,
     _: State.Absent,
     p: State.Present,
@@ -17,7 +17,7 @@ function states(fmt: string): State[] {
   return fmt
     .toLowerCase()
     .split("")
-    .map((x) => TYPES[x]);
+    .map((x) => TYPES[x] ?? State.Unknown);
 }
 
 describe("findRowStates", () => {
