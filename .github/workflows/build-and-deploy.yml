@@ -17,7 +17,7 @@ jobs:
     environment: production
     steps:
       - name: Dispatch Wordy
-        uses: peter-evans/repository-dispatch@v1
+        uses: peter-evans/repository-dispatch@v2
         with:
           repository: maciej-irl/wordy
           event-type: build-and-deploy
