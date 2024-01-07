@@ -23,7 +23,7 @@ export const enum Theme {
 
 // Main stores.
 export const locale = wordy
-  ? readable("en")
+  ? writable("en") // Simplifies `locale` search param logic.
   : localStorageStore("locale", "tok");
 export const theme = localStorageStore("theme", Theme.Auto);
 // Note this is still present in Wordy mode but is ignored.

@@ -16,6 +16,14 @@
   }
 </script>
 
+<script lang="ts">
+	import type { PageData } from './$types';
+  import {locale} from "$lib/settings"
+	
+	export let data: PageData;
+  $: data.locale && locale.set(data.locale);
+</script>
+
 <svelte:head>
   <title>{title}</title>
 
