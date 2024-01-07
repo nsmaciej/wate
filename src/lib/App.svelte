@@ -7,6 +7,8 @@
 </script>
 
 <script lang="ts">
+  import { page } from "$app/stores";
+  import { browser } from "$app/environment";
   import {
     currentGameDay,
     selectEnglishWord,
@@ -18,6 +20,7 @@
     gameState,
     gatherSettings,
     tokiPonaMode,
+    locale,
   } from "$lib/settings";
   import { _ } from "svelte-i18n";
   import { localStorageStore } from "$lib/utils";
@@ -29,6 +32,9 @@
   import Share from "$lib/modals/Share.svelte";
   import Backdoor from "$lib/Backdoor.svelte";
   import IconButton from "./IconButton.svelte";
+
+  $: searchLocale = browser && $page.url.searchParams.get("locale");
+  $: if (searchLocale) $locale = searchLocale;
 
   const acceptableWords = dictionary.solutions.concat(dictionary.words);
   const gameDay = currentGameDay();
@@ -51,7 +57,7 @@
     recordEvent(
       key === DNF_STATS_KEY ? "dnf" : "finish",
       ...gatherSettings(),
-      $gameState[$tokiPonaMode].join(",")
+      $gameState[$tokiPonaMode].join(","),
     );
   }
 

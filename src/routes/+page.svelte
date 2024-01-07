@@ -1,6 +1,5 @@
 <script context="module" lang="ts">
   import App from "$lib/App.svelte";
-  import { waitLocale } from "svelte-i18n";
   import { wordy } from "$src/config.json";
   import "./i18n";
   import "../app.css";
@@ -11,17 +10,6 @@
   const description = wordy
     ? "Open Source Wordle"
     : "Toki Pona Wordle. musi Wordle pi toki pona.";
-  export async function preload(): Promise<void> {
-    return waitLocale();
-  }
-</script>
-
-<script lang="ts">
-	import type { PageData } from './$types';
-  import {locale} from "$lib/settings"
-	
-	export let data: PageData;
-  $: data.locale && locale.set(data.locale);
 </script>
 
 <svelte:head>
