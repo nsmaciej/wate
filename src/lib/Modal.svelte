@@ -29,6 +29,7 @@
 
 {#if shown}
   <!-- The on:click can't be on svelte:window or the modal insta-closes itself. -->
+  <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
   <div
     role="presentation"
     class="overlay"

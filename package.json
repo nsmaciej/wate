@@ -1,5 +1,5 @@
 {
-  "name": "tokiponawordle",
+  "name": "wate",
   "version": "0.0.1",
   "scripts": {
     "dev": "vite dev",
@@ -7,32 +7,33 @@
     "preview": "vite preview",
     "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write .",
-    "test": "jest"
+    "lint": "prettier --check . && eslint .",
+    "format": "prettier --write .",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "next",
-    "@sveltejs/kit": "next",
-    "@types/jest": "^27.4.1",
-    "@typescript-eslint/eslint-plugin": "^5.27.0",
-    "@typescript-eslint/parser": "^5.27.0",
-    "eslint": "^8.16.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-svelte3": "^4.0.0",
-    "jest": "^27.5.1",
-    "prettier": "^2.6.2",
-    "prettier-plugin-svelte": "^2.7.0",
-    "svelte": "^3.52.0",
-    "svelte-check": "^2.7.1",
-    "svelte-i18n": "^3.4.0",
-    "svelte-preprocess": "^4.10.6",
-    "ts-jest": "^27.1.3",
-    "typescript": "^4.7.4",
-    "vite": "^3.2.0"
+    "@sveltejs/adapter-static": "^3.0.0",
+    "@sveltejs/kit": "^2.0.0",
+    "@sveltejs/vite-plugin-svelte": "^3.0.0",
+    "@types/eslint": "8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-svelte": "^2.35.0",
+    "eslint": "^8.56.0",
+    "prettier-plugin-svelte": "^3.1.0",
+    "prettier": "^3.1.0",
+    "svelte-check": "^3.6.0",
+    "svelte-i18n": "^4.0.0",
+    "svelte-preprocess": "^5.1.0",
+    "svelte": "^4.2.0",
+    "tslib": "^2.4.0",
+    "typescript": "^5.0.0",
+    "vite": "^5.0.0",
+    "vitest": "^1.0.0"
   },
   "type": "module",
   "dependencies": {
-    "dayjs": "^1.10.8"
+    "dayjs": "^1.11.10"
   }
 }
